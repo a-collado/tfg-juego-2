@@ -15,3 +15,6 @@ script = null
 
 [node name="body_001" parent="root/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_lu4wm")
+
+[node name="hitManager" parent="." index="5"]
+script = null

@@ -18,7 +18,8 @@ extends Control
 
 enum Joystick_mode {
 	FIXED, ## The joystick doesn't move.
-	DYNAMIC ## Every time the joystick area is pressed, the joystick position is set on the touched position.
+	DYNAMIC, ## Every time the joystick area is pressed, the joystick position is set on the touched position.
+	FOLLOWING ## When the finger moves outside the joystick area, the joystick will follow it.
 }
 
 ## If the joystick stays in the same position or appears on the touched position when touch is started
@@ -70,8 +71,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			if _is_point_inside_joystick_area(event.position) and _touch_index == -1:
-				if joystick_mode == Joystick_mode.DYNAMIC or (joystick_mode == Joystick_mode.FIXED and _is_point_inside_base(event.position)):
-					if joystick_mode == Joystick_mode.DYNAMIC:
+				if joystick_mode == Joystick_mode.DYNAMIC or joystick_mode == Joystick_mode.FOLLOWING or (joystick_mode == Joystick_mode.FIXED and _is_point_inside_base(event.position)):
+					if joystick_mode == Joystick_mode.DYNAMIC or joystick_mode == Joystick_mode.FOLLOWING:
 						_move_base(event.position)
 					_touch_index = event.index
 					_tip.modulate = pressed_color
@@ -113,25 +114,36 @@ func _update_joystick(touch_position: Vector2) -> void:
 	var center : Vector2 = _base.global_position + _base_radius
 	var vector : Vector2 = touch_position - center
 	vector = vector.limit_length(clampzone_size)
-	
+
+	if joystick_mode == Joystick_mode.FOLLOWING and touch_position.distance_to(center) > clampzone_size:
+		_move_base(touch_position - vector)
+
 	_move_tip(center + vector)
-	
+
 	if vector.length_squared() > deadzone_size * deadzone_size:
 		is_pressed = true
 		output = (vector - (vector.normalized() * deadzone_size)) / (clampzone_size - deadzone_size)
 	else:
 		is_pressed = false
 		output = Vector2.ZERO
-	
+
 	if use_input_actions:
 		if output.x > 0:
+			if Input.is_action_pressed(action_left):
+				Input.action_release(action_left)
 			_update_input_action(action_right, output.x)
 		else:
+			if Input.is_action_pressed(action_right):
+				Input.action_release(action_right)
 			_update_input_action(action_left, -output.x)
 
 		if output.y > 0:
+			if Input.is_action_pressed(action_up):
+				Input.action_release(action_up)
 			_update_input_action(action_down, output.y)
 		else:
+			if Input.is_action_pressed(action_down):
+				Input.action_release(action_down)
 			_update_input_action(action_up, -output.y)
 
 func _update_input_action(action:String, value:float):

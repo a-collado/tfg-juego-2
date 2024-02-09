@@ -3,7 +3,6 @@
 [ext_resource type="MeshLibrary" uid="uid://d1hulycx5v61j" path="res://assets/tiles.tres" id="1_mccqt"]
 [ext_resource type="PackedScene" uid="uid://nklwmh4e4jwg" path="res://objects/player.tscn" id="2_pbsyp"]
 [ext_resource type="Script" path="res://scripts/Team.gd" id="2_v6un1"]
-[ext_resource type="Script" path="res://scripts/Ball.gd" id="3_bnq7p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_is35y"]
 albedo_color = Color(0.207843, 0.623529, 0.109804, 1)
@@ -16,6 +15,20 @@ size = Vector3(0.776048, 0.838601, 0.717716)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ncecr"]
 albedo_color = Color(0.0977035, 0.258915, 0.435264, 1)
+
+[sub_resource type="GDScript" id="GDScript_wtdtv"]
+script/source = "extends CSGSphere3D
+class_name Ball
+
+@onready var area3d: Area3D = $Area3D
+@onready var collision_shape: CollisionShape3D = $Area3D/CollisionShape3D
+var player: Player
+var tween: Tween
+
+func stop() -> void:
+	if tween:
+		tween.stop()
+"
 
 [node name="Volley" type="Node3D"]
 
@@ -96,4 +109,4 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.0
 [node name="Ball" type="CSGSphere3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.276045, 0, 0, 0, 0.276045, 0, 0, 0, 0.276045, 0, 0.280903, 14.6392)
-script = ExtResource("3_bnq7p")
+script = SubResource("GDScript_wtdtv")

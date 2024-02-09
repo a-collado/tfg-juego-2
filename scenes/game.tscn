@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://do7xsm1qtu1kh"]
+[gd_scene load_steps=15 format=3 uid="uid://do7xsm1qtu1kh"]
 
 [ext_resource type="MeshLibrary" uid="uid://d1hulycx5v61j" path="res://assets/tiles.tres" id="1_fopfi"]
 [ext_resource type="Script" path="res://scripts/Team.gd" id="2_it3qi"]
@@ -19,7 +19,17 @@ size = Vector3(0.776048, 0.838601, 0.717716)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23vym"]
 albedo_color = Color(0.0977035, 0.258915, 0.435264, 1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_hmllk"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_uv6fw"]
+size = Vector3(17.9935, 5.99512, 0.15625)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qj1ei"]
+size = Vector3(54.157, 6.31775, 0.183105)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yho6n"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fr8sp"]
 
 [node name="Game" type="Node"]
 
@@ -78,6 +88,29 @@ shape = SubResource("BoxShape3D_cif0x")
 transform = Transform3D(17.9985, 0, 0, 0, 2.38044, 0, 0, 0, 0.0509532, 0, 0.178811, 0)
 size = Vector3(1, 0.140869, 1)
 
+[node name="Collisions" type="Node" parent="Environment"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Collisions"]
+collision_layer = 4
+collision_mask = 4
+metadata/_edit_lock_ = true
+
+[node name="Back" type="CollisionShape3D" parent="Environment/Collisions/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0286803, 3.41836, 27.0909)
+shape = SubResource("BoxShape3D_uv6fw")
+
+[node name="Front" type="CollisionShape3D" parent="Environment/Collisions/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0286803, 3.41836, -27.0721)
+shape = SubResource("BoxShape3D_uv6fw")
+
+[node name="Right" type="CollisionShape3D" parent="Environment/Collisions/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.09551, 3.2047, 0.352308)
+shape = SubResource("BoxShape3D_qj1ei")
+
+[node name="Left" type="CollisionShape3D" parent="Environment/Collisions/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.1407, 3.2047, 0.352307)
+shape = SubResource("BoxShape3D_qj1ei")
+
 [node name="Camera" type="Camera3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.669947, 0.742409, 0, -0.742409, 0.669947, 0, 43.205, 39.405)
@@ -93,29 +126,18 @@ transform = Transform3D(1, 0, 0, 0, 0.0152012, -0.999884, 0, 0.999884, 0.0152012
 script = ExtResource("2_it3qi")
 
 [node name="Player" parent="Team A" instance=ExtResource("3_teik6")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.004, 10.7706)
+transform = Transform3D(-1.90187, 0, -1.66266e-07, 0, 1.90187, 0, 1.66266e-07, 0, -1.90187, 0, 0.004, 10.7706)
 
 [node name="Team B" type="Node" parent="."]
 script = ExtResource("2_it3qi")
 
 [node name="Enemy" parent="Team B" instance=ExtResource("5_1uxck")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.105729, 0.00405633, -15.2092)
-
-[node name="Ball" type="CSGSphere3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(0.276045, 0, 0, 0, 0.276045, 0, 0, 0, 0.276045, -0.0381709, 0.280903, 9.5018)
-script = ExtResource("4_srmej")
-
-[node name="Area3D" type="Area3D" parent="Ball"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball/Area3D"]
-shape = SubResource("SphereShape3D_hmllk")
+transform = Transform3D(1.857, 0, 0, 0, 1.857, 0, 0, 0, 1.857, -0.105729, 0.00405633, -15.2092)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Virtual Joystick" parent="UI" instance=ExtResource("6_lgmqp")]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_top = 0.0
 anchor_right = 1.0
@@ -127,6 +149,10 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 joystick_mode = 1
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_up"
+action_down = "move_down"
 
 [node name="Base" parent="UI/Virtual Joystick" index="0"]
 anchors_preset = -1
@@ -134,5 +160,22 @@ anchor_top = 0.751
 anchor_bottom = 0.751
 offset_top = -100.391
 offset_bottom = 99.609
+
+[node name="Ball" type="RigidBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.949507, 1.63342)
+collision_layer = 4
+collision_mask = 4
+axis_lock_linear_y = true
+physics_material_override = SubResource("PhysicsMaterial_yho6n")
+gravity_scale = 0.0
+contact_monitor = true
+script = ExtResource("4_srmej")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+transform = Transform3D(0.712953, 0, 0, 0, 0.712953, 0, 0, 0, 0.712953, 0, 0, 0)
+shape = SubResource("SphereShape3D_fr8sp")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Ball/CollisionShape3D"]
 
 [editable path="UI/Virtual Joystick"]
