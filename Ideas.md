@@ -1,5 +1,3 @@
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-A ver.
 La idea principal de esto seria:
 	- Cuando te mueves, empiezas a cargar la raqueta.
 	- Cuando te dejas de tocar la pantalla, pegas un raquetazo
