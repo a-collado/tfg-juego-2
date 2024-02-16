@@ -10,12 +10,21 @@
 		{
 			"uuid": "8ad1d0c0-4190-473d-aa2c-90d14e562cba",
 			"title": "Todo",
-			"tasks": []
+			"tasks": [
+				"c30d120a-9c62-4e7a-b842-903bb47cd668",
+				"658ec8b1-ec77-4db5-81d8-988083dd3f67",
+				"97456530-34e0-4a56-8c34-6136b472914e",
+				"2614af8f-8c34-4c4b-a196-8fb75d5dadba",
+				"9a173387-2bfa-452e-8c5d-52bcb919ba95",
+				"7bd1d1b2-4f1a-46ab-8d9f-975f611d387e"
+			]
 		},
 		{
 			"uuid": "9d0a3967-0a14-464c-b42f-5252e4f488f4",
 			"title": "Doing",
-			"tasks": []
+			"tasks": [
+				"187ed497-6e28-438f-9fad-31e2ce4a3562"
+			]
 		},
 		{
 			"uuid": "3b72d3dc-f931-4399-b7a0-e9c204c6adf3",
@@ -23,7 +32,57 @@
 			"tasks": []
 		}
 	],
-	"tasks": [],
+	"tasks": [
+		{
+			"uuid": "187ed497-6e28-438f-9fad-31e2ce4a3562",
+			"title": "Lobby Multiplayer",
+			"description": "",
+			"category": "b41a9efd-db15-4fa8-8c7b-e458a8cd3dfb",
+			"steps": []
+		},
+		{
+			"uuid": "97456530-34e0-4a56-8c34-6136b472914e",
+			"title": "Mecanica de \"chute\"",
+			"description": "",
+			"category": "b41a9efd-db15-4fa8-8c7b-e458a8cd3dfb",
+			"steps": []
+		},
+		{
+			"uuid": "9a173387-2bfa-452e-8c5d-52bcb919ba95",
+			"title": "Spawneo multiplayer",
+			"description": "",
+			"category": "b41a9efd-db15-4fa8-8c7b-e458a8cd3dfb",
+			"steps": []
+		},
+		{
+			"uuid": "2614af8f-8c34-4c4b-a196-8fb75d5dadba",
+			"title": "Cada jugador pueda mover un personaje",
+			"description": "",
+			"category": "b41a9efd-db15-4fa8-8c7b-e458a8cd3dfb",
+			"steps": []
+		},
+		{
+			"uuid": "c30d120a-9c62-4e7a-b842-903bb47cd668",
+			"title": "IA",
+			"description": "",
+			"category": "b41a9efd-db15-4fa8-8c7b-e458a8cd3dfb",
+			"steps": []
+		},
+		{
+			"uuid": "658ec8b1-ec77-4db5-81d8-988083dd3f67",
+			"title": "Fisicas pelota",
+			"description": "",
+			"category": "b41a9efd-db15-4fa8-8c7b-e458a8cd3dfb",
+			"steps": []
+		},
+		{
+			"uuid": "7bd1d1b2-4f1a-46ab-8d9f-975f611d387e",
+			"title": "Buscador de servidores / matchmaking",
+			"description": "",
+			"category": "b41a9efd-db15-4fa8-8c7b-e458a8cd3dfb",
+			"steps": []
+		}
+	],
 	"layout": {
 		"columns": [
 			[
