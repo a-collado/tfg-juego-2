@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccdkchmi4fh5l"]
+[gd_scene load_steps=17 format=3 uid="uid://ccdkchmi4fh5l"]
 
 [ext_resource type="Script" path="res://scripts/multiplayer/Game.gd" id="1_0csgq"]
 [ext_resource type="MeshLibrary" uid="uid://d1hulycx5v61j" path="res://assets/tiles.tres" id="1_tsdrk"]
 [ext_resource type="Script" path="res://scripts/Team.gd" id="2_0qrcc"]
 [ext_resource type="PackedScene" uid="uid://nklwmh4e4jwg" path="res://objects/player.tscn" id="3_308vm"]
-[ext_resource type="PackedScene" uid="uid://dx3yfr7vp3gbn" path="res://objects/enemy.tscn" id="4_6awvt"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick.tscn" id="5_42s3w"]
 [ext_resource type="Script" path="res://scripts/Ball.gd" id="6_isx7c"]
 
@@ -139,8 +138,8 @@ transform = Transform3D(-1.90187, 0, -1.66266e-07, 0, 1.90187, 0, 1.66266e-07, 0
 [node name="Team B" type="Node" parent="."]
 script = ExtResource("2_0qrcc")
 
-[node name="Enemy" parent="Team B" instance=ExtResource("4_6awvt")]
-transform = Transform3D(1.857, 0, 0, 0, 1.857, 0, 0, 0, 1.857, -0.105729, 0.00405633, -15.2092)
+[node name="Player2" parent="Team B" instance=ExtResource("3_308vm")]
+transform = Transform3D(1.90183, 0, 0.0122485, 0, 1.90187, 0, -0.0122485, 0, 1.90183, 0, 0.004, -15.4491)
 
 [node name="UI" type="CanvasLayer" parent="."]
 

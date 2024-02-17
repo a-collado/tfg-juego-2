@@ -10,4 +10,8 @@ func _ready():
 func start_game():
 	# All peers are ready to receive RPCs in this scene.
 	print("Ahora empieza el juego")
+	end_load_screen.rpc()
+
+@rpc("authority", "call_local", "reliable")
+func end_load_screen() -> void:
 	UI_loading.visible = false
