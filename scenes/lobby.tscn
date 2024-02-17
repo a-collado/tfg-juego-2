@@ -4,10 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://ra0j133x6ofg" path="res://assets/Iconos/reload.png" id="2_6kglo"]
 [ext_resource type="Script" path="res://scripts/multiplayer/ServerBrowserLAN.gd" id="2_cpxfv"]
 
-[node name="Lobby" type="Node2D"]
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_hmgxf")
 
 [node name="Lobby Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -57,6 +60,7 @@ text = "Server List"
 
 [node name="Players Menu" type="VBoxContainer" parent="."]
 visible = false
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -102,6 +106,7 @@ flat = true
 
 [node name="Server List LAN" type="VBoxContainer" parent="."]
 visible = false
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

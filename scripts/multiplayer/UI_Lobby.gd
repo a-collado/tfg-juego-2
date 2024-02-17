@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 @onready var menu_lobby: Container = $"Lobby Menu"
 @onready var text_name: LineEdit = $"Lobby Menu/Name"
@@ -53,7 +53,6 @@ func _on_player_disconnected(peer_id: int) -> void:
 func _on_server_disconnected() -> void:
 	button_start.disabled = true
 	_on_back_pressed()
-
 
 func _on_back_pressed() -> void:
 	Lobby.remove_multiplayer_peer()

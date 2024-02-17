@@ -170,6 +170,7 @@ offset_top = -100.391
 offset_bottom = 99.609
 
 [node name="Loading" type="TextureRect" parent="UI"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

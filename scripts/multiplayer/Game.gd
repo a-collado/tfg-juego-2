@@ -3,7 +3,6 @@ extends Node
 @onready var UI_loading = $UI/Loading
 
 func _ready():
-
 	UI_loading.visible = true
 	Lobby.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
 
