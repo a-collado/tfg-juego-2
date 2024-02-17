@@ -1,10 +1,14 @@
 extends Node
 
+@onready var UI_loading = $UI/Loading
+
 func _ready():
-	# Preconfigure game.
+
+	UI_loading.visible = true
 	Lobby.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
 
 # Called only on the server.
 func start_game():
 	# All peers are ready to receive RPCs in this scene.
 	print("Ahora empieza el juego")
+	UI_loading.visible = false
