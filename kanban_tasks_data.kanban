@@ -16,7 +16,8 @@
 				"97456530-34e0-4a56-8c34-6136b472914e",
 				"2614af8f-8c34-4c4b-a196-8fb75d5dadba",
 				"9a173387-2bfa-452e-8c5d-52bcb919ba95",
-				"7bd1d1b2-4f1a-46ab-8d9f-975f611d387e"
+				"a7f127d0-89c3-4c63-9399-938715ae268c",
+				"c3f3299c-eca6-4d0c-9ec1-264dbe784182"
 			]
 		},
 		{
@@ -78,6 +79,20 @@
 		{
 			"uuid": "7bd1d1b2-4f1a-46ab-8d9f-975f611d387e",
 			"title": "Buscador de servidores / matchmaking",
+			"description": "",
+			"category": "b41a9efd-db15-4fa8-8c7b-e458a8cd3dfb",
+			"steps": []
+		},
+		{
+			"uuid": "a7f127d0-89c3-4c63-9399-938715ae268c",
+			"title": "Buscador de servidores en LAN",
+			"description": "",
+			"category": "b41a9efd-db15-4fa8-8c7b-e458a8cd3dfb",
+			"steps": []
+		},
+		{
+			"uuid": "c3f3299c-eca6-4d0c-9ec1-264dbe784182",
+			"title": "Buscador de servidores en WAN",
 			"description": "",
 			"category": "b41a9efd-db15-4fa8-8c7b-e458a8cd3dfb",
 			"steps": []

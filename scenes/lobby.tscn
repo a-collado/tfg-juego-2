@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://uwi28k8m6bka"]
+[gd_scene load_steps=4 format=3 uid="uid://uwi28k8m6bka"]
 
 [ext_resource type="Script" path="res://scripts/multiplayer/UI_Lobby.gd" id="1_hmgxf"]
+[ext_resource type="Texture2D" uid="uid://ra0j133x6ofg" path="res://assets/Iconos/reload.png" id="2_6kglo"]
+[ext_resource type="Script" path="res://scripts/multiplayer/ServerBrowserLAN.gd" id="2_cpxfv"]
 
 [node name="Lobby" type="Node2D"]
 script = ExtResource("1_hmgxf")
@@ -42,11 +44,16 @@ text = "Join Game"
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "127.0.0.1"
-placeholder_text = "127.0.0.1"
+placeholder_text = "Ip Address"
 alignment = 1
 virtual_keyboard_type = 7
 clear_button_enabled = true
 middle_mouse_paste_enabled = false
+
+[node name="List" type="Button" parent="Lobby Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Server List"
 
 [node name="Players Menu" type="VBoxContainer" parent="."]
 visible = false
@@ -93,7 +100,81 @@ disabled = true
 text = "Start Game"
 flat = true
 
+[node name="Server List LAN" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 132.0
+offset_top = 92.0
+offset_right = 615.001
+offset_bottom = 429.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Server List LAN"]
+layout_mode = 2
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="Title" type="Label" parent="Server List LAN/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Server List"
+
+[node name="TextureRect" type="TextureRect" parent="Server List LAN/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_6kglo")
+expand_mode = 3
+
+[node name="Reload" type="Button" parent="Server List LAN/HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0545455
+anchor_right = 1.03927
+anchor_bottom = 1.0
+offset_right = -52.16
+grow_vertical = 2
+scale = Vector2(7.52, 1)
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="HSeparator" type="HSeparator" parent="Server List LAN"]
+layout_mode = 2
+
+[node name="Server Browser" type="Control" parent="Server List LAN"]
+layout_mode = 2
+script = ExtResource("2_cpxfv")
+
+[node name="BroadcastTimer" type="Timer" parent="Server List LAN/Server Browser"]
+
+[node name="TimeoutTimer" type="Timer" parent="Server List LAN/Server Browser"]
+wait_time = 5.0
+
+[node name="List" type="VBoxContainer" parent="Server List LAN"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="Server List LAN"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Go back"
+flat = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[connection signal="text_changed" from="Lobby Menu/Name" to="." method="_on_name_text_changed"]
 [connection signal="pressed" from="Lobby Menu/Host" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="Lobby Menu/Join" to="." method="_on_join_button_pressed"]
+[connection signal="text_changed" from="Lobby Menu/Ip" to="." method="_on_ip_text_changed"]
+[connection signal="pressed" from="Lobby Menu/List" to="." method="_on_list_pressed"]
 [connection signal="pressed" from="Players Menu/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Players Menu/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Server List LAN/HBoxContainer/TextureRect/Reload" to="." method="_on_reload_pressed"]
+[connection signal="server_found" from="Server List LAN/Server Browser" to="." method="_on_server_browser_server_found"]
+[connection signal="timeout" from="Server List LAN/Server Browser/BroadcastTimer" to="Server List LAN/Server Browser" method="_on_broadcast_timer_timeout"]
+[connection signal="pressed" from="Server List LAN/Back" to="." method="_on_server_list_back_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

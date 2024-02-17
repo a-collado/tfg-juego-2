@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddlardojoyed5"]
+
+[sub_resource type="GDScript" id="GDScript_t0pjx"]
+resource_name = "ServerButton"
+script/source = "extends Button
+class_name ServerButton
+
+var server_ip: String
+var server_name: String
+
+func _init(server_ip: String, server_name: String) -> void:
+	self.server_ip = server_ip
+	self.server_name = server_name
+	self.text = server_name
+"
+
+[node name="Button" type="Button"]
+theme_override_font_sizes/font_size = 40
+text = "Name"
+script = SubResource("GDScript_t0pjx")
