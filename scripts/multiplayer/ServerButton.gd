@@ -6,9 +6,9 @@ signal server_pressed(server_ip: String)
 var server_ip: String
 var server_name: String
 
-func _init(server_ip: String, server_name: String) -> void:
-	self.server_ip = server_ip
-	self.server_name = server_name
+func _init(ip: String, host_name: String) -> void:
+	self.server_ip = ip
+	self.server_name = host_name
 	self.text = server_name
 	self.add_theme_font_size_override("font_size", 64)
 

@@ -1,7 +1,6 @@
 extends Control
 
-signal server_found(server_ip: String, player_name: String, player_count: int)
-signal server_removed(server_ip: String)
+signal server_found(server_ip: String, player_name: String)
 
 @onready var broadcastTimer: Timer = $BroadcastTimer
 @onready var timeoutTimer: Timer = $TimeoutTimer
@@ -19,7 +18,7 @@ var listener: PacketPeerUDP
 
 var server_list: PackedStringArray
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if listener == null || listener.get_available_packet_count() <= 0:
 		return
 	var server_ip = listener.get_packet_ip()
@@ -29,14 +28,14 @@ func _process(delta: float) -> void:
 	var tmp_server_info = packet_data.split("\n")
 	var server_info = {"name": tmp_server_info[0], "count": int(tmp_server_info[1])}
 
-	#print("Server detected at IP: " + str(server_ip) + " PORT: " + str(server_port)
-	#+ " . Server name: " + server_info.name + ", Players: " + str(server_info.count))
+	print("Server detected at IP: " + str(server_ip) + " PORT: " + str(server_port)
+	+ " . Server name: " + server_info.name + ", Players: " + str(server_info.count))
 
-	if server_port == 0 || server_list.has(server_ip):
+	if server_port == 0 || server_list.has(server_ip) || server_info.count > 1:
 		return
 
 	server_list.append(server_ip)
-	server_found.emit(server_ip, server_info.name, server_info.count)
+	server_found.emit(server_ip, server_info.name)
 
 func set_up_listening() -> void:
 	listener = PacketPeerUDP.new()
@@ -47,8 +46,8 @@ func set_up_listening() -> void:
 	else:
 		print("Failed to bind to Listen Port")
 
-func set_up_broadcast(name: String) -> void:
-	room_info.name = name
+func set_up_broadcast(host_name: String) -> void:
+	room_info.name = host_name
 	room_info.count = 1
 	broadcaster = PacketPeerUDP.new()
 	broadcaster.set_broadcast_enabled(true)
@@ -66,9 +65,8 @@ func _on_broadcast_timer_timeout() -> void:
 
 	room_info.count = Lobby.players.size()
 
-	# Usamos ▼ (ASCII 31, Unit Separator) para separar informacion
+	# Usamos \n para separar informacion
 	var data = room_info.name + "\n" + str(room_info.count)
-	#var data = JSON.stringify(room_info)
 	var packet = data.to_ascii_buffer()
 	broadcaster.put_packet(packet)
 

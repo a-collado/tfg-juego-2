@@ -30,6 +30,7 @@ func _on_host_button_pressed() -> void:
 		menu_lobby.hide()
 		menu_host.show()
 		server_browser.set_up_broadcast(text_name.text)
+		button_start.disabled = true
 
 func _on_join_button_pressed() -> void:
 	_connect_to_server(text_ip.text)
@@ -39,15 +40,20 @@ func _on_player_connected(peer_id: int, player_info: Dictionary) -> void:
 		text_host_player1.text = player_info.name
 	else:
 		text_host_player2.text = player_info.name
+	if Lobby.is_server() && Lobby.players.size() == 2:
+		button_start.disabled = false
 
 func _on_player_disconnected(peer_id: int) -> void:
 	if peer_id == 1:
 		text_host_player1.text = "..."
 	else:
 		text_host_player2.text = "..."
+	button_start.disabled = true
 
 func _on_server_disconnected() -> void:
+	button_start.disabled = true
 	_on_back_pressed()
+
 
 func _on_back_pressed() -> void:
 	Lobby.remove_multiplayer_peer()
@@ -94,7 +100,7 @@ func _on_timer_timeout() -> void:
 	if text_host_player1.text == "..." && menu_host.is_visible_in_tree():
 		_on_back_pressed()
 
-func _on_server_browser_server_found(server_ip: String, player_name: String, player_count: int) -> void:
+func _on_server_browser_server_found(server_ip: String, player_name: String) -> void:
 	print("Server found on IP: " + server_ip)
 	var button_server:ServerButton = ServerButton.new(server_ip, player_name)
 	button_server.server_pressed.connect(_connect_to_server)

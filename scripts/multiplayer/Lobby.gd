@@ -6,7 +6,7 @@ signal server_disconnected
 
 const PORT = 7000
 const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
-const MAX_CONNECTIONS = 2
+const MAX_CONNECTIONS = 1
 
 # This will contain player info for every player,
 # with the keys being each player's unique IDs.
@@ -45,7 +45,9 @@ func create_game():
 	player_connected.emit(1, player_info)
 
 func remove_multiplayer_peer():
-	multiplayer.multiplayer_peer = null
+	if multiplayer.multiplayer_peer != null:
+		multiplayer.multiplayer_peer.close()
+	#multiplayer.multiplayer_peer = null
 
 # When the server decides to start the game from a UI scene,
 # do Lobby.load_game.rpc(filepath)
@@ -87,3 +89,6 @@ func _on_server_disconnected():
 	multiplayer.multiplayer_peer = null
 	players.clear()
 	server_disconnected.emit()
+
+func is_server() -> bool:
+	return multiplayer.is_server()
