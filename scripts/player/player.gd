@@ -4,27 +4,32 @@ class_name Player
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-@onready var ball: Ball = %Ball
+#@onready var ball: Ball = %Ball
 @onready var team: Team = self.get_parent()
 @onready var ball_timer: Timer = $Timer
 @onready var hit_manager: HitManager = $hitManager
-@onready var virtual_joystick: VirtualJoystick = %"Virtual Joystick"
+#@onready var virtual_joystick: VirtualJoystick = %"Virtual Joystick"
 @onready var mult_sync: MultiplayerSynchronizer = $MultiplayerSynchronizer
+
+var id: int
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var ball_cooldown: float = 0.5
 var movement: bool = true
-var is_joystick_pressed;
+var is_joystick_pressed:bool = false;
+
+func _enter_tree() -> void:
+	set_multiplayer_authority(id)
 
 func _ready() -> void:
 	ball_timer.wait_time = ball_cooldown
-	#if(Lobby.is_server()):
-	#	mult_sync.set_multiplayer_authority(Lobby.players.get(0))
-	#else:
-	#	mult_sync.set_multiplayer_authority(Lobby.players.get(1))
 
 func _physics_process(delta: float) -> void:
-	is_joystick_pressed = virtual_joystick.is_pressed
+	if mult_sync.get_multiplayer_authority() != multiplayer.get_unique_id():
+		return
+
+	#is_joystick_pressed = virtual_joystick.is_pressed
+	is_joystick_pressed = false
 	if movement:
 		_calc_movement(delta)
 
@@ -36,9 +41,6 @@ func _calc_movement(delta: float) -> void:
 	## Handle jump.
 	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		#velocity.y = JUMP_VELOCITY
-
-	#if mult_sync.get_multiplayer_authority() != multiplayer.get_unique_id():
-	#	return
 
 	var input_dir := Input.get_vector( "move_right", "move_left", "move_down" , "move_up")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
