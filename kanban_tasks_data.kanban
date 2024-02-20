@@ -14,15 +14,14 @@
 				"c30d120a-9c62-4e7a-b842-903bb47cd668",
 				"658ec8b1-ec77-4db5-81d8-988083dd3f67",
 				"97456530-34e0-4a56-8c34-6136b472914e",
-				"c3f3299c-eca6-4d0c-9ec1-264dbe784182"
+				"7bbe9921-c50c-4027-98f9-a0b1477f2e4f"
 			]
 		},
 		{
 			"uuid": "9d0a3967-0a14-464c-b42f-5252e4f488f4",
 			"title": "Doing",
 			"tasks": [
-				"9a173387-2bfa-452e-8c5d-52bcb919ba95",
-				"2614af8f-8c34-4c4b-a196-8fb75d5dadba"
+				"c3f3299c-eca6-4d0c-9ec1-264dbe784182"
 			]
 		},
 		{
@@ -30,7 +29,9 @@
 			"title": "Done",
 			"tasks": [
 				"a7f127d0-89c3-4c63-9399-938715ae268c",
-				"187ed497-6e28-438f-9fad-31e2ce4a3562"
+				"187ed497-6e28-438f-9fad-31e2ce4a3562",
+				"2614af8f-8c34-4c4b-a196-8fb75d5dadba",
+				"9a173387-2bfa-452e-8c5d-52bcb919ba95"
 			]
 		}
 	],
@@ -87,6 +88,13 @@
 		{
 			"uuid": "c3f3299c-eca6-4d0c-9ec1-264dbe784182",
 			"title": "Buscador de servidores en WAN",
+			"description": "",
+			"category": "b41a9efd-db15-4fa8-8c7b-e458a8cd3dfb",
+			"steps": []
+		},
+		{
+			"uuid": "7bbe9921-c50c-4027-98f9-a0b1477f2e4f",
+			"title": "Sincronizacion de partida",
 			"description": "",
 			"category": "b41a9efd-db15-4fa8-8c7b-e458a8cd3dfb",
 			"steps": []

@@ -1,4 +1,9 @@
 extends Node
+##
+# Este nodo se encarga de asegurase de que los dos jugadores estan sincronizados
+# antes de empezar la partida. Spawnea a los dos jugadores y cuando ya han cargado
+# se asegura de enviar una señal para empezar la partida.
+##
 
 @onready var UI_loading = $UI/Loading
 @export var player_ps: PackedScene = preload("res://objects/player.tscn")
@@ -6,6 +11,15 @@ extends Node
 func _ready():
 	UI_loading.visible = true
 
+	Lobby.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
+
+# Called only on the server.
+func start_game():
+	# All peers are ready to receive RPCs in this scene.
+	print("Ahora empieza el juego")
+	end_load_screen.rpc()
+
+func _spawn_players() -> void:
 	for p in Lobby.players:
 		var player = player_ps.instantiate()
 		player.id = int(p)
@@ -27,16 +41,8 @@ func _ready():
 		player.rotation = spawn.rotation
 		team.add_child(player, true)
 
-	Lobby.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
-
-# Called only on the server.
-func start_game():
-	# All peers are ready to receive RPCs in this scene.
-	print("Ahora empieza el juego")
-	end_load_screen.rpc()
-
 @rpc("authority", "call_local", "reliable")
 func end_load_screen() -> void:
-
+	_spawn_players()
 	UI_loading.visible = false
 

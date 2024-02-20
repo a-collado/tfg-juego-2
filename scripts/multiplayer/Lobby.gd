@@ -47,7 +47,6 @@ func create_game():
 func remove_multiplayer_peer():
 	if multiplayer.multiplayer_peer != null:
 		multiplayer.multiplayer_peer.close()
-	#multiplayer.multiplayer_peer = null
 
 # When the server decides to start the game from a UI scene,
 # do Lobby.load_game.rpc(filepath)
