@@ -17,6 +17,7 @@ extends Control
 @onready var menu_servers: Container = $"Server List LAN/List"
 
 @export_file("*.tscn") var game_scene_path: String = "res://scenes/game-multi-test.tscn"
+@export_file("*.tscn") var start_screen_scene_path: String = "res://scenes/startScreen.tscn"
 
 func _ready() -> void:
 	Lobby.player_connected.connect(_on_player_connected)
@@ -118,3 +119,5 @@ func _on_reload_pressed() -> void:
 	server_browser.clean_up_listening()
 	server_browser.set_up_listening()
 
+func _on_back_title_pressed() -> void:
+	get_tree().change_scene_to_file(start_screen_scene_path)
