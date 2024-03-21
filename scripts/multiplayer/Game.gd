@@ -6,7 +6,7 @@ extends Node
 ##
 
 @onready var UI_loading = $UI/Loading
-@export var player_ps: PackedScene = preload("res://objects/player.tscn")
+@export var player_ps: PackedScene = preload("res://objects/player_mp.tscn")
 
 func _ready():
 	UI_loading.visible = true

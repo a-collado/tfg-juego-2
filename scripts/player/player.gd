@@ -1,5 +1,5 @@
-extends CharacterBody3D
 class_name Player
+extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -9,23 +9,30 @@ const JUMP_VELOCITY = 4.5
 @onready var ball_timer: Timer = $Timer
 @onready var hit_manager: HitManager = $hitManager
 #@onready var virtual_joystick: VirtualJoystick = %"Virtual Joystick"
-@onready var mult_sync: MultiplayerSynchronizer = $MultiplayerSynchronizer
+
+var mult_sync: MultiplayerSynchronizer;
 
 var id: int
+var is_multiplayer: bool = false;
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var ball_cooldown: float = 0.5
 var movement: bool = true
 var is_joystick_pressed:bool = false;
+var joystick_direction:Vector3;
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(id)
 
 func _ready() -> void:
 	ball_timer.wait_time = ball_cooldown
+	if has_node("$MultiplayerSynchronizer"):
+		mult_sync = $MultiplayerSynchronizer
+		is_multiplayer = true
+
 
 func _physics_process(delta: float) -> void:
-	if mult_sync.get_multiplayer_authority() != multiplayer.get_unique_id():
+	if is_multiplayer && mult_sync.get_multiplayer_authority() != multiplayer.get_unique_id():
 		return
 
 	#is_joystick_pressed = virtual_joystick.is_pressed
@@ -34,7 +41,7 @@ func _physics_process(delta: float) -> void:
 		_calc_movement(delta)
 
 func _calc_movement(delta: float) -> void:
-		# Add the gravity.
+	# Add the gravity.
 	#if not is_on_floor():
 		#velocity.y -= gravity * delta
 #
@@ -45,6 +52,7 @@ func _calc_movement(delta: float) -> void:
 	var input_dir := Input.get_vector( "move_right", "move_left", "move_down" , "move_up")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
+		joystick_direction = direction;
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:

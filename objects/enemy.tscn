@@ -1,20 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dx3yfr7vp3gbn"]
+[gd_scene load_steps=2 format=3 uid="uid://dx3yfr7vp3gbn"]
 
 [ext_resource type="PackedScene" uid="uid://nklwmh4e4jwg" path="res://objects/player.tscn" id="1_djgfh"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lu4wm"]
-resource_name = "Azul"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.65098, 0, 0.0862745, 1)
-metallic = 0.109934
-roughness = 0.404527
-
 [node name="Enemy" instance=ExtResource("1_djgfh")]
 script = null
-
-[node name="body_001" parent="root/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_lu4wm")
 
 [node name="hitManager" parent="." index="5"]
 script = null

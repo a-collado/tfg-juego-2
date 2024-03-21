@@ -1,7 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://nklwmh4e4jwg"]
+[gd_scene load_steps=24 format=3 uid="uid://nklwmh4e4jwg"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_o6j03"]
 [ext_resource type="Script" path="res://scripts/player/hitManager.gd" id="2_rbc1h"]
+[ext_resource type="Script" path="res://scripts/player/debug_drawer.gd" id="3_dffv4"]
+[ext_resource type="Texture2D" uid="uid://c2iu0x03c5wr8" path="res://assets/Iconos/line_rect.png" id="3_wpn36"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5h0mp"]
 
@@ -7135,14 +7137,6 @@ radius = 1.07382
 
 [sub_resource type="SphereMesh" id="SphereMesh_56oln"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_e4784"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:id")
-properties/1/spawn = true
-properties/1/replication_mode = 0
-
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_o6j03")
@@ -7510,7 +7504,11 @@ scale_amount_min = 0.1
 scale_amount_max = 0.3
 color = Color(0.760784, 0.0941176, 0.290196, 1)
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_e4784")
+[node name="debugDrawer" type="Node3D" parent="."]
+script = ExtResource("3_dffv4")
+
+[node name="Sprite3D" type="Sprite3D" parent="debugDrawer"]
+transform = Transform3D(3.27817e-15, -1, -4.37114e-08, -7.49958e-08, -4.37114e-08, 1, -1.7157, 0, -4.37114e-08, 0, 0, 0.490358)
+texture = ExtResource("3_wpn36")
 
 [connection signal="area_entered" from="playerArea" to="." method="_on_player_area_area_entered"]
