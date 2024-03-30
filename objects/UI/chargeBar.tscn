@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5orexylhqra"]
+
+[ext_resource type="Script" path="res://scripts/UI/charge_bar.gd" id="1_1qff3"]
+[ext_resource type="Texture2D" uid="uid://bqa6koxf6hkc4" path="res://assets/Iconos/progress bar/progress-bar-circle.png" id="1_kyiqq"]
+[ext_resource type="Texture2D" uid="uid://ddxv2qx6a10xw" path="res://assets/Iconos/progress bar/progress-bar-frame.png" id="2_mqeaa"]
+
+[node name="ChargeBar" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_1qff3")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 2.0
+step = 0.01
+value = 2.0
+fill_mode = 4
+texture_under = ExtResource("1_kyiqq")
+texture_over = ExtResource("2_mqeaa")
+texture_progress = ExtResource("1_kyiqq")
+tint_under = Color(0, 0, 0, 0.368627)
+tint_over = Color(1, 1, 1, 0.164706)
+tint_progress = Color(0.352941, 0.784314, 0.0862745, 1)

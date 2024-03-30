@@ -27,7 +27,8 @@ enum Joystick_mode {
 
 enum Visibility_mode {
 	ALWAYS, ## Always visible
-	TOUCHSCREEN_ONLY ## Visible on touch screens only
+	TOUCHSCREEN_ONLY, ## Visible on touch screens only
+	WHEN_TOUCHED ## Visible only when touched
 }
 
 ## If the joystick is always visible, or is shown only if there is a touchscreen
@@ -64,7 +65,15 @@ var _touch_index : int = -1
 # FUNCTIONS
 
 func _ready() -> void:
-	if not DisplayServer.is_touchscreen_available() and visibility_mode == Visibility_mode.TOUCHSCREEN_ONLY:
+	if ProjectSettings.get_setting("input_devices/pointing/emulate_mouse_from_touch"):
+		printerr("The Project Setting 'emulate_mouse_from_touch' should be set to False")
+	if not ProjectSettings.get_setting("input_devices/pointing/emulate_touch_from_mouse"):
+		printerr("The Project Setting 'emulate_touch_from_mouse' should be set to True")
+
+	if not DisplayServer.is_touchscreen_available() and visibility_mode == Visibility_mode.TOUCHSCREEN_ONLY :
+		hide()
+
+	if visibility_mode == Visibility_mode.WHEN_TOUCHED:
 		hide()
 
 func _input(event: InputEvent) -> void:
@@ -74,12 +83,16 @@ func _input(event: InputEvent) -> void:
 				if joystick_mode == Joystick_mode.DYNAMIC or joystick_mode == Joystick_mode.FOLLOWING or (joystick_mode == Joystick_mode.FIXED and _is_point_inside_base(event.position)):
 					if joystick_mode == Joystick_mode.DYNAMIC or joystick_mode == Joystick_mode.FOLLOWING:
 						_move_base(event.position)
+					if visibility_mode == Visibility_mode.WHEN_TOUCHED:
+						show()
 					_touch_index = event.index
 					_tip.modulate = pressed_color
 					_update_joystick(event.position)
 					get_viewport().set_input_as_handled()
 		elif event.index == _touch_index:
 			_reset()
+			if visibility_mode == Visibility_mode.WHEN_TOUCHED:
+				hide()
 			get_viewport().set_input_as_handled()
 	elif event is InputEventScreenDrag:
 		if event.index == _touch_index:
@@ -129,28 +142,18 @@ func _update_joystick(touch_position: Vector2) -> void:
 
 	if use_input_actions:
 		if output.x > 0:
-			if Input.is_action_pressed(action_left):
-				Input.action_release(action_left)
-			_update_input_action(action_right, output.x)
+			Input.action_release(action_left)
+			Input.action_press(action_right, output.x)
 		else:
-			if Input.is_action_pressed(action_right):
-				Input.action_release(action_right)
-			_update_input_action(action_left, -output.x)
+			Input.action_release(action_right)
+			Input.action_press(action_left, -output.x)
 
 		if output.y > 0:
-			if Input.is_action_pressed(action_up):
-				Input.action_release(action_up)
-			_update_input_action(action_down, output.y)
+			Input.action_release(action_up)
+			Input.action_press(action_down, output.y)
 		else:
-			if Input.is_action_pressed(action_down):
-				Input.action_release(action_down)
-			_update_input_action(action_up, -output.y)
-
-func _update_input_action(action:String, value:float):
-	if value > InputMap.action_get_deadzone(action):
-		Input.action_press(action, value)
-	elif Input.is_action_pressed(action):
-		Input.action_release(action)
+			Input.action_release(action_down)
+			Input.action_press(action_up, -output.y)
 
 func _reset():
 	is_pressed = false
@@ -161,5 +164,4 @@ func _reset():
 	_tip.position = _tip_default_position
 	if use_input_actions:
 		for action in [action_left, action_right, action_down, action_up]:
-			if Input.is_action_pressed(action) or Input.is_action_just_pressed(action):
-				Input.action_release(action)
+			Input.action_release(action)

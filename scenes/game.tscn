@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://nklwmh4e4jwg" path="res://objects/player.tscn" id="3_teik6"]
 [ext_resource type="Script" path="res://scripts/Ball.gd" id="4_srmej"]
 [ext_resource type="PackedScene" uid="uid://dx3yfr7vp3gbn" path="res://objects/enemy.tscn" id="5_1uxck"]
-[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick.tscn" id="6_lgmqp"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick_scene.tscn" id="6_lgmqp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34eua"]
 albedo_color = Color(0.207843, 0.623529, 0.109804, 1)
