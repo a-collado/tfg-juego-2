@@ -1,9 +1,10 @@
 extends Node3D
 class_name HitManager
 
+signal hit_ball
 
 @onready var player: Player = $".."
-@onready var charge_bar: ChargeBar = $Sprite3D/SubViewport/ChargeBar
+@onready var charge_bar: ChargeBar = $SubViewport/ChargeBar
 @onready var charging_particles: CPUParticles3D = $CPUParticles3D
 
 @export_range(0, 10) var charge_time: float = 1.5
@@ -23,12 +24,11 @@ func _process(delta: float) -> void:
 	if not charging and not charged and charge_bar.charging:
 		charge_bar.reset()
 	if not charging and charged:
-		hit_ball()
+		hit_ball.emit()
+		charged = false
+		charge_bar.reset()
 
 func set_charged():
 	print("Charged")
-	#charging = false
 	charged = true
 
-func hit_ball():
-	print("PUÑETASO")

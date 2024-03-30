@@ -128,11 +128,11 @@ script = ExtResource("2_it3qi")
 [node name="Player" parent="Team A" instance=ExtResource("3_teik6")]
 transform = Transform3D(-1.90187, 0, -1.66266e-07, 0, 1.90187, 0, 1.66266e-07, 0, -1.90187, 0, 0.004, 10.7706)
 
+[node name="Enemy" parent="." instance=ExtResource("5_1uxck")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -11.9861)
+
 [node name="Team B" type="Node" parent="."]
 script = ExtResource("2_it3qi")
-
-[node name="Enemy" parent="Team B" instance=ExtResource("5_1uxck")]
-transform = Transform3D(1.857, 0, 0, 0, 1.857, 0, 0, 0, 1.857, -0.105729, 0.00405633, -15.2092)
 
 [node name="UI" type="CanvasLayer" parent="."]
 

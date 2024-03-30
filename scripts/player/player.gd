@@ -29,6 +29,7 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(id)
 
 func _ready() -> void:
+	hit_manager.connect("hit_ball", hit_ball)
 	ball_timer.wait_time = ball_cooldown
 	if has_node("$MultiplayerSynchronizer"):
 		mult_sync = $MultiplayerSynchronizer
@@ -69,3 +70,5 @@ func _calc_movement(delta: float) -> void:
 
 	move_and_slide()
 
+func hit_ball():
+	animation_manager.hit()
