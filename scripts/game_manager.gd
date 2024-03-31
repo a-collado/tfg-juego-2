@@ -10,6 +10,7 @@ var is_multiplayer = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Lobby.connect("player_disconnected", _on_player_disconnected)
 	UI_pause_menu.visible = false
 	if game is MultiplayerGame:
 		is_multiplayer = true
@@ -31,6 +32,16 @@ func _on_resume_pressed():
 	UI_pause_menu.visible = false
 
 func _on_exit_pressed():
-	if not is_multiplayer:
+	if is_multiplayer:
+		Lobby.remove_multiplayer_peer()
+	_exit_to_menu()
+
+func _on_player_disconnected(_id):
+	if is_multiplayer:
+		Lobby.remove_multiplayer_peer()
+	_exit_to_menu()
+
+func _exit_to_menu():
+	if get_tree().paused:
 		get_tree().paused = false
 	get_tree().change_scene_to_file(start_scren_scene_path)
