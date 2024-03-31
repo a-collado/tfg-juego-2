@@ -9,13 +9,13 @@ const JUMP_VELOCITY = 4.5
 @onready var ball_timer: Timer = $Timer
 @onready var hit_manager: HitManager = $hitManager
 @onready var animation_manager: animationManager = $animationManager
-@onready var virtual_joystick: VirtualJoystick = %"Virtual Joystick"
 @onready var root = $root
 
 #DEBUG
 @onready var debugDrawer: debugDrawer =  $debugDrawer;
 
 var mult_sync: MultiplayerSynchronizer;
+var virtual_joystick: VirtualJoystick
 
 var id: int
 var is_multiplayer: bool = false;
@@ -23,7 +23,8 @@ var is_multiplayer: bool = false;
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var ball_cooldown: float = 0.5
 var movement: bool = true
-var is_joystick_pressed:bool = false;
+
+var direction: Vector3
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(id)
@@ -31,18 +32,18 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	hit_manager.connect("hit_ball", hit_ball)
 	ball_timer.wait_time = ball_cooldown
-	if has_node("$MultiplayerSynchronizer"):
+	if has_node("MultiplayerSynchronizer"):
 		mult_sync = $MultiplayerSynchronizer
 		is_multiplayer = true
+	else:
+		virtual_joystick = %"Virtual Joystick"
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer && mult_sync.get_multiplayer_authority() != multiplayer.get_unique_id():
 		return
 
-	is_joystick_pressed = virtual_joystick.is_pressed
-	debugDrawer.joystick_pressed = is_joystick_pressed
-	#ESTO ES TEMPORAL (creo)
-	movement = is_joystick_pressed
+	movement = virtual_joystick.is_pressed
+	debugDrawer.joystick_pressed = movement
 	animation_manager.idle()
 
 	if movement:
@@ -51,16 +52,16 @@ func _physics_process(delta: float) -> void:
 
 	hit_manager.charging = false;
 
-func _calc_movement(delta: float) -> void:
+func _calc_movement(_delta: float) -> void:
 
 	var input_dir := Input.get_vector( "move_right", "move_left", "move_down" , "move_up")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	if direction:
-		debugDrawer.joystick_direction = direction
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 
+		debugDrawer.joystick_direction = direction
 		root.look_at(global_transform.origin - direction, Vector3.UP)
 		animation_manager.moving()
 		hit_manager.charging = true;
@@ -70,5 +71,11 @@ func _calc_movement(delta: float) -> void:
 
 	move_and_slide()
 
+# Le dice al animador que haga la animacion de golpear
 func hit_ball():
 	animation_manager.hit()
+
+# Se llama cuando has golepado un objeto.
+func _on_hit_area_body_entered(body):
+	if body is RigidBody3D:
+		hit_manager.hit_ball_transfer_force.rpc(direction, body)

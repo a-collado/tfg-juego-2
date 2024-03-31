@@ -16,7 +16,7 @@ extends Control
 @onready var menu_server_list: Container = $"Server List LAN"
 @onready var menu_servers: Container = $"Server List LAN/List"
 
-@export_file("*.tscn") var game_scene_path: String = "res://scenes/game-multi-test.tscn"
+@export_file("*.tscn") var game_scene_path: String = "res://scenes/game-mp.tscn"
 @export_file("*.tscn") var start_screen_scene_path: String = "res://scenes/startScreen.tscn"
 
 func _ready() -> void:

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1nci05k2wl6i"]
+
+[ext_resource type="PackedScene" uid="uid://hf54dvayfhfp" path="res://scenes/game_base.tscn" id="1_3djct"]
+[ext_resource type="PackedScene" uid="uid://nklwmh4e4jwg" path="res://objects/player.tscn" id="2_3xraw"]
+[ext_resource type="PackedScene" uid="uid://dx3yfr7vp3gbn" path="res://objects/enemy.tscn" id="3_fvqes"]
+
+[node name="Game" instance=ExtResource("1_3djct")]
+
+[node name="Camera" type="Camera3D" parent="." index="1"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.669947, 0.742409, 0, -0.742409, 0.669947, 0, 43.205, 39.405)
+projection = 1
+current = true
+fov = 40.0
+size = 32.36
+
+[node name="Player" parent="Team A" index="0" instance=ExtResource("2_3xraw")]
+transform = Transform3D(-1.90187, 0, -1.66266e-07, 0, 1.90187, 0, 1.66266e-07, 0, -1.90187, 0, 0.004, 10.7706)
+
+[node name="Enemy" parent="Team B" index="0" instance=ExtResource("3_fvqes")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -11.9861)
+
+[editable path="UI/Virtual Joystick"]

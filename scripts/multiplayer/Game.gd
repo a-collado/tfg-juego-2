@@ -7,6 +7,7 @@ extends Node
 
 @onready var UI_loading = $UI/Loading
 @export var player_ps: PackedScene = preload("res://objects/player_mp.tscn")
+@onready var joystick: VirtualJoystick = %"Virtual Joystick"
 
 func _ready():
 	UI_loading.visible = true
@@ -20,8 +21,10 @@ func start_game():
 	end_load_screen.rpc()
 
 func _spawn_players() -> void:
+
 	for p in Lobby.players:
 		var player = player_ps.instantiate()
+		player.virtual_joystick = joystick
 		player.id = int(p)
 
 		var spawn: Marker3D

@@ -13,6 +13,7 @@ func _process(_delta):
 	animation_tree.set(TREE_CONDITIONS + "is_moving", is_moving)
 	animation_tree.set(TREE_CONDITIONS + "is_idle", is_idle)
 	animation_tree.set(TREE_CONDITIONS + "hit_ball", hit_ball)
+
 	if hit_ball:
 		hit_ball = not hit_ball
 

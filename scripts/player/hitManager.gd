@@ -6,6 +6,8 @@ signal hit_ball
 @onready var player: Player = $".."
 @onready var charge_bar: ChargeBar = $SubViewport/ChargeBar
 @onready var charging_particles: CPUParticles3D = $CPUParticles3D
+@onready var hitArea: Area3D = $"../root/hitArea"
+@onready var collisionShape: CollisionShape3D = $"../root/hitArea/CollisionShape3D"
 
 @export_range(0, 10) var charge_time: float = 1.5
 
@@ -13,10 +15,11 @@ var charging = false;
 var charged = false;
 
 func _ready() -> void:
+	hitArea.monitoring = false
 	charge_bar.connect("charge_complete", set_charged)
 	charge_bar.texture_progress_bar.max_value = charge_time
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#charging_particles.emitting = player.is_joystick_pressed
 
 	if charging and not charged and not charge_bar.charging:
@@ -32,3 +35,6 @@ func set_charged():
 	print("Charged")
 	charged = true
 
+@rpc("call_local", "reliable")
+func hit_ball_transfer_force(direction: Vector3, body: RigidBody3D):
+	body.apply_impulse(direction*50)

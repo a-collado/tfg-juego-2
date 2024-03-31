@@ -10,7 +10,7 @@ var charging = false
 func _ready():
 	texture_progress_bar.value = 0;
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if charging:
 		texture_progress_bar.value += 0.01
 		if texture_progress_bar.value >= texture_progress_bar.max_value:

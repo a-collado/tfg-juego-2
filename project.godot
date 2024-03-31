@@ -12,7 +12,7 @@ config_version=5
 
 config/name="TFG"
 config/tags=PackedStringArray("tfg")
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/startScreen.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://assets/Iconos/icon.svg"
 
@@ -60,6 +60,8 @@ pointing/stretch/aspect="keep"
 [layer_names]
 
 3d_physics/layer_1="Floor"
+3d_physics/layer_3="Pelota"
+3d_physics/layer_4="Personajes"
 
 [rendering]
 
