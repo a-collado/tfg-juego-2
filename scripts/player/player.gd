@@ -77,4 +77,7 @@ func hit_ball():
 # Se llama cuando has golepado un objeto.
 func _on_hit_area_body_entered(body):
 	if body is Ball:
-		body.kick.rpc(direction*hit_manager.kick_force)
+		if is_multiplayer:
+			body.kick.rpc(direction*hit_manager.kick_force)
+		else:
+			body.kick(direction*hit_manager.kick_force)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://hf54dvayfhfp"]
+[gd_scene load_steps=18 format=3 uid="uid://hf54dvayfhfp"]
 
 [ext_resource type="MeshLibrary" uid="uid://d1hulycx5v61j" path="res://assets/tiles.tres" id="1_cc71t"]
 [ext_resource type="Script" path="res://scripts/Team.gd" id="2_qon7g"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick_scene.tscn" id="5_otsi1"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="5_thfdy"]
 [ext_resource type="Script" path="res://scripts/Ball.gd" id="6_i326r"]
+[ext_resource type="Script" path="res://scripts/score_manager.gd" id="7_ephk5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34eua"]
 albedo_color = Color(0.207843, 0.623529, 0.109804, 1)
@@ -132,8 +133,14 @@ transform = Transform3D(1, 0, 0, 0, 0.0152012, -0.999884, 0, 0.999884, 0.0152012
 [node name="Team A" type="Node" parent="."]
 script = ExtResource("2_qon7g")
 
+[node name="Ball Spawn A" type="Marker3D" parent="Team A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.949508, 2.53315)
+
 [node name="Team B" type="Node" parent="."]
 script = ExtResource("2_qon7g")
+
+[node name="Ball Spawn B" type="Marker3D" parent="Team B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.949507, -2.43367)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -232,9 +239,33 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Exit"
 
+[node name="Scores" type="SplitContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+vertical = true
+
+[node name="Score A" type="Label" parent="UI/Scores"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 300
+text = "0"
+horizontal_alignment = 1
+
+[node name="Score B" type="Label" parent="UI/Scores"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 300
+text = "0"
+horizontal_alignment = 1
+
 [node name="Ball" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.949507, 1.63342)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.949507, 2.38588)
 collision_layer = 4
 collision_mask = 4
 axis_lock_linear_y = true
@@ -252,6 +283,15 @@ shape = SubResource("SphereShape3D_fr8sp")
 [node name="Game Manager" type="Node" parent="."]
 script = ExtResource("5_thfdy")
 
+[node name="Score Manager" type="Node" parent="Game Manager"]
+script = ExtResource("7_ephk5")
+
+[node name="Timer" type="Timer" parent="Game Manager/Score Manager"]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="Environment/Goal A/Area3D" to="Game Manager/Score Manager" method="_on_goal_A_body_entered"]
+[connection signal="body_entered" from="Environment/Goal B/Area3D" to="Game Manager/Score Manager" method="_on_area_3d_body_entered"]
 [connection signal="pressed" from="UI/Pause" to="Game Manager" method="_on_pause_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/Resume" to="Game Manager" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/Exit" to="Game Manager" method="_on_exit_pressed"]

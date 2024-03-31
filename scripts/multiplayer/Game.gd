@@ -10,7 +10,11 @@ signal end_loading
 
 @onready var UI_loading = $UI/Loading
 @export var player_ps: PackedScene = preload("res://objects/player_mp.tscn")
+@onready var UI_score: Container = $UI/Scores
 @onready var joystick: VirtualJoystick = %"Virtual Joystick"
+
+@onready var score_label_A = $"UI/Scores/Score A"
+@onready var score_label_B = $"UI/Scores/Score B"
 
 func _ready():
 	UI_loading.visible = true
@@ -37,11 +41,13 @@ func _spawn_players() -> void:
 			team = $"Team B"
 			player.name = "Player 1"
 			%"Camera 1".current = true
+			UI_score.move_child(score_label_A, 0)
 		else:
 			spawn = $"Team A/Spawn 1"
 			team = $"Team A"
 			player.name = "Player 2"
 			%"Camera 2".current = true
+			UI_score.move_child(score_label_B, 0)
 
 		player.position = spawn.position
 		player.rotation = spawn.rotation
