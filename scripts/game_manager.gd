@@ -18,7 +18,7 @@ func _ready():
 	Lobby.connect("player_disconnected", _on_player_disconnected)
 	score_manager.connect("reset_ball", _reset_ball)
 	score_manager.connect("exit", _on_exit_pressed)
-	score_manager.is_multiplayer = is_multiplayer
+
 	UI_pause_menu.visible = false
 	score_manager.score_to_win = points_to_win
 	if game is MultiplayerGame:

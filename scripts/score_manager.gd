@@ -8,13 +8,13 @@ signal exit
 @onready var label_score_A = $"../../UI/Scores/Score A"
 @onready var label_score_B = $"../../UI/Scores/Score B"
 @onready var score_timer = $Timer
+@onready var game_manager = $".."
 
 var score_to_win: int
 var score_A: int = 0
 var score_B: int = 0
 var finished: bool = false
 var end_time: int = 3
-var is_multiplayer: bool = false
 
 func _ready():
 	UI_scores.visible = false
@@ -36,13 +36,13 @@ func _process(_delta):
 
 func _on_goal_A_body_entered(body):
 	if body is Ball:
-		if is_multiplayer:
+		if game_manager.is_multiplayer:
 			_update_score.rpc("A")
 		else:
 			_update_score("A")
 
 func _on_area_3d_body_entered(body):
-	if is_multiplayer:
+	if game_manager.is_multiplayer:
 			_update_score.rpc("B")
 	else:
 		_update_score("B")
