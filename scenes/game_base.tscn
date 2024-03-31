@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://hf54dvayfhfp"]
+[gd_scene load_steps=16 format=3 uid="uid://hf54dvayfhfp"]
 
 [ext_resource type="MeshLibrary" uid="uid://d1hulycx5v61j" path="res://assets/tiles.tres" id="1_cc71t"]
 [ext_resource type="Script" path="res://scripts/Team.gd" id="2_qon7g"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick_scene.tscn" id="5_otsi1"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="5_thfdy"]
 [ext_resource type="Script" path="res://scripts/Ball.gd" id="6_i326r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34eua"]
@@ -22,6 +23,12 @@ size = Vector3(17.9935, 5.99512, 0.15625)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qj1ei"]
 size = Vector3(54.157, 6.31775, 0.183105)
+
+[sub_resource type="Gradient" id="Gradient_csi0f"]
+offsets = PackedFloat32Array(0.996528, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_afqlx"]
+gradient = SubResource("Gradient_csi0f")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yho6n"]
 friction = 0.0
@@ -154,6 +161,37 @@ anchor_bottom = 0.751
 offset_top = -100.391
 offset_bottom = 99.609
 
+[node name="Loading" type="TextureRect" parent="UI"]
+auto_translate_mode = 1
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture1D_afqlx")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="UI/Loading"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -44.0
+offset_right = 150.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Loading..."
+metadata/_edit_use_anchors_ = true
+
 [node name="Ball" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.949507, 1.63342)
@@ -170,5 +208,8 @@ transform = Transform3D(0.712953, 0, 0, 0, 0.712953, 0, 0, 0, 0.712953, 0, 0, 0)
 shape = SubResource("SphereShape3D_fr8sp")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Ball/CollisionShape3D"]
+
+[node name="Game Manager" type="Node" parent="."]
+script = ExtResource("5_thfdy")
 
 [editable path="UI/Virtual Joystick"]

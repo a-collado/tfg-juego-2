@@ -10,6 +10,7 @@ signal hit_ball
 @onready var collisionShape: CollisionShape3D = $"../root/hitArea/CollisionShape3D"
 
 @export_range(0, 10) var charge_time: float = 1.5
+@export_range(5, 500) var kick_force: float = 50
 
 var charging = false;
 var charged = false;
@@ -34,7 +35,3 @@ func _process(_delta: float) -> void:
 func set_charged():
 	print("Charged")
 	charged = true
-
-@rpc("call_local", "reliable")
-func hit_ball_transfer_force(direction: Vector3, body: RigidBody3D):
-	body.apply_impulse(direction*50)

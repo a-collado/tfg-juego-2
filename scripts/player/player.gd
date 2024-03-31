@@ -12,7 +12,7 @@ const JUMP_VELOCITY = 4.5
 @onready var root = $root
 
 #DEBUG
-@onready var debugDrawer: debugDrawer =  $debugDrawer;
+@onready var debugDrawer: debugDrawer =  $root/debugDrawer
 
 var mult_sync: MultiplayerSynchronizer;
 var virtual_joystick: VirtualJoystick
@@ -61,7 +61,6 @@ func _calc_movement(_delta: float) -> void:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 
-		debugDrawer.joystick_direction = direction
 		root.look_at(global_transform.origin - direction, Vector3.UP)
 		animation_manager.moving()
 		hit_manager.charging = true;
@@ -77,5 +76,5 @@ func hit_ball():
 
 # Se llama cuando has golepado un objeto.
 func _on_hit_area_body_entered(body):
-	if body is RigidBody3D:
-		hit_manager.hit_ball_transfer_force.rpc(direction, body)
+	if body is Ball:
+		body.kick.rpc(direction*hit_manager.kick_force)
