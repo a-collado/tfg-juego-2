@@ -1,4 +1,3 @@
-class_name debugDrawer
 extends Node3D
 
 var joystick_pressed: bool;

@@ -12,7 +12,7 @@ const JUMP_VELOCITY = 4.5
 @onready var root = $root
 
 #DEBUG
-@onready var debugDrawer: debugDrawer =  $root/debugDrawer
+@onready var debugDrawer =  $root/debugDrawer
 
 var mult_sync: MultiplayerSynchronizer;
 var virtual_joystick: VirtualJoystick
