@@ -1,8 +1,7 @@
 class_name Player
 extends CharacterBody3D
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const SPEED = 10.0
 
 #@onready var ball: Ball = %Ball
 @onready var team: Team = self.get_parent()
