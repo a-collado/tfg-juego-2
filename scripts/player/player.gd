@@ -32,14 +32,17 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	hit_manager.connect("hit_ball", hit_ball)
 	ball_timer.wait_time = ball_cooldown
+
 	if has_node("MultiplayerSynchronizer"):
 		mult_sync = $MultiplayerSynchronizer
 		is_multiplayer = true
+		if _is_this_not_multiplayer_authority():
+			$hitManager/Sprite3D.hide()
 	else:
 		virtual_joystick = %"Virtual Joystick"
 
 func _physics_process(delta: float) -> void:
-	if is_multiplayer && mult_sync.get_multiplayer_authority() != multiplayer.get_unique_id():
+	if _is_this_not_multiplayer_authority():
 		return
 
 	movement = virtual_joystick.is_pressed
@@ -81,3 +84,6 @@ func _on_hit_area_body_entered(body):
 			body.kick.rpc(direction*hit_manager.kick_force)
 		else:
 			body.kick(direction*hit_manager.kick_force)
+
+func _is_this_not_multiplayer_authority() -> bool :
+	return is_multiplayer and mult_sync.get_multiplayer_authority() != multiplayer.get_unique_id()

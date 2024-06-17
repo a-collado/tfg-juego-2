@@ -66,4 +66,3 @@ func _reset_ball(spawn: String):
 		ball.reset.rpc(position)
 	else:
 		ball.reset(position)
-
