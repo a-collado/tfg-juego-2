@@ -41,7 +41,7 @@ func _on_goal_A_body_entered(body):
 		else:
 			_update_score("A")
 
-func _on_area_3d_body_entered(body):
+func _on_area_3d_body_entered(_body):
 	if game_manager.is_multiplayer:
 			_update_score.rpc("B")
 	else:
