@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	debugDrawer.joystick_pressed = movement
 	animation_manager.idle()
 
-	if movement:
+	if movement and !animation_manager.is_hitting():
 		_calc_movement(delta)
 		return
 
@@ -57,11 +57,11 @@ func _physics_process(delta: float) -> void:
 func _calc_movement(_delta: float) -> void:
 
 	var input_dir := Input.get_vector( "move_right", "move_left", "move_down" , "move_up")
-	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y))
 
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.normalized().x * SPEED
+		velocity.z = direction.normalized().z * SPEED
 
 		root.look_at(global_transform.origin - direction, Vector3.UP)
 		animation_manager.moving()

@@ -33,5 +33,4 @@ func _process(_delta: float) -> void:
 		charge_bar.reset()
 
 func set_charged():
-	print("Charged")
 	charged = true
