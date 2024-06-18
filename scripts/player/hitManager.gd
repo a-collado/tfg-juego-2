@@ -3,7 +3,7 @@ class_name HitManager
 
 signal hit_ball
 
-@onready var player: Player = $".."
+#@onready var player: Player = $".."
 @onready var charge_bar: ChargeBar = $SubViewport/ChargeBar
 @onready var charging_particles: CPUParticles3D = $CPUParticles3D
 @onready var hitArea: Area3D = $"../root/hitArea"

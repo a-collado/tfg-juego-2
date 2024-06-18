@@ -3,9 +3,7 @@ extends CharacterBody3D
 
 const SPEED = 10.0
 
-#@onready var ball: Ball = %Ball
 @onready var team: Team = self.get_parent()
-@onready var ball_timer: Timer = $Timer
 @onready var hit_manager: HitManager = $hitManager
 @onready var animation_manager: animationManager = $animationManager
 @onready var root = $root
@@ -19,7 +17,6 @@ var virtual_joystick: VirtualJoystick
 var id: int
 var is_multiplayer: bool = false;
 
-var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var ball_cooldown: float = 0.5
 var movement: bool = true
 
@@ -30,7 +27,6 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	hit_manager.connect("hit_ball", hit_ball)
-	ball_timer.wait_time = ball_cooldown
 
 	if has_node("MultiplayerSynchronizer"):
 		mult_sync = $MultiplayerSynchronizer
