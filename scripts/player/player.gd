@@ -47,7 +47,6 @@ func _physics_process(delta: float) -> void:
 	if movement and !animation_manager.is_hitting():
 		_calc_movement(delta)
 		return
-
 	hit_manager.charging = false;
 
 func _calc_movement(_delta: float) -> void:
@@ -69,8 +68,8 @@ func _calc_movement(_delta: float) -> void:
 	move_and_slide()
 
 # Le dice al animador que haga la animacion de golpear
-func hit_ball():
-	animation_manager.hit()
+func hit_ball(charge_level: int):
+	animation_manager.hit(charge_level)
 
 # Se llama cuando has golepado un objeto.
 func _on_hit_area_body_entered(body):

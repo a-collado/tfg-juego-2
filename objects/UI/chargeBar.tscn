@@ -17,7 +17,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_1qff3")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="Progress Bar Lvl 0" type="TextureProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -30,9 +30,8 @@ offset_right = 64.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
-max_value = 2.0
+max_value = 0.8
 step = 0.01
-value = 2.0
 fill_mode = 4
 texture_under = ExtResource("1_kyiqq")
 texture_over = ExtResource("2_mqeaa")
@@ -40,3 +39,49 @@ texture_progress = ExtResource("1_kyiqq")
 tint_under = Color(0, 0, 0, 0.368627)
 tint_over = Color(1, 1, 1, 0.164706)
 tint_progress = Color(0.352941, 0.784314, 0.0862745, 1)
+
+[node name="Progress Bar Lvl 1" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.7
+step = 0.01
+fill_mode = 4
+texture_under = ExtResource("1_kyiqq")
+texture_over = ExtResource("2_mqeaa")
+texture_progress = ExtResource("1_kyiqq")
+tint_under = Color(0, 0, 0, 0)
+tint_over = Color(1, 1, 1, 0.164706)
+tint_progress = Color(0.0743543, 0.332408, 0.643656, 1)
+
+[node name="Progress Bar Lvl 2" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 2.5
+step = 0.01
+fill_mode = 4
+texture_under = ExtResource("1_kyiqq")
+texture_over = ExtResource("2_mqeaa")
+texture_progress = ExtResource("1_kyiqq")
+tint_under = Color(1, 1, 1, 0)
+tint_over = Color(1, 1, 1, 0.164706)
+tint_progress = Color(0.72502, 3.11767e-05, 0.056628, 1)
