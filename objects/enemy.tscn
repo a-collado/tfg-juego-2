@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx3yfr7vp3gbn"]
+[gd_scene load_steps=9 format=3 uid="uid://dx3yfr7vp3gbn"]
 
 [ext_resource type="PackedScene" uid="uid://nklwmh4e4jwg" path="res://objects/player.tscn" id="1_djgfh"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="2_mtiaa"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scripts/enemy/states/defend.gd" id="4_4o8ek"]
 [ext_resource type="Script" path="res://scripts/enemy/states/idle.gd" id="6_i74hs"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5h0mp"]
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_brdgy"]
 viewport_path = NodePath("hitManager/SubViewport")
 
@@ -14,49 +16,46 @@ viewport_path = NodePath("hitManager/SubViewport")
 transform = Transform3D(6.98928, 0, 0, 0, 6.98928, 0, 0, 0, 6.98928, 0, 0, 0)
 script = ExtResource("2_mtiaa")
 
-[node name="Skeleton3D" parent="root" index="0"]
-bones/0/position = Vector3(0.010918, 0.907072, 0.431363)
-bones/0/rotation = Quaternion(0.0138483, 0.478338, 0.0458307, 0.87687)
-bones/1/rotation = Quaternion(0.551526, -0.0457605, 0.806188, -0.209253)
-bones/1/scale = Vector3(1, 1.05722, 1)
-bones/2/rotation = Quaternion(-7.22512e-05, 8.52031e-05, 0.00250226, 0.999997)
-bones/3/rotation = Quaternion(0.29331, 0.512852, -0.417912, 0.690146)
-bones/3/scale = Vector3(0.995823, 0.988783, 0.964679)
-bones/4/position = Vector3(0.00297648, 0.127411, -0.00753823)
-bones/4/rotation = Quaternion(0.197662, 0.897737, 0.392348, -0.0325718)
-bones/4/scale = Vector3(0.999823, 0.977705, 1.02198)
-bones/5/rotation = Quaternion(0.932404, -0.287431, -0.216375, 0.0344755)
-bones/6/rotation = Quaternion(-5.41685e-06, -2.75634e-06, 0.363905, -0.931436)
-bones/7/rotation = Quaternion(0.332734, -0.716763, 0.357458, 0.497759)
-bones/8/rotation = Quaternion(-0.0484855, 0.886224, 0.460578, -0.0111301)
-bones/9/rotation = Quaternion(0.00335758, -0.493778, -0.0657761, 0.86709)
-bones/10/rotation = Quaternion(0.108866, 0.181028, -0.023669, 0.977147)
-bones/12/rotation = Quaternion(-0.301392, -0.150648, 0.0897076, 0.937241)
-bones/13/rotation = Quaternion(-0.528255, 0.560357, -0.448874, -0.453276)
-bones/14/rotation = Quaternion(0.318081, 0.888914, -0.0861311, 0.318178)
-bones/15/rotation = Quaternion(0.501273, 0.0269196, 0.246269, 0.829067)
-bones/16/rotation = Quaternion(-0.0420867, 0.327951, -0.153001, 0.931272)
-bones/20/rotation = Quaternion(-0.714803, 0.123546, -0.0293802, 0.687699)
-bones/21/rotation = Quaternion(-0.580837, -0.0218761, 0.00940289, 0.813671)
-bones/22/rotation = Quaternion(-0.590198, -0.00412927, -0.00960081, 0.807191)
-bones/27/rotation = Quaternion(-0.585932, 0.00178, -0.0546159, 0.808516)
-bones/28/rotation = Quaternion(-0.598051, 0.00729605, -0.029073, 0.800897)
-bones/29/rotation = Quaternion(0.45702, 0.610243, -0.512051, 0.395651)
-bones/30/rotation = Quaternion(-0.823835, 0.430063, 0.0246602, -0.36842)
-
-[node name="CollisionShape3D" parent="root/hitArea" index="0"]
+[node name="root_hitArea#CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(0.999996, 0.000295923, 0.00282306, -0.000317631, 0.99997, 0.00769576, -0.0028207, -0.00769663, 0.999967, -0.123093, 0.954373, 0.625552)
+shape = SubResource("CapsuleShape3D_5h0mp")
+
+[node name="Skeleton3D" parent="root" index="0"]
+bones/0/position = Vector3(0.0085595, 0.913696, 0.463713)
+bones/0/rotation = Quaternion(0.0394942, 0.502208, 0.0590047, 0.861827)
+bones/1/rotation = Quaternion(0.53652, -0.0238816, 0.823172, -0.18429)
+bones/1/scale = Vector3(1, 1.05577, 1)
+bones/2/rotation = Quaternion(-4.78854e-05, 5.70981e-05, 0.0025447, 0.999997)
+bones/3/rotation = Quaternion(0.203504, 0.562427, -0.344869, 0.723414)
+bones/3/scale = Vector3(0.996299, 0.977414, 0.977908)
+bones/4/position = Vector3(0.00415338, 0.127324, -0.00803188)
+bones/4/rotation = Quaternion(0.169203, 0.841638, 0.511431, -0.0381353)
+bones/4/scale = Vector3(0.999757, 0.97904, 1.02078)
+bones/5/rotation = Quaternion(0.932495, -0.317596, -0.165669, 0.0462597)
+bones/6/rotation = Quaternion(-5.30396e-06, -3.01396e-06, 0.349862, -0.936801)
+bones/7/rotation = Quaternion(0.317877, -0.721948, 0.344198, 0.509188)
+bones/8/rotation = Quaternion(-0.0454423, 0.940132, 0.337768, -0.000406779)
+bones/9/rotation = Quaternion(-0.0210212, -0.519311, -0.0802234, 0.850552)
+bones/10/rotation = Quaternion(0.0050812, 0.478455, 0.0364354, 0.877341)
+bones/12/rotation = Quaternion(-0.18071, -0.445541, 0.163859, 0.861387)
+bones/13/rotation = Quaternion(-0.51854, 0.577129, -0.45319, -0.438928)
+bones/14/rotation = Quaternion(0.287716, 0.907671, -0.130799, 0.276126)
+bones/15/rotation = Quaternion(0.141677, 0.00826777, 0.0885651, 0.985908)
+bones/16/rotation = Quaternion(0.00524383, 0.371481, -0.0285061, 0.927988)
+bones/20/rotation = Quaternion(-0.713141, 0.123526, -0.0288603, 0.689448)
+bones/21/rotation = Quaternion(-0.585269, -0.0210175, 0.0093887, 0.810512)
+bones/22/rotation = Quaternion(-0.58753, -0.00390267, -0.00968983, 0.809135)
+bones/27/rotation = Quaternion(-0.583641, 0.00201316, -0.053742, 0.810229)
+bones/28/rotation = Quaternion(-0.599252, 0.00782529, -0.029578, 0.799976)
+bones/29/rotation = Quaternion(0.440465, 0.610906, -0.518463, 0.404946)
+bones/30/rotation = Quaternion(-0.82756, 0.426777, 0.023994, -0.363909)
+
+[node name="bate" parent="root" index="2"]
+transform = Transform3D(0.235849, 0, 0, 0, 0.235849, 0, 0, 0, 0.235849, 0, 0, 0)
 
 [node name="AnimationTree" parent="animationManager" index="0"]
-parameters/current_position = 0.2
-parameters/fight_punch/current_position = 0.2
-
-[node name="hitManager" parent="." index="4"]
-charge_time = 1.5
-
-[node name="Sprite3D" parent="hitManager" index="1"]
-visible = false
-texture = SubResource("ViewportTexture_brdgy")
+parameters/current_position = 0.280042
+parameters/fight_punch/current_position = 0.280042
 
 [node name="navigator" type="Node3D" parent="." index="5"]
 script = ExtResource("3_m6isb")
@@ -73,3 +72,10 @@ script = ExtResource("6_i74hs")
 
 [node name="navigationAgent" type="NavigationAgent3D" parent="." index="7"]
 path_desired_distance = 2.0
+
+[node name="hitManager" parent="." index="8"]
+charge_time = 1.5
+
+[node name="Sprite3D" parent="hitManager" index="1"]
+visible = false
+texture = SubResource("ViewportTexture_brdgy")

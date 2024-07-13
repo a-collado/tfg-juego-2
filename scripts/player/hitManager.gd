@@ -6,8 +6,7 @@ signal hit_ball(charge_level: int)
 #@onready var player: Player = $".."
 @onready var charge_bar: ChargeBar = $SubViewport/ChargeBar
 @onready var charging_particles: CPUParticles3D = $CPUParticles3D
-@onready var hitArea: Area3D = $"../root/hitArea"
-@onready var collisionShape: CollisionShape3D = $"../root/hitArea/CollisionShape3D"
+@onready var hitArea: Area3D = $"../root/hitNodes/hitArea"
 
 @export_range(0, 10) var charge_time: float = 1.5
 @export_range(5, 500) var kick_force: float = 50
@@ -21,15 +20,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 
-	#if charging and not charged and not charge_bar.charging:
-	#	charge_bar.charge(true)
-	#if not charging and not charged and charge_bar.charging:
-	#	charge_bar.reset()
-	#if not charging and charged:
-	#	hit_ball.emit()
-	#	charged = false
-	#	charge_bar.reset()
-	
 	if charging and not charged and not charge_bar.charging:
 		charge_bar.charge(true)
 	if not charging:

@@ -3,13 +3,13 @@ extends CharacterBody3D
 
 const SPEED = 10.0
 
+@export_range(0, 2) var gyro_sensibility: float = 0.4
+
 @onready var team: Team = self.get_parent()
 @onready var hit_manager: HitManager = $hitManager
 @onready var animation_manager: animationManager = $animationManager
 @onready var root = $root
-
-#DEBUG
-@onready var debugDrawer =  $root/debugDrawer
+@onready var hit_nodes: Node3D = $"root/hitNodes"
 
 var mult_sync: MultiplayerSynchronizer;
 var virtual_joystick: VirtualJoystick
@@ -41,10 +41,12 @@ func _physics_process(delta: float) -> void:
 		return
 
 	movement = virtual_joystick.is_pressed
-	debugDrawer.joystick_pressed = movement
 	animation_manager.idle()
 
-	if movement and !animation_manager.is_hitting():
+	_calc_hit_roration()
+
+	#if movement and not animation_manager.is_hitting():
+	if movement:
 		_calc_movement(delta)
 		return
 	hit_manager.charging = false;
@@ -58,7 +60,7 @@ func _calc_movement(_delta: float) -> void:
 		velocity.x = direction.normalized().x * SPEED
 		velocity.z = direction.normalized().z * SPEED
 
-		root.look_at(global_transform.origin - direction, Vector3.UP)
+		#root.look_at(global_transform.origin - direction, Vector3.UP)
 		animation_manager.moving()
 		hit_manager.charging = true;
 	else:
@@ -69,15 +71,21 @@ func _calc_movement(_delta: float) -> void:
 
 # Le dice al animador que haga la animacion de golpear
 func hit_ball(charge_level: int):
+	LogDuck.d("Realizando un hit de nivel: [b]%s[/b]" % charge_level)
 	animation_manager.hit(charge_level)
 
-# Se llama cuando has golepado un objeto.
+# Se llama cuando has golpeado un objeto.
 func _on_hit_area_body_entered(body):
 	if body is Ball:
+		var hit_direction = root.global_transform.basis * Vector3.FORWARD
 		if is_multiplayer:
-			body.kick.rpc(direction*hit_manager.kick_force)
+			body.kick.rpc(-1 * hit_direction.normalized()*hit_manager.kick_force)
 		else:
-			body.kick(direction*hit_manager.kick_force)
+			body.kick(-1 * hit_direction.normalized()*hit_manager.kick_force)
 
 func _is_this_not_multiplayer_authority() -> bool :
 	return is_multiplayer and mult_sync.get_multiplayer_authority() != multiplayer.get_unique_id()
+
+func _calc_hit_roration():
+	var gyro_rotation = Input.get_gravity()
+	root.rotation.y = -1 * gyro_rotation.x * gyro_sensibility;
