@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6q4ll0eoj1wg"
-path.s3tc="res://.godot/imported/medio-circulo.png-f356ace7678ba8a971f00d30cb54ea44.s3tc.ctex"
-path.etc2="res://.godot/imported/medio-circulo.png-f356ace7678ba8a971f00d30cb54ea44.etc2.ctex"
+path.s3tc="res://.godot/imported/medio-circulo.png-11c52ad3e37d14d985d70f8b9b0616b9.s3tc.ctex"
+path.etc2="res://.godot/imported/medio-circulo.png-11c52ad3e37d14d985d70f8b9b0616b9.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/medio-circulo.png"
-dest_files=["res://.godot/imported/medio-circulo.png-f356ace7678ba8a971f00d30cb54ea44.s3tc.ctex", "res://.godot/imported/medio-circulo.png-f356ace7678ba8a971f00d30cb54ea44.etc2.ctex"]
+source_file="res://assets/Sprites/medio-circulo.png"
+dest_files=["res://.godot/imported/medio-circulo.png-11c52ad3e37d14d985d70f8b9b0616b9.s3tc.ctex", "res://.godot/imported/medio-circulo.png-11c52ad3e37d14d985d70f8b9b0616b9.etc2.ctex"]
 
 [params]
 
