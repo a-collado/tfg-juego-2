@@ -50,12 +50,16 @@ bones/28/rotation = Quaternion(-0.599252, 0.00782529, -0.029578, 0.799976)
 bones/29/rotation = Quaternion(0.440465, 0.610906, -0.518463, 0.404946)
 bones/30/rotation = Quaternion(-0.82756, 0.426777, 0.023994, -0.363909)
 
-[node name="bate" parent="root" index="2"]
-transform = Transform3D(0.235849, 0, 0, 0, 0.235849, 0, 0, 0, 0.235849, 0, 0, 0)
-
 [node name="AnimationTree" parent="animationManager" index="0"]
 parameters/current_position = 0.280042
 parameters/fight_punch/current_position = 0.280042
+
+[node name="hitManager" parent="." index="4"]
+charge_time = 1.5
+
+[node name="Sprite3D" parent="hitManager" index="1"]
+visible = false
+texture = SubResource("ViewportTexture_brdgy")
 
 [node name="navigator" type="Node3D" parent="." index="5"]
 script = ExtResource("3_m6isb")
@@ -72,10 +76,3 @@ script = ExtResource("6_i74hs")
 
 [node name="navigationAgent" type="NavigationAgent3D" parent="." index="7"]
 path_desired_distance = 2.0
-
-[node name="hitManager" parent="." index="8"]
-charge_time = 1.5
-
-[node name="Sprite3D" parent="hitManager" index="1"]
-visible = false
-texture = SubResource("ViewportTexture_brdgy")

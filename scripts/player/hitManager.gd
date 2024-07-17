@@ -28,4 +28,3 @@ func _process(_delta: float) -> void:
 		if charge_bar.charge_level != 0:
 			hit_ball.emit(charge_bar.charge_level)
 			charge_bar.charge_level = 0
-
