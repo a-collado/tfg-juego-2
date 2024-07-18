@@ -52,9 +52,7 @@ bones/30/rotation = Quaternion(-0.828694, 0.425766, 0.0237899, -0.362523)
 
 [node name="AnimationTree" parent="animationManager" index="0"]
 parameters/current_position = 0.376725
-parameters/current_delta = 0.0133333
 parameters/fight_punch/current_position = 0.376725
-parameters/fight_punch/current_delta = 0.0133333
 
 [node name="hitManager" parent="." index="4"]
 charge_time = 1.5

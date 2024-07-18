@@ -9,7 +9,7 @@ const SPEED = 10.0
 @onready var hit_manager: HitManager = $hitManager
 @onready var animation_manager: animationManager = $animationManager
 @onready var root = $root
-@onready var hit_nodes: Node3D = $"root/hitNodes"
+@onready var hit_nodes: Node3D = $hitNodes
 
 var mult_sync: MultiplayerSynchronizer;
 var virtual_joystick: VirtualJoystick
@@ -60,7 +60,7 @@ func _calc_movement(_delta: float) -> void:
 		velocity.x = direction.normalized().x * SPEED
 		velocity.z = direction.normalized().z * SPEED
 
-		#root.look_at(global_transform.origin - direction, Vector3.UP)
+		root.look_at(global_transform.origin - direction, Vector3.UP)
 		animation_manager.moving()
 		hit_manager.charging = true;
 	else:
@@ -77,7 +77,7 @@ func hit_ball(charge_level: int):
 # Se llama cuando has golpeado un objeto.
 func _on_hit_area_body_entered(body):
 	if body is Ball:
-		var hit_direction = root.global_transform.basis * Vector3.FORWARD
+		var hit_direction = hit_nodes.global_transform.basis * Vector3.FORWARD
 		if is_multiplayer:
 			body.kick.rpc(-1 * hit_direction.normalized()*hit_manager.kick_force)
 		else:
@@ -88,4 +88,4 @@ func _is_this_not_multiplayer_authority() -> bool :
 
 func _calc_hit_roration():
 	var gyro_rotation = Input.get_gravity()
-	root.rotation.y = -1 * gyro_rotation.x * gyro_sensibility;
+	hit_nodes.rotation.y = -1 * gyro_rotation.x * gyro_sensibility;

@@ -6,7 +6,7 @@ signal hit_ball(charge_level: int)
 #@onready var player: Player = $".."
 @onready var charge_bar: ChargeBar = $SubViewport/ChargeBar
 @onready var charging_particles: CPUParticles3D = $CPUParticles3D
-@onready var hitArea: Area3D = $"../root/hitNodes/hitArea"
+@onready var hitArea: Area3D = $"../hitNodes/hitArea"
 
 @export_range(0, 10) var charge_time: float = 1.5
 @export_range(5, 500) var kick_force: float = 50
