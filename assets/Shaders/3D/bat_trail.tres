@@ -1,0 +1,94 @@
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://rmua1fkabo1e"]
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_0stqm"]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_xqeu3"]
+output_port_for_preview = 0
+default_input_values = [0, 0.76, 1, 0.0, 2, 0.0]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_0277k"]
+parameter_name = "progress"
+hint = 2
+step = 0.01
+default_value_enabled = true
+default_value = -0.797
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_kbjg5"]
+default_input_values = [1, 0.0, 2, 1.0, 3, 0.76, 4, -0.797]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_66dow"]
+expanded_output_ports = [0]
+source = 5
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_sxg6i"]
+parameter_name = "Texture"
+texture_type = 1
+texture_repeat = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform float progress : hint_range(0, 1, 0.00999999977648) = -0.79699999094009;
+uniform sampler2D Texture : source_color, repeat_disable;
+
+
+
+void fragment() {
+// FloatParameter:16
+	float n_out16p0 = progress;
+
+
+	float n_out17p0;
+// Remap:17
+	float n_in17p1 = 0.00000;
+	float n_in17p2 = 1.00000;
+	float n_in17p3 = 0.76000;
+	float n_in17p4 = -0.79700;
+	{
+		float __input_range = n_in17p2 - n_in17p1;
+		float __output_range = n_in17p4 - n_in17p3;
+		n_out17p0 = n_in17p3 + __output_range * ((n_out16p0 - n_in17p1) / __input_range);
+	}
+
+
+// VectorCompose:12
+	float n_in12p1 = 0.00000;
+	vec2 n_out12p0 = vec2(n_out17p0, n_in12p1);
+
+
+// UVFunc:11
+	vec2 n_in11p1 = vec2(1.00000, 1.00000);
+	vec2 n_out11p0 = n_out12p0 * n_in11p1 + UV;
+
+
+	vec4 n_out6p0;
+// Texture2D:6
+	n_out6p0 = texture(Texture, n_out11p0);
+	float n_out6p4 = n_out6p0.a;
+
+
+// Output:0
+	ALBEDO = vec3(n_out6p0.xyz);
+	ALPHA = n_out6p4;
+
+
+}
+"
+graph_offset = Vector2(-661.471, 96.2626)
+nodes/fragment/0/position = Vector2(680, 140)
+nodes/fragment/6/node = SubResource("VisualShaderNodeTexture_66dow")
+nodes/fragment/6/position = Vector2(300, 200)
+nodes/fragment/7/node = SubResource("VisualShaderNodeTexture2DParameter_sxg6i")
+nodes/fragment/7/position = Vector2(-40, 480)
+nodes/fragment/11/node = SubResource("VisualShaderNodeUVFunc_0stqm")
+nodes/fragment/11/position = Vector2(40, 100)
+nodes/fragment/12/node = SubResource("VisualShaderNodeVectorCompose_xqeu3")
+nodes/fragment/12/position = Vector2(-220, 160)
+nodes/fragment/16/node = SubResource("VisualShaderNodeFloatParameter_0277k")
+nodes/fragment/16/position = Vector2(-780, 220)
+nodes/fragment/17/node = SubResource("VisualShaderNodeRemap_kbjg5")
+nodes/fragment/17/position = Vector2(-460, 240)
+nodes/fragment/connections = PackedInt32Array(6, 0, 0, 0, 7, 0, 6, 2, 6, 4, 0, 1, 11, 0, 6, 0, 12, 0, 11, 2, 16, 0, 17, 0, 17, 0, 12, 0)
