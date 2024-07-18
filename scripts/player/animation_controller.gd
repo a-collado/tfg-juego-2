@@ -28,7 +28,6 @@ func idle():
 	is_idle = true
 
 func hit(charge_level: int):
-	#TODO: Aqui hay que implementar los diferentes niveles de carga
 	hit_ball = true
 
 func is_hitting() -> bool:

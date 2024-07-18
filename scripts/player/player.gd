@@ -73,15 +73,16 @@ func _calc_movement(_delta: float) -> void:
 func hit_ball(charge_level: int):
 	LogDuck.d("Realizando un hit de nivel: [b]%s[/b]" % charge_level)
 	animation_manager.hit(charge_level)
+	hit_manager.charge_level = charge_level
 
 # Se llama cuando has golpeado un objeto.
 func _on_hit_area_body_entered(body):
 	if body is Ball:
 		var hit_direction = hit_nodes.global_transform.basis * Vector3.FORWARD
 		if is_multiplayer:
-			body.kick.rpc(-1 * hit_direction.normalized()*hit_manager.kick_force)
+			body.kick.rpc(-1 * hit_direction.normalized()*hit_manager.get_kick_force())
 		else:
-			body.kick(-1 * hit_direction.normalized()*hit_manager.kick_force)
+			body.kick(-1 * hit_direction.normalized()*hit_manager.get_kick_force())
 
 func _is_this_not_multiplayer_authority() -> bool :
 	return is_multiplayer and mult_sync.get_multiplayer_authority() != multiplayer.get_unique_id()

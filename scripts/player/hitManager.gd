@@ -10,9 +10,11 @@ signal hit_ball(charge_level: int)
 
 @export_range(0, 10) var charge_time: float = 1.5
 @export_range(5, 500) var kick_force: float = 50
+@export var hit_forces: PackedInt32Array = [0, 25, 50, 75]
 
-var charging = false;
-var charged = false;
+var charging:bool = false;
+var charged:bool = false;
+var charge_level: float = 0;
 
 func _ready() -> void:
 	hitArea.monitoring = false
@@ -28,3 +30,7 @@ func _process(_delta: float) -> void:
 		if charge_bar.charge_level != 0:
 			hit_ball.emit(charge_bar.charge_level)
 			charge_bar.charge_level = 0
+
+func get_kick_force() -> float:
+	return hit_forces[charge_level]
+

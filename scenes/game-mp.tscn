@@ -15,19 +15,21 @@ script = ExtResource("2_x5d1j")
 
 [node name="Camera 1" type="Camera3D" parent="Cameras" index="0"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.669947, 0.742409, 0, -0.742409, 0.669947, -0.000221252, 43.205, 39.5271)
+transform = Transform3D(1, 0, 0, 0, 0.669947, 0.742409, 0, -0.742409, 0.669947, 0, 40.205, 36.1133)
+keep_aspect = 0
 projection = 1
 current = true
 fov = 40.0
-size = 32.36
+size = 18.0
 
 [node name="Camera 2" type="Camera3D" parent="Cameras" index="1"]
 unique_name_in_owner = true
-transform = Transform3D(-1, 6.48656e-08, -5.86106e-08, 0, 0.670427, 0.741976, 8.74228e-08, 0.741976, -0.670427, 0, 43.205, -37.9866)
+transform = Transform3D(-1, 6.48656e-08, -5.86106e-08, 0, 0.670427, 0.741976, 8.74228e-08, 0.741976, -0.670427, 0, 40.205, -36.113)
+keep_aspect = 0
 projection = 1
 current = true
 fov = 40.0
-size = 32.36
+size = 18.0
 
 [node name="Spawn 1" type="Marker3D" parent="Team A" index="0"]
 transform = Transform3D(-1.90187, 0, -1.66266e-07, 0, 1.90187, 0, 1.66266e-07, 0, -1.90187, 0, 0.004, 10.7706)

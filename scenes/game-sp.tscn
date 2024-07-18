@@ -13,11 +13,12 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [node name="Camera" type="Camera3D" parent="." index="1"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.669947, 0.742409, 0, -0.742409, 0.669947, 0, 43.205, 39.405)
+transform = Transform3D(1, 0, 0, 0, 0.669947, 0.742409, 0, -0.742409, 0.669947, 0, 40.205, 36.1133)
+keep_aspect = 0
 projection = 1
 current = true
 fov = 40.0
-size = 32.36
+size = 18.0
 
 [node name="Team A" parent="." index="3" node_paths=PackedStringArray("goal")]
 goal = NodePath("../Environment/Goal A/Area3D")
