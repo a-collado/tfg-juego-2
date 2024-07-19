@@ -3,7 +3,10 @@ extends CharacterBody3D
 
 const SPEED = 10.0
 
+## Sensibilidad del giroscopio para girar el indicador de dirección
 @export_range(0, 2) var gyro_sensibility: float = 0.4
+## Cuantos frames puede estar quieto el personaje antes de dejar de cargar el golpe
+@export_range(0, 60) var time_to_stop_charge: int = 5
 
 @onready var team: Team = self.get_parent()
 @onready var hit_manager: HitManager = $hitManager
@@ -19,6 +22,7 @@ var is_multiplayer: bool = false;
 
 var ball_cooldown: float = 0.5
 var movement: bool = true
+var _last_movement:int = 0
 
 var direction: Vector3
 
@@ -47,9 +51,15 @@ func _physics_process(delta: float) -> void:
 
 	#if movement and not animation_manager.is_hitting():
 	if movement:
+		_last_movement = 0
 		_calc_movement(delta)
 		return
-	hit_manager.charging = false;
+
+	if _last_movement > time_to_stop_charge:
+		hit_manager.charging = false;
+		_last_movement = 0
+
+	_last_movement += 1
 
 func _calc_movement(_delta: float) -> void:
 
