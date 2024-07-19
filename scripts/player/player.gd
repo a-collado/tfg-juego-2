@@ -81,7 +81,6 @@ func _calc_movement(_delta: float) -> void:
 
 # Le dice al animador que haga la animacion de golpear
 func hit_ball(charge_level: int):
-	LogDuck.d("Realizando un hit de nivel: [b]%s[/b]" % charge_level)
 	animation_manager.hit(charge_level)
 	hit_manager.charge_level = charge_level
 

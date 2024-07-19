@@ -8,7 +8,7 @@ signal hit_ball(charge_level: int)
 @onready var charging_particles: CPUParticles3D = $CPUParticles3D
 @onready var hitArea: Area3D = $"../hitNodes/hitArea"
 
-@export_range(0, 10) var charge_time: float = 1.5
+@export var charge_times: PackedFloat32Array = [0.2, 0.5, 1]
 @export_range(5, 500) var kick_force: float = 50
 @export var hit_forces: PackedInt32Array = [0, 25, 50, 75]
 
@@ -18,7 +18,9 @@ var charge_level: float = 0;
 
 func _ready() -> void:
 	hitArea.monitoring = false
-	charge_bar.texture_progress_bar_0.max_value = charge_time
+	charge_bar.texture_progress_bar_0.max_value = charge_times[0]
+	charge_bar.texture_progress_bar_1.max_value = charge_times[1]
+	charge_bar.texture_progress_bar_2.max_value = charge_times[2]
 
 func _process(_delta: float) -> void:
 

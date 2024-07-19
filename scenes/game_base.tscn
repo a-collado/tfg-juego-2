@@ -134,13 +134,13 @@ transform = Transform3D(1, 0, 0, 0, 0.0152012, -0.999884, 0, 0.999884, 0.0152012
 script = ExtResource("2_qon7g")
 
 [node name="Ball Spawn A" type="Marker3D" parent="Team A"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.949508, 2.53315)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.949508, 3.76684)
 
 [node name="Team B" type="Node" parent="."]
 script = ExtResource("2_qon7g")
 
 [node name="Ball Spawn B" type="Marker3D" parent="Team B"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.949507, -2.43367)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.057, 0.95, -3.767)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -265,7 +265,7 @@ horizontal_alignment = 1
 
 [node name="Ball" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.949507, 2.38588)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.949508, 3.76684)
 collision_layer = 4
 collision_mask = 4
 axis_lock_linear_y = true
