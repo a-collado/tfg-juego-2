@@ -1,13 +1,29 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx3yfr7vp3gbn"]
+[gd_scene load_steps=14 format=3 uid="uid://dx3yfr7vp3gbn"]
 
 [ext_resource type="PackedScene" uid="uid://nklwmh4e4jwg" path="res://objects/player.tscn" id="1_djgfh"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="2_mtiaa"]
 [ext_resource type="Script" path="res://addons/StateMachine/state_machine.gd" id="3_03ql3"]
 [ext_resource type="Script" path="res://scripts/enemy/navigator.gd" id="3_m6isb"]
+[ext_resource type="Shader" uid="uid://rmua1fkabo1e" path="res://assets/Shaders/3D/bat_trail.tres" id="3_yyxms"]
 [ext_resource type="Script" path="res://scripts/enemy/states/defend.gd" id="4_4o8ek"]
+[ext_resource type="Texture2D" uid="uid://027637t71n23" path="res://assets/Modelos 3D/trail/trail_textura_text.png" id="4_ynvwr"]
 [ext_resource type="Script" path="res://scripts/enemy/states/idle.gd" id="6_i74hs"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5h0mp"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_p8lqk"]
+size = Vector3(2.52759, 1.60049, 0.399414)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fsbx3"]
+size = Vector3(2.18945, 1.60049, 2.20215)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tl0he"]
+size = Vector3(1.75195, 1.60049, 0.96582)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o7eui"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_yyxms")
+shader_parameter/progress = 0.0
+shader_parameter/Texture = ExtResource("4_ynvwr")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_brdgy"]
 viewport_path = NodePath("hitManager/SubViewport")
@@ -16,55 +32,90 @@ viewport_path = NodePath("hitManager/SubViewport")
 transform = Transform3D(6.98928, 0, 0, 0, 6.98928, 0, 0, 0, 6.98928, 0, 0, 0)
 script = ExtResource("2_mtiaa")
 
-[node name="root_hitArea#CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(0.999996, 0.000295923, 0.00282306, -0.000317631, 0.99997, 0.00769576, -0.0028207, -0.00769663, 0.999967, -0.123093, 0.954373, 0.625552)
-shape = SubResource("CapsuleShape3D_5h0mp")
+[node name="CollisionShape3D" parent="hitNodes/hitArea" index="0"]
+shape = SubResource("BoxShape3D_p8lqk")
+
+[node name="CollisionShape3D2" parent="hitNodes/hitArea" index="1"]
+shape = SubResource("BoxShape3D_fsbx3")
+
+[node name="CollisionShape3D3" parent="hitNodes/hitArea" index="2"]
+shape = SubResource("BoxShape3D_tl0he")
+
+[node name="CollisionShape3D5" parent="hitNodes/hitArea" index="3"]
+shape = SubResource("BoxShape3D_tl0he")
+
+[node name="CollisionShape3D4" parent="hitNodes/hitArea" index="4"]
+shape = SubResource("BoxShape3D_p8lqk")
+
+[node name="hitPredictionArea" type="Area3D" parent="hitNodes" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0167713, 0, 0.145831)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitNodes/hitPredictionArea" index="0"]
+transform = Transform3D(0.917164, 0, -0.398509, 0, 1, 0, 0.398509, 0, 0.917164, 0.91968, 0.812524, 0.497738)
+shape = SubResource("BoxShape3D_p8lqk")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hitNodes/hitPredictionArea" index="1"]
+transform = Transform3D(0.999692, 0, -0.0248335, 0, 1, 0, 0.0248335, 0, 0.999692, 0.0037188, 0.812524, 0.961651)
+shape = SubResource("BoxShape3D_fsbx3")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="hitNodes/hitPredictionArea" index="2"]
+transform = Transform3D(0.651979, 0, 0.758237, 0, 1, 0, -0.758237, 0, 0.651979, -0.964785, 0.812524, 1.0705)
+shape = SubResource("BoxShape3D_tl0he")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="hitNodes/hitPredictionArea" index="3"]
+transform = Transform3D(0.65096, 0, -0.759112, 0, 1, 0, 0.759112, 0, 0.65096, 0.932687, 0.805996, 1.06904)
+shape = SubResource("BoxShape3D_tl0he")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="hitNodes/hitPredictionArea" index="4"]
+transform = Transform3D(-0.914028, 0, -0.405652, 0, 1, 0, 0.405652, 0, -0.914028, -0.936635, 0.812524, 0.524693)
+shape = SubResource("BoxShape3D_p8lqk")
+
+[node name="Trail" parent="hitNodes/hitDirection" index="0"]
+material_override = SubResource("ShaderMaterial_o7eui")
+
+[node name="Bate" parent="hitNodes" index="3"]
+transform = Transform3D(10.0945, -3.97776, -20.9411, 2.88143, 23.2126, -3.02028, 21.1199, -1.26572, 10.4211, -0.496312, 0.65825, 0.332235)
 
 [node name="Skeleton3D" parent="root" index="0"]
-bones/0/position = Vector3(0.00473703, 0.859098, 0.350708)
-bones/0/rotation = Quaternion(-0.0209047, 0.445991, 0.0273675, 0.894375)
-bones/1/rotation = Quaternion(0.571608, 0.0375661, 0.814444, -0.0923798)
-bones/1/scale = Vector3(1, 1.00872, 1)
-bones/2/rotation = Quaternion(-6.95997e-06, 1.32076e-05, 0.292237, 0.956346)
-bones/3/rotation = Quaternion(0.315301, 0.523602, -0.43546, 0.660909)
-bones/3/scale = Vector3(0.999394, 0.995896, 0.996451)
-bones/4/position = Vector3(0.000710038, 0.127645, -0.00126404)
-bones/4/rotation = Quaternion(0.0606886, 0.888903, 0.453961, -0.00941929)
-bones/4/scale = Vector3(0.999985, 0.996729, 1.00325)
-bones/5/rotation = Quaternion(0.907317, -0.339628, -0.232497, 0.0858661)
-bones/6/rotation = Quaternion(-5.42953e-06, -4.33377e-06, 0.388397, -0.921492)
-bones/7/rotation = Quaternion(0.288219, -0.737131, 0.295395, 0.535079)
-bones/8/rotation = Quaternion(-0.0448711, 0.946662, 0.319087, 0.00110461)
-bones/9/rotation = Quaternion(0.0354795, -0.45775, -0.0412884, 0.887413)
-bones/10/rotation = Quaternion(-0.0509345, 0.429394, 0.0508151, 0.900247)
-bones/12/rotation = Quaternion(-0.142429, -0.410841, 0.126809, 0.89154)
-bones/13/rotation = Quaternion(-0.519101, 0.562038, -0.4618, -0.448764)
-bones/14/rotation = Quaternion(0.547865, 0.821134, 0.102115, 0.12311)
-bones/15/rotation = Quaternion(0.26045, -0.0120365, 0.210108, 0.942272)
-bones/16/rotation = Quaternion(0.0367274, 0.344611, 0.00347512, 0.93802)
-bones/20/rotation = Quaternion(-0.713108, 0.123515, -0.0288195, 0.689485)
-bones/21/rotation = Quaternion(-0.5854, -0.0209196, 0.00945572, 0.81042)
-bones/22/rotation = Quaternion(-0.587504, -0.00386684, -0.00975745, 0.809153)
-bones/27/rotation = Quaternion(-0.583578, 0.00198916, -0.0537396, 0.810275)
-bones/28/rotation = Quaternion(-0.599267, 0.00781888, -0.0296071, 0.799963)
-bones/29/rotation = Quaternion(0.448076, 0.610678, -0.515521, 0.400673)
-bones/30/rotation = Quaternion(-0.828694, 0.425766, 0.0237899, -0.362523)
+bones/0/position = Vector3(-0.0290014, 0.890852, 0.124543)
+bones/0/rotation = Quaternion(-0.121889, 0.332164, -0.0498009, 0.933986)
+bones/1/rotation = Quaternion(0.636949, 0.0895934, 0.763514, -0.0575766)
+bones/1/scale = Vector3(1, 0.999982, 1)
+bones/2/rotation = Quaternion(3.9772e-06, -9.07325e-07, 0.403654, 0.914912)
+bones/3/rotation = Quaternion(0.435042, 0.461779, -0.44467, 0.632272)
+bones/3/scale = Vector3(0.999954, 0.999997, 1.00002)
+bones/4/position = Vector3(-1.74496e-06, 0.127669, 3.01703e-06)
+bones/4/rotation = Quaternion(0.0449081, 0.94666, 0.319087, -0.000878634)
+bones/4/scale = Vector3(0.999997, 1.00001, 0.999987)
+bones/5/rotation = Quaternion(0.859333, -0.0683941, -0.506185, 0.0254243)
+bones/6/rotation = Quaternion(-3.61372e-06, 3.40275e-07, 0.32681, -0.94509)
+bones/7/rotation = Quaternion(0.309453, -0.701119, 0.401554, 0.501424)
+bones/8/rotation = Quaternion(-0.0448281, 0.946665, 0.319084, 0.00105538)
+bones/9/rotation = Quaternion(0.130967, -0.334594, 0.0528791, 0.931718)
+bones/10/rotation = Quaternion(-0.070256, 0.00329326, 0.000231937, 0.997524)
+bones/12/rotation = Quaternion(-0.16917, -0.00666158, -0.00113576, 0.985564)
+bones/13/rotation = Quaternion(-0.53388, 0.544082, -0.438424, -0.476164)
+bones/14/rotation = Quaternion(0.616297, 0.760091, 0.173086, 0.11172)
+bones/15/rotation = Quaternion(0.507593, -0.00311854, 0.307536, 0.804836)
+bones/16/rotation = Quaternion(0.0577109, 0.282956, -0.00702754, 0.957369)
+bones/20/rotation = Quaternion(-0.713067, 0.123501, -0.0287675, 0.689533)
+bones/21/rotation = Quaternion(-0.585566, -0.0207948, 0.00954106, 0.810302)
+bones/22/rotation = Quaternion(-0.587471, -0.00382136, -0.00984355, 0.809176)
+bones/27/rotation = Quaternion(-0.583496, 0.00195844, -0.0537369, 0.810334)
+bones/28/rotation = Quaternion(-0.599287, 0.00781066, -0.0296443, 0.799947)
+bones/29/rotation = Quaternion(0.46739, 0.609865, -0.507784, 0.389572)
+bones/30/rotation = Quaternion(-0.674923, 0.532514, 0.0507139, -0.508267)
 
 [node name="AnimationTree" parent="animationManager" index="0"]
-parameters/current_position = 0.376725
-parameters/fight_punch/current_position = 0.376725
+parameters/current_position = 0.173333
+parameters/fight_punch/current_position = 0.173333
 
-[node name="hitManager" parent="." index="4"]
-charge_time = 1.5
-
-[node name="Sprite3D" parent="hitManager" index="1"]
-visible = false
-texture = SubResource("ViewportTexture_brdgy")
-
-[node name="navigator" type="Node3D" parent="." index="5"]
+[node name="navigator" type="Node3D" parent="." index="4"]
 script = ExtResource("3_m6isb")
 
-[node name="stateMachine" type="Node" parent="." index="6" node_paths=PackedStringArray("initial_state")]
+[node name="stateMachine" type="Node" parent="." index="5" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_03ql3")
 initial_state = NodePath("Idle")
 
@@ -74,5 +125,11 @@ script = ExtResource("4_4o8ek")
 [node name="Idle" type="Node" parent="stateMachine" index="1"]
 script = ExtResource("6_i74hs")
 
-[node name="navigationAgent" type="NavigationAgent3D" parent="." index="7"]
+[node name="navigationAgent" type="NavigationAgent3D" parent="." index="6"]
 path_desired_distance = 2.0
+
+[node name="Sprite3D" parent="hitManager" index="1"]
+visible = false
+texture = SubResource("ViewportTexture_brdgy")
+
+[connection signal="area_entered" from="hitNodes/hitPredictionArea" to="stateMachine/Defend" method="_on_hit_prediction_area_area_entered"]

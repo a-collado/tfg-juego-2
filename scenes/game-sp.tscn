@@ -30,7 +30,6 @@ transform = Transform3D(-1.90187, 0, -1.66266e-07, 0, 1.90187, 0, 1.66266e-07, 0
 goal = NodePath("../Environment/Goal B/Area3D")
 
 [node name="Enemy" parent="Team B" index="0" instance=ExtResource("3_fvqes")]
-process_mode = 4
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -11.9861)
 
 [node name="Debug" type="Control" parent="UI" index="5"]

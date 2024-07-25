@@ -68,6 +68,7 @@ pointing/stretch/aspect="keep"
 3d_physics/layer_1="Floor"
 3d_physics/layer_3="Pelota"
 3d_physics/layer_4="Personajes"
+3d_physics/layer_5="Future Ball"
 
 [rendering]
 

@@ -9,6 +9,8 @@ const SPEED = 10.0
 @onready var root = $root
 @onready var navigator: Navigator = $navigator
 @onready var nav_agent: NavigationAgent3D = $navigationAgent
+@onready var hit_nodes: Node3D = $hitNodes
+@onready var hit_prediction_area: Node3D = $hitNodes/hitPredictionArea
 
 func _physics_process(_delta: float) -> void:
 	var current_location = global_transform.origin
@@ -26,3 +28,10 @@ func _physics_process(_delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
+
+
+func _on_hit_area_body_entered(body:Node3D) -> void:
+	if body is Ball:
+		var hit_direction = hit_nodes.global_transform.basis * Vector3.FORWARD
+		body.kick(-1 * hit_direction.normalized() * 50)
+

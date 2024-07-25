@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://hf54dvayfhfp"]
+[gd_scene load_steps=19 format=3 uid="uid://hf54dvayfhfp"]
 
 [ext_resource type="MeshLibrary" uid="uid://d1hulycx5v61j" path="res://assets/tiles.tres" id="1_cc71t"]
 [ext_resource type="Script" path="res://scripts/Team.gd" id="2_qon7g"]
@@ -31,6 +31,8 @@ offsets = PackedFloat32Array(0.996528, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_afqlx"]
 gradient = SubResource("Gradient_lcu8q")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ht4i"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yho6n"]
 friction = 0.0
@@ -263,7 +265,17 @@ theme_override_font_sizes/font_size = 300
 text = "0"
 horizontal_alignment = 1
 
-[node name="Ball" type="RigidBody3D" parent="."]
+[node name="BallFuturePosition" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.949508, 3.76684)
+
+[node name="Area3D" type="Area3D" parent="BallFuturePosition"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BallFuturePosition/Area3D"]
+shape = SubResource("BoxShape3D_5ht4i")
+
+[node name="Ball" type="RigidBody3D" parent="." node_paths=PackedStringArray("future_position_node")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.949508, 3.76684)
 collision_layer = 4
@@ -273,6 +285,7 @@ physics_material_override = SubResource("PhysicsMaterial_yho6n")
 continuous_cd = true
 max_contacts_reported = 1
 script = ExtResource("6_i326r")
+future_position_node = NodePath("../BallFuturePosition")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
 transform = Transform3D(0.712953, 0, 0, 0, 0.712953, 0, 0, 0, 0.712953, 0, 0, 0)
