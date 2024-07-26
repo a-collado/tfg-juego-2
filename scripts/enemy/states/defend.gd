@@ -4,6 +4,7 @@ class_name Defend
 func enter():
 	LogDuck.d("[color=#ff2c2c][b]Defend state entered[/b][/color]")
 	_setup()
+	enemy.movement = true
 
 func exit():
 	pass
@@ -18,6 +19,7 @@ func physics_update():
 
 ## Quizas esto habria que moverlo a otro lado
 func _on_hit_prediction_area_area_entered(_area:Area3D) -> void:
-	if active:	
-		enemy.animation_manager.hit(1)
+	if active and hit_manager.charge_bar.charge_level > 0:
+		#enemy.animation_manager.hit(1)
+		Transitioned.emit(self, "Attack")
 

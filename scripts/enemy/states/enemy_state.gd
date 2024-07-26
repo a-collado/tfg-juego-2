@@ -8,6 +8,7 @@ var ball: Ball
 var ball_future: Node3D
 var navigator: Navigator
 var agent: NavigationAgent3D
+var hit_manager: HitManager
 
 func _setup() -> void:
 	if not team:
@@ -21,3 +22,5 @@ func _setup() -> void:
 		navigator = enemy.navigator
 	if not agent:
 		agent = enemy.nav_agent
+	if not hit_manager:
+		hit_manager = enemy.hit_manager

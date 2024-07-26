@@ -5,12 +5,12 @@ extends Control
 @onready var texture_progress_bar_0 = $"Progress Bar Lvl 0"
 @onready var texture_progress_bar_1 = $"Progress Bar Lvl 1"
 @onready var texture_progress_bar_2 = $"Progress Bar Lvl 2"
-var charging: bool = false
+
 ## Valores de carga: 0, 1, 2, 3
 ## 0 siginifica que no esta cargado
 var charge_level: int = 0
+var charging := false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	texture_progress_bar_0.value = 0;
 	texture_progress_bar_1.value = 0;

@@ -26,6 +26,7 @@ func _process(_delta: float) -> void:
 
 	if charging and not charged and not charge_bar.charging:
 		charge_bar.charge(true)
+
 	if not charging:
 		charge_bar.charge(false)
 		charge_bar.reset()
