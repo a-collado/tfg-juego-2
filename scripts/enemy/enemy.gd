@@ -33,5 +33,7 @@ func _physics_process(_delta: float) -> void:
 func _on_hit_area_body_entered(body:Node3D) -> void:
 	if body is Ball:
 		var hit_direction = hit_nodes.global_transform.basis * Vector3.FORWARD
-		body.kick(-1 * hit_direction.normalized() * 50)
+		# Esto hay que cambiarlo e implementar el sistema de carga
+		var fuerza_tiro = 50
+		body.kick(-1 * hit_direction.normalized() * fuerza_tiro)
 

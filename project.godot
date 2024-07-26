@@ -70,6 +70,10 @@ pointing/stretch/aspect="keep"
 3d_physics/layer_4="Personajes"
 3d_physics/layer_5="Future Ball"
 
+[physics]
+
+3d/physics_engine="JoltPhysics3D"
+
 [rendering]
 
 renderer/rendering_method="mobile"
