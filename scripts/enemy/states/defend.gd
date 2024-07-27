@@ -15,8 +15,12 @@ func exit():
 func physics_update():
 	#var direction = ball.transform.origin - enemy.transform.origin
 	#navigator.setNavInput(direction)
-	agent.target_position = follow.transform.origin
-
-func _on_hit_prediction_area_area_entered(_area:Area3D) -> void:
-	if active and hit_manager.charge_bar.charge_level > 0:
+	if ball.transform.origin.z < 0:
 		Transitioned.emit(self, "Attack")
+
+	agent.target_position = follow.transform.origin
+	
+	if agent.distance_to_target() < 0.1:
+		enemy.movement = false
+	else:
+		enemy.movement = true

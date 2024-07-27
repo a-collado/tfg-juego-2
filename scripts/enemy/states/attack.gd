@@ -6,7 +6,7 @@ var has_attacked := false
 func enter():
 	LogDuck.d("[color=#ff2c2c][b]Attack state entered[/b][/color]")
 	_setup()
-	enemy.movement = false
+	enemy.movement = true
 
 func exit():
 	pass
@@ -15,6 +15,11 @@ func update():
 	pass
 
 func physics_update():
+	agent.target_position = ball_future.transform.origin
+
+	if ball_future.transform.origin.z > 0:
+		Transitioned.emit(self, "Defend")
+
 	if animation_manager.is_hitting():
 		has_attacked = true
 
@@ -22,3 +27,5 @@ func physics_update():
 		has_attacked = not has_attacked
 		Transitioned.emit(self, "Defend")
 
+func _on_hit_prediction_area_area_entered(_area:Area3D) -> void:
+	enemy.movement = false
