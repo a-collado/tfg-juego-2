@@ -16,9 +16,11 @@ var hit_animation_happening = false
 func _process(_delta):
 	animation_tree.set(TREE_CONDITIONS + "is_moving", is_moving)
 	animation_tree.set(TREE_CONDITIONS + "is_idle", is_idle)
+
+
+	hit_animation_happening = hit_ball;
 	animation_tree.set(TREE_CONDITIONS + "hit_ball", hit_ball)
 	if hit_ball:
-		hit_animation_happening = true;
 		bat_tray_animation_player.play("swing")
 		bat_animation_player.play("swing")
 		hit_ball = not hit_ball
