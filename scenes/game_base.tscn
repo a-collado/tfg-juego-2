@@ -2,7 +2,7 @@
 
 [ext_resource type="MeshLibrary" uid="uid://d1hulycx5v61j" path="res://assets/tiles.tres" id="1_cc71t"]
 [ext_resource type="Script" path="res://scripts/Team.gd" id="2_qon7g"]
-[ext_resource type="Texture2D" uid="uid://b4x4wyx723h8q" path="res://assets/Iconos/pause-button.svg" id="4_lvo3o"]
+[ext_resource type="Texture2D" uid="uid://b4x4wyx723h8q" path="res://assets/Iconos/UI/pause-button.svg" id="4_lvo3o"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick_scene.tscn" id="5_otsi1"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="5_thfdy"]
 [ext_resource type="Script" path="res://scripts/Ball.gd" id="6_i326r"]

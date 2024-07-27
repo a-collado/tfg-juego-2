@@ -5,6 +5,8 @@ const SPEED = 10.0
 
 @export_range(0, 60) var time_to_stop_charge: int = 5
 @export var enemy_ia_follow: EnemyIAFollow
+## Porteria en la que tiene que marcar el enemigo
+@export var goal_to_score: Node3D
 
 @onready var team: Team = self.get_parent()
 @onready var hit_manager: HitManager = $hitManager
@@ -32,6 +34,7 @@ func _physics_process(delta: float) -> void:
 		_last_movement = 0
 
 	_last_movement += 1
+	#_calc_rotation()
 
 func _calc_movement(_delta: float) -> void:
 	var current_location = global_transform.origin
@@ -62,3 +65,9 @@ func _on_hit_area_body_entered(body:Node3D) -> void:
 	if body is Ball:
 		var hit_direction = hit_nodes.global_transform.basis * Vector3.FORWARD
 		body.kick(-1 * hit_direction.normalized() * hit_manager.get_kick_force() )
+
+func _calc_rotation() -> void:
+	var goal_position = goal_to_score.transform.origin
+	goal_position.z = -1 * goal_position.z
+	goal_position.x = -1 * goal_position.x
+	hit_nodes.look_at(goal_position)

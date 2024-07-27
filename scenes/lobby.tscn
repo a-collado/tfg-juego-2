@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://uwi28k8m6bka"]
 
 [ext_resource type="Script" path="res://scripts/multiplayer/UI_Lobby.gd" id="1_hmgxf"]
-[ext_resource type="Texture2D" uid="uid://ra0j133x6ofg" path="res://assets/Iconos/reload.png" id="2_6kglo"]
+[ext_resource type="Texture2D" uid="uid://ra0j133x6ofg" path="res://assets/Iconos/UI/reload.png" id="2_6kglo"]
 [ext_resource type="Script" path="res://scripts/multiplayer/ServerBrowserLAN.gd" id="2_cpxfv"]
 
 [node name="Lobby" type="Control"]
