@@ -7,7 +7,9 @@ class_name Ball
 
 @rpc("any_peer", "call_local", "reliable")
 func kick(force: Vector3):
-	apply_impulse(force)
+	var velocity = linear_velocity / 4
+	linear_velocity = Vector3(0,0,0)
+	apply_impulse(force - velocity)
 
 @rpc("any_peer", "call_local", "reliable")
 func reset(spawn: Vector3):

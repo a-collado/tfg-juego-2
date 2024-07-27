@@ -11,9 +11,6 @@ func enter():
 func exit():
 	pass
 
-func update():
-	pass
-
 func physics_update():
 	agent.target_position = ball_future.transform.origin
 
@@ -24,8 +21,9 @@ func physics_update():
 		has_attacked = true
 
 	if not animation_manager.is_hitting() and has_attacked:
-		has_attacked = not has_attacked
-		Transitioned.emit(self, "Defend")
+		has_attacked = false
+		enemy.movement = true
 
 func _on_hit_prediction_area_area_entered(_area:Area3D) -> void:
-	enemy.movement = false
+	if not has_attacked:
+		enemy.movement = false

@@ -74,6 +74,8 @@ script = ExtResource("5_4mm33")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.62921)
 script = ExtResource("5_mrguf")
 ball_future_pos = NodePath("../../BallFuturePosition")
+change_timeout = 30
+offset_x_range = null
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="9"]
 navigation_mesh = SubResource("NavigationMesh_ubnn4")
