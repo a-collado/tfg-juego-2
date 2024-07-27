@@ -1,9 +1,10 @@
-extends CharacterBody3D
 class_name Enemy
+extends CharacterBody3D
 
 const SPEED = 10.0
 
 @export_range(0, 60) var time_to_stop_charge: int = 5
+@export var enemy_ia_follow: EnemyIAFollow
 
 @onready var team: Team = self.get_parent()
 @onready var hit_manager: HitManager = $hitManager

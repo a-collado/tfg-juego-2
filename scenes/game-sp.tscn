@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1nci05k2wl6i"]
+[gd_scene load_steps=8 format=3 uid="uid://c1nci05k2wl6i"]
 
 [ext_resource type="PackedScene" uid="uid://hf54dvayfhfp" path="res://scenes/game_base.tscn" id="1_3djct"]
 [ext_resource type="PackedScene" uid="uid://nklwmh4e4jwg" path="res://objects/player.tscn" id="2_3xraw"]
 [ext_resource type="PackedScene" uid="uid://dx3yfr7vp3gbn" path="res://objects/enemy.tscn" id="3_fvqes"]
 [ext_resource type="Script" path="res://scripts/UI/debug.gd" id="4_yevkp"]
+[ext_resource type="Script" path="res://scripts/enemy/pathFollowers/followers.gd" id="5_4mm33"]
+[ext_resource type="Script" path="res://scripts/enemy/pathFollowers/defend_state_follow.gd" id="5_mrguf"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ubnn4"]
 vertices = PackedVector3Array(-8.47118, 0.495944, -26.6235, -8.47118, 0.495944, -0.373466, 8.52882, 0.495944, -0.373466, 8.52882, 0.495944, -26.6235)
@@ -29,8 +31,9 @@ transform = Transform3D(-1.90187, 0, -1.66266e-07, 0, 1.90187, 0, 1.66266e-07, 0
 [node name="Team B" parent="." index="4" node_paths=PackedStringArray("goal")]
 goal = NodePath("../Environment/Goal B/Area3D")
 
-[node name="Enemy" parent="Team B" index="0" instance=ExtResource("3_fvqes")]
+[node name="Enemy" parent="Team B" index="0" node_paths=PackedStringArray("enemy_ia_follow") instance=ExtResource("3_fvqes")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -11.9861)
+enemy_ia_follow = NodePath("../../EnemyIAFollow")
 
 [node name="Debug" type="Control" parent="UI" index="5"]
 layout_mode = 3
@@ -60,7 +63,19 @@ offset_bottom = 49.0
 icon_alignment = 1
 expand_icon = true
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="7"]
+[node name="Marker3D" type="Marker3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.1064)
+gizmo_extents = 2.84
+
+[node name="EnemyIAFollow" type="Node3D" parent="." index="7"]
+script = ExtResource("5_4mm33")
+
+[node name="DefendStateFollow" type="CSGBox3D" parent="EnemyIAFollow" index="0" node_paths=PackedStringArray("ball_future_pos")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.03275)
+script = ExtResource("5_mrguf")
+ball_future_pos = NodePath("../../BallFuturePosition")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="9"]
 navigation_mesh = SubResource("NavigationMesh_ubnn4")
 
 [node name="Region" type="CSGBox3D" parent="NavigationRegion3D" index="0"]

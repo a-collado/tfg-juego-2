@@ -10,6 +10,7 @@ var navigator: Navigator
 var agent: NavigationAgent3D
 var hit_manager: HitManager
 var animation_manager: animationManager
+var enemy_ia_follow: EnemyIAFollow
 
 func _setup() -> void:
 	if not team:
@@ -27,3 +28,5 @@ func _setup() -> void:
 		hit_manager = enemy.hit_manager
 	if not animation_manager:
 		animation_manager = enemy.animation_manager
+	if not enemy_ia_follow:
+		enemy_ia_follow = enemy.enemy_ia_follow
