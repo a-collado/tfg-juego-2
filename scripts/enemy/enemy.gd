@@ -18,22 +18,22 @@ const SPEED = 10.0
 @onready var hit_prediction_area: Node3D = $hitNodes/hitPredictionArea
 
 var movement := false
-var _last_movement:int = 0
+var last_movement:int = 0
 
 func _ready():
 	hit_manager.connect("hit_ball", hit_ball)
 
 func _physics_process(delta: float) -> void:
 	if movement:
-		_last_movement = 0
+		last_movement = 0
 		_calc_movement(delta)
 		return
 
-	if _last_movement > time_to_stop_charge:
-		hit_manager.charging = false;
-		_last_movement = 0
+	if last_movement > time_to_stop_charge:
+		hit_manager.charging = false
+		last_movement = 0
 
-	_last_movement += 1
+	last_movement += 1
 	_calc_rotation()
 
 func _calc_movement(_delta: float) -> void:
