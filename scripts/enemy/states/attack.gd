@@ -4,7 +4,7 @@ class_name Attack
 var has_attacked := false
 
 func enter():
-	LogDuck.d("[color=#ff2c2c][b]Attack state entered[/b][/color]")
+	print_rich("Log: [color=#ff2c2c][b]Attack state entered[/b][/color]")
 	_setup()
 	enemy.movement = true
 

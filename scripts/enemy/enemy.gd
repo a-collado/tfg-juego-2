@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 		_last_movement = 0
 
 	_last_movement += 1
-	#_calc_rotation()
+	_calc_rotation()
 
 func _calc_movement(_delta: float) -> void:
 	var current_location = global_transform.origin

@@ -4,7 +4,7 @@ class_name Defend
 var follow: Node3D
 
 func enter():
-	LogDuck.d("[color=#ff2c2c][b]Defend state entered[/b][/color]")
+	print_rich("Log: [color=#ff2c2c][b]Defend state entered[/b][/color]")
 	_setup()
 	follow = enemy.enemy_ia_follow.defend_state_follow
 	enemy.movement = true

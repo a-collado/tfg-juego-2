@@ -19,7 +19,6 @@ config/icon="res://assets/Iconos/icon.svg"
 [autoload]
 
 Lobby="*res://scripts/multiplayer/Lobby.gd"
-LogDuck="*res://addons/LogDuck/LogDuck.gd"
 
 [display]
 
