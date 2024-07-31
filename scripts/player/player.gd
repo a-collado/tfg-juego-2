@@ -15,9 +15,11 @@ const SPEED = 10.0
 @onready var animation_manager: animationManager = $animationManager
 @onready var root = $root
 @onready var hit_nodes: Node3D = $hitNodes
+@onready var shaker: CameraShaker = $shaker
 
-var mult_sync: MultiplayerSynchronizer;
+var mult_sync: MultiplayerSynchronizer
 var virtual_joystick: VirtualJoystick
+var camera: Camera3D
 
 var id: int
 var is_multiplayer: bool = false;
@@ -41,6 +43,8 @@ func _ready() -> void:
 			$hitManager/Sprite3D.hide()
 	else:
 		virtual_joystick = %"Virtual Joystick"
+		camera = %Camera
+	shaker.camera = camera
 
 func _physics_process(delta: float) -> void:
 	if _is_this_not_multiplayer_authority():
@@ -95,6 +99,7 @@ func hit_ball(charge_level: int):
 func _on_hit_area_body_entered(body):
 	if body is Ball:
 		var hit_direction = hit_nodes.global_transform.basis * Vector3.FORWARD
+		shaker.shake_camera(hit_manager.charge_level)
 		if is_multiplayer:
 			body.kick.rpc(-1 * hit_direction.normalized()*hit_manager.get_kick_force())
 		else:

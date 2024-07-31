@@ -14,7 +14,7 @@ signal hit_ball(charge_level: int)
 
 var charging:bool = false;
 var charged:bool = false;
-var charge_level: float = 0;
+var charge_level: int = 0;
 
 func _ready() -> void:
 	hitArea.monitoring = false
