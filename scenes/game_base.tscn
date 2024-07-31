@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://hf54dvayfhfp"]
+[gd_scene load_steps=24 format=3 uid="uid://hf54dvayfhfp"]
 
-[ext_resource type="MeshLibrary" uid="uid://d1hulycx5v61j" path="res://assets/tiles.tres" id="1_cc71t"]
 [ext_resource type="Script" path="res://scripts/Team.gd" id="2_qon7g"]
+[ext_resource type="MeshLibrary" uid="uid://dc8u7nxstkwfp" path="res://assets/Modelos 3D/space station kenney/Library/space_station_library.tres" id="2_tbimu"]
 [ext_resource type="Texture2D" uid="uid://b4x4wyx723h8q" path="res://assets/Iconos/UI/pause-button.svg" id="4_lvo3o"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick_scene.tscn" id="5_otsi1"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="5_thfdy"]
@@ -26,6 +26,30 @@ size = Vector3(17.9935, 5.99512, 0.15625)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qj1ei"]
 size = Vector3(54.157, 6.31775, 0.183105)
 
+[sub_resource type="Gradient" id="Gradient_jy8xr"]
+offsets = PackedFloat32Array(0.129921, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 0.964706, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sym4f"]
+gradient = SubResource("Gradient_jy8xr")
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_km4k3"]
+rayleigh_coefficient = 6.2
+
+[sub_resource type="Sky" id="Sky_pqv4c"]
+sky_material = SubResource("PhysicalSkyMaterial_km4k3")
+
+[sub_resource type="Environment" id="Environment_qmlgc"]
+background_mode = 2
+background_energy_multiplier = 0.69
+sky = SubResource("Sky_pqv4c")
+tonemap_mode = 3
+tonemap_exposure = 0.9
+sdfgi_read_sky_light = false
+adjustment_enabled = true
+adjustment_saturation = 1.2
+adjustment_color_correction = SubResource("GradientTexture1D_sym4f")
+
 [sub_resource type="Gradient" id="Gradient_lcu8q"]
 offsets = PackedFloat32Array(0.996528, 1)
 
@@ -44,17 +68,27 @@ bounce = 1.0
 
 [node name="Environment" type="Node" parent="."]
 
-[node name="GridMap" type="GridMap" parent="Environment"]
-mesh_library = ExtResource("1_cc71t")
-cell_size = Vector3(3, 2, 3)
-cell_center_x = false
+[node name="GridMap2" type="GridMap" parent="Environment"]
+visible = false
+mesh_library = ExtResource("2_tbimu")
+cell_size = Vector3(3, 1, 3)
 cell_center_y = false
 cell_center_z = false
+cell_scale = 3.0
 data = {
-"cells": PackedInt32Array(3, 8, 1441792, 3, 7, 1441792, 3, 6, 1441792, 3, 5, 1441792, 3, 4, 1441792, 3, 9, 1441792, 2, 9, 1441792, 1, 9, 1441792, 0, 9, 1441792, 65535, 9, 1441792, 65534, 9, 1441792, 65533, 9, 1441792, 65532, 9, 1441792, 65532, 8, 1441792, 65532, 7, 1441792, 65532, 6, 1441792, 65532, 5, 1441792, 65532, 4, 1441792, 65532, 2, 1441792, 65532, 1, 1441792, 65532, 0, 1441792, 65532, 65535, 1441792, 65532, 65534, 1441792, 65532, 65533, 1441792, 65532, 65532, 1441792, 65532, 65531, 1441792, 65532, 65530, 1441792, 65532, 65529, 1441792, 65532, 65528, 1441792, 65532, 65527, 1441792, 65532, 65526, 1441792, 65533, 65526, 1441792, 65535, 65526, 1441792, 0, 65526, 1441792, 65534, 65526, 1441792, 1, 65526, 1441792, 2, 65526, 1441792, 3, 65526, 1441792, 3, 65527, 1441792, 3, 65528, 1441792, 3, 65529, 1441792, 3, 65530, 1441792, 3, 3, 1441792, 3, 1, 1441792, 3, 0, 1441792, 3, 65535, 1441792, 3, 2, 1441792, 3, 65534, 1441792, 3, 65533, 1441792, 3, 65532, 1441792, 3, 65531, 1441792, 4, 65532, 58, 4, 65531, 58, 4, 65530, 58, 4, 65529, 58, 4, 65533, 58, 4, 65534, 58, 4, 65535, 58, 4, 0, 58, 4, 1, 58, 4, 2, 58, 4, 3, 58, 4, 4, 58, 4, 5, 58, 4, 6, 58, 4, 7, 58, 4, 8, 58, 6, 9, 655418, 6, 8, 655418, 6, 7, 655418, 6, 6, 655418, 6, 5, 655418, 6, 4, 655418, 6, 3, 655418, 6, 2, 655418, 6, 1, 655418, 6, 0, 655418, 6, 65535, 655418, 6, 65534, 655418, 6, 65533, 655418, 6, 65532, 655418, 6, 65531, 655418, 6, 65530, 655418, 6, 65529, 655418, 6, 65528, 655418, 6, 65527, 655418, 6, 65526, 655418, 4, 9, 58, 4, 10, 58, 4, 65527, 58, 4, 65528, 58, 6, 65525, 655418, 4, 65524, 1441850, 3, 65524, 1441850, 2, 65524, 1441850, 1, 65524, 1441850, 0, 65524, 1441850, 65535, 65524, 1441850, 65534, 65524, 1441850, 65533, 65524, 1441850, 65532, 65524, 1441850, 65531, 65524, 1441850, 65531, 65525, 58, 65531, 65526, 58, 65531, 65527, 58, 65531, 65528, 58, 65531, 65529, 58, 65531, 65530, 58, 65531, 65531, 58, 65531, 65532, 58, 65531, 65533, 58, 65531, 65534, 58, 65531, 65535, 58, 65531, 0, 58, 65531, 1, 58, 65531, 2, 58, 65531, 3, 58, 65531, 4, 58, 65531, 5, 58, 65531, 6, 58, 65531, 7, 58, 65531, 8, 58, 65531, 9, 58, 65531, 10, 58, 65531, 11, 58, 65532, 11, 1048634, 65533, 11, 1048634, 65534, 11, 1048634, 65535, 11, 1048634, 0, 11, 1048634, 1, 11, 1048634, 2, 11, 1048634, 3, 11, 1048634, 4, 11, 1048634, 6, 10, 655418, 5, 11, 1048634, 6, 11, 1048634, 6, 65524, 655418, 5, 65524, 1441850, 65533, 65525, 655417, 65534, 65525, 655417, 65535, 65525, 655417, 0, 65525, 655417, 1, 65525, 655417, 2, 65525, 655417, 3, 65525, 655417, 4, 65525, 655417, 5, 65525, 655417, 65532, 3, 1441792)
+"cells": PackedInt32Array(65533, 65529, 110, 65534, 65529, 110, 65535, 65529, 110, 0, 65529, 110, 1, 65529, 110, 2, 65529, 110, 262141, 65529, 1048611, 262142, 65529, 655397, 262143, 65529, 655397, 196608, 65529, 655397, 196609, 65529, 655397, 196610, 65529, 655395, 196608, 65528, 1048610, 262143, 65528, 1048615, 262141, 65528, 1048613, 196609, 65528, 1048615, 196610, 65528, 1048613, 196610, 65527, 1048613, 196609, 65526, 1048615, 196608, 65526, 1048610, 262143, 65526, 1048615, 196608, 65527, 1048615, 196609, 65527, 1048610, 262143, 65527, 1048610, 262142, 65527, 1048615, 262142, 65526, 1048610, 262141, 65526, 1048612, 262141, 65527, 1048613, 196610, 65526, 1048612, 262142, 65528, 1048610)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
-metadata/_edit_lock_ = true
+
+[node name="GridMap3" type="GridMap" parent="Environment"]
+mesh_library = ExtResource("2_tbimu")
+cell_size = Vector3(3, 1, 3)
+cell_center_y = false
+cell_scale = 3.0
+data = {
+"cells": PackedInt32Array(65533, 65528, 1048611, 2, 65528, 655395, -65536, 1, 35, 1, 65528, 655397, 0, 65528, 655397, 65535, 65528, 655397, 65534, 65528, 655397, 65534, 65527, 655394, 0, 65527, 655394, 2, 65527, 1048613, 65533, 65527, 1048613, 65535, 65527, 1048615, 1, 65527, 1048615, 65537, 65527, 1441806, 65536, 65527, 1048595, 131070, 65527, 1048593, 131071, 65527, 1441804, 65533, 65526, 1048612, 2, 65526, 1048612, 1, 65526, 1441848, 65534, 65526, 1048632, -1, 65526, 1048632, -65536, 65526, 1441848, 131069, 65528, 655446, 65538, 65528, 655446, 65538, 65527, 655404, 131069, 65526, 655404, 131069, 65527, 655400, 196605, 65526, 655406, 262141, 65526, 655406, 327677, 65526, 655406, 131074, 65527, 40, 65534, 8, 37, 65535, 8, 37, 0, 8, 37, 1, 8, 37, 2, 8, 1441827, 65533, 8, 35, 2, 9, 1441829, 65533, 9, 1441829, 65535, 9, 1441826, 1, 9, 1441826, 0, 9, 1441831, 65534, 9, 1441831, 131070, 9, 655422, 65537, 9, 655422, 65536, 9, 18, 131071, 9, 17, 131069, 9, 50, 65538, 9, 82, 65538, 8, 42, 131074, 8, 41, 131069, 8, 1441878)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Floor" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(14.4098, 0, 0, 0, 0.00811265, 0, 0, 0, 9.043, 0, 0, 0)
@@ -105,11 +139,11 @@ collision_mask = 12
 metadata/_edit_lock_ = true
 
 [node name="Back" type="CollisionShape3D" parent="Environment/Collisions/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0286803, 3.41836, 23.2121)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0286803, 3.41836, 23.8784)
 shape = SubResource("BoxShape3D_uv6fw")
 
 [node name="Front" type="CollisionShape3D" parent="Environment/Collisions/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0286803, 3.41836, -20.5057)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0286803, 3.41836, -20.6031)
 shape = SubResource("BoxShape3D_uv6fw")
 
 [node name="Right" type="CollisionShape3D" parent="Environment/Collisions/StaticBody3D"]
@@ -129,8 +163,17 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0286803, 3.41836, 0.0127635)
 shape = SubResource("BoxShape3D_uv6fw")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.0152012, -0.999884, 0, 0.999884, 0.0152012, 0, 17.7869, 0)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_qmlgc")
+
+[node name="DirectionalLight3D_SKY" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.806527, 0.591197, 0, -0.591197, -0.806527, 0, 17.7869, -12.9163)
+light_energy = 20.0
+sky_mode = 2
+
+[node name="DirectionalLight3D_SUN" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.986561, 0.163395, 0, -0.163395, 0.986561, 0, 17.7869, -12.9163)
+sky_mode = 1
 
 [node name="Team A" type="Node" parent="." node_paths=PackedStringArray("goal")]
 script = ExtResource("2_qon7g")

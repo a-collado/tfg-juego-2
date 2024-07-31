@@ -33,7 +33,7 @@ func idle():
 	is_moving = false
 	is_idle = true
 
-func hit(charge_level: int):
+func hit(_charge_level: int):
 	hit_ball = true
 
 func is_hitting() -> bool:
