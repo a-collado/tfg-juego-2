@@ -11,7 +11,6 @@ func _ready() -> void:
 func shake_camera(shake_level: int) -> void:
 	var camera_tween = get_tree().create_tween()
 	var intensity: float = shake_levels[shake_level]
-	print("Camera: %s" % camera.name)
 	camera_tween.tween_method(_start_camera_shake, intensity, 0.05, 0.05)
 
 func _start_camera_shake(intensity: float) -> void:

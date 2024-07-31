@@ -1,3 +1,4 @@
+@icon("../../assets/Iconos/Editor/icon_path_follow.png")
 extends Node3D
 class_name Navigator
 
