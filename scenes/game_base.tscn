@@ -132,14 +132,16 @@ shape = SubResource("BoxShape3D_uv6fw")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0152012, -0.999884, 0, 0.999884, 0.0152012, 0, 17.7869, 0)
 
-[node name="Team A" type="Node" parent="."]
+[node name="Team A" type="Node" parent="." node_paths=PackedStringArray("goal")]
 script = ExtResource("2_qon7g")
+goal = NodePath("../Environment/Goal A/Area3D")
 
 [node name="Ball Spawn A" type="Marker3D" parent="Team A"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.949508, 3.76684)
 
-[node name="Team B" type="Node" parent="."]
+[node name="Team B" type="Node" parent="." node_paths=PackedStringArray("goal")]
 script = ExtResource("2_qon7g")
+goal = NodePath("../Environment/Goal B/Area3D")
 
 [node name="Ball Spawn B" type="Marker3D" parent="Team B"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.057, 0.95, -3.767)

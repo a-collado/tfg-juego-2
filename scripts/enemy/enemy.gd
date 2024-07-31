@@ -7,6 +7,8 @@ const SPEED = 10.0
 @export var enemy_ia_follow: EnemyIAFollow
 ## Porteria en la que tiene que marcar el enemigo
 @export var goal_to_score: Node3D
+## Porcentaje de velocidad extra al caminar hacia atras
+@export_range(1,2,0.01) var backwards_speed_boost: float = 1.15
 
 @onready var team: Team = self.get_parent()
 @onready var hit_manager: HitManager = $hitManager
@@ -43,8 +45,13 @@ func _calc_movement(_delta: float) -> void:
 	direction.y = 0
 
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+
+		var speed = SPEED
+		if direction.z < 0:
+			speed *= backwards_speed_boost
+
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 
 		root.look_at(global_transform.origin - direction, Vector3.UP)
 		animation_manager.moving()

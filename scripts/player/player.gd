@@ -7,6 +7,8 @@ const SPEED = 10.0
 @export_range(0, 2) var gyro_sensibility: float = 0.4
 ## Cuantos frames puede estar quieto el personaje antes de dejar de cargar el golpe
 @export_range(0, 60) var time_to_stop_charge: int = 5
+## Porcentaje de velocidad extra al caminar hacia atras
+@export_range(1,2,0.01) var backwards_speed_boost: float = 1.15
 
 @onready var team: Team = self.get_parent()
 @onready var hit_manager: HitManager = $hitManager
@@ -67,8 +69,13 @@ func _calc_movement(_delta: float) -> void:
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y))
 
 	if direction:
-		velocity.x = direction.normalized().x * SPEED
-		velocity.z = direction.normalized().z * SPEED
+
+		var speed = SPEED
+		if (team.name == 'Team A' and direction.z > 0) or (team.name == 'Team B' and direction.z < 0):
+			speed *= backwards_speed_boost
+
+		velocity.x = direction.normalized().x * speed
+		velocity.z = direction.normalized().z * speed
 
 		root.look_at(global_transform.origin - direction, Vector3.UP)
 		animation_manager.moving()

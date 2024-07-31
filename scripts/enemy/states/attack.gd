@@ -19,7 +19,6 @@ func exit():
 
 func physics_update():
 	agent.target_position = ball_future.transform.origin
-	print(idle_time)
 
 	if enemy.movement:
 		idle_time = 0
