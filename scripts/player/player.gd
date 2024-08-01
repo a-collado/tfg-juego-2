@@ -111,5 +111,5 @@ func _is_this_not_multiplayer_authority() -> bool :
 	return is_multiplayer and mult_sync.get_multiplayer_authority() != multiplayer.get_unique_id()
 
 func _calc_hit_roration():
-	var gyro_rotation = Input.get_gravity()
+	var gyro_rotation = Sensors.get_accelerometer()
 	hit_nodes.rotation.y = -1 * gyro_rotation.x * gyro_sensibility;

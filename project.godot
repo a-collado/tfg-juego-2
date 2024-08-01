@@ -19,6 +19,7 @@ config/icon="res://assets/Iconos/icon.svg"
 [autoload]
 
 Lobby="*res://scripts/multiplayer/Lobby.gd"
+Sensors="*res://scripts/sensors.gd"
 
 [display]
 
@@ -71,7 +72,7 @@ pointing/stretch/aspect="keep"
 
 [physics]
 
-3d/physics_engine="JoltPhysics3D"
+3d/physics_engine="GodotPhysics3D"
 
 [rendering]
 

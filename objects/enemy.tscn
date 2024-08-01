@@ -76,9 +76,11 @@ shape = SubResource("BoxShape3D_p8lqk")
 [node name="Trail" parent="hitNodes/hitDirection" index="0"]
 material_override = SubResource("ShaderMaterial_o7eui")
 
+[node name="Bate" parent="hitNodes" index="3"]
+transform = Transform3D(10.0945, -3.97776, -20.9411, 2.88143, 23.2126, -3.02028, 21.1199, -1.26572, 10.4211, -0.496312, 0.65825, 0.332235)
+
 [node name="Skeleton3D" parent="root" index="0"]
 bones/0/position = Vector3(-0.0261069, 0.88845, 0.118196)
-bones/0/rotation = Quaternion(-0.121889, 0.332164, -0.0498009, 0.933986)
 bones/1/rotation = Quaternion(0.636393, 0.0912141, 0.764379, -0.0490878)
 bones/1/scale = Vector3(1, 0.999982, 1)
 bones/2/rotation = Quaternion(3.92866e-06, -8.10622e-07, 0.412824, 0.910811)
