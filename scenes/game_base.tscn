@@ -1,7 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://hf54dvayfhfp"]
+[gd_scene load_steps=36 format=4 uid="uid://hf54dvayfhfp"]
 
 [ext_resource type="Script" path="res://scripts/Team.gd" id="2_qon7g"]
 [ext_resource type="MeshLibrary" uid="uid://dc8u7nxstkwfp" path="res://assets/Modelos 3D/space station kenney/Library/space_station_library.tres" id="2_tbimu"]
+[ext_resource type="Texture2D" uid="uid://bckbrb36l5ey0" path="res://assets/Modelos 3D/floor/floor_texture.png" id="2_xqrfi"]
+[ext_resource type="Shader" path="res://assets/Shaders/3D/shield.gdshader" id="3_cuf5j"]
 [ext_resource type="Texture2D" uid="uid://b4x4wyx723h8q" path="res://assets/Iconos/UI/pause-button.svg" id="4_lvo3o"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick_scene.tscn" id="5_otsi1"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="5_thfdy"]
@@ -11,11 +13,102 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34eua"]
 albedo_color = Color(0.207843, 0.623529, 0.109804, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tr24s"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_e3hpe"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAAAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_em8wy"]
+resource_name = "floor_Plane"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"attribute_data": PackedByteArray("BgD4//iA+P8GAAYA+IAGAA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
+"material": SubResource("StandardMaterial3D_tr24s"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP///7///wAA////vwAAAAAAAP+///8AAAAA/7////9/////f/7//3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_e3hpe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut28p"]
+albedo_texture = ExtResource("2_xqrfi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18qlf"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8va1d"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAAAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_eolbo"]
+resource_name = "floor_Plane"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"attribute_data": PackedByteArray("BgD4/xNg+P8GAAYAE2AGAA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
+"material": SubResource("StandardMaterial3D_18qlf"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP///7///wAA////vwAAAAAAAP+///8AAAAA/7////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_8va1d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p1lqc"]
+render_priority = 0
+shader = ExtResource("3_cuf5j")
+shader_parameter/base_color = Color(0.879556, 0.277617, 0.234684, 1)
+shader_parameter/pulse_color = Color(0.856264, 0.632947, 0.577062, 1)
+shader_parameter/speed = 1.0
+shader_parameter/scale = 1.0
+shader_parameter/distortion = 0.371
+shader_parameter/shield_power = 0.036
+shader_parameter/rim_power = 0.783
+shader_parameter/pulse_frequency = 0.127
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6e3lt"]
 albedo_color = Color(0.945281, 0.129458, 0.176349, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cif0x"]
 size = Vector3(0.776048, 0.838601, 0.717716)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v00v3"]
+render_priority = 0
+shader = ExtResource("3_cuf5j")
+shader_parameter/base_color = Color(0, 0.5, 1, 1)
+shader_parameter/pulse_color = Color(0.5, 0.7, 1, 1)
+shader_parameter/speed = 1.0
+shader_parameter/scale = 1.0
+shader_parameter/distortion = 0.371
+shader_parameter/shield_power = 0.036
+shader_parameter/rim_power = 0.677
+shader_parameter/pulse_frequency = 0.127
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23vym"]
 albedo_color = Color(0.0977035, 0.258915, 0.435264, 1)
@@ -27,14 +120,15 @@ size = Vector3(17.9935, 5.99512, 0.15625)
 size = Vector3(54.157, 6.31775, 0.183105)
 
 [sub_resource type="Gradient" id="Gradient_jy8xr"]
-offsets = PackedFloat32Array(0.129921, 1)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 0.964706, 1)
+offsets = PackedFloat32Array(0, 0.129921, 0.979167)
+colors = PackedColorArray(0.048315, 0.051865, 0.0530812, 0.946919, 0, 0, 0, 1, 0.91021, 0.977087, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_sym4f"]
 gradient = SubResource("Gradient_jy8xr")
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_km4k3"]
 rayleigh_coefficient = 6.2
+mie_eccentricity = -1.0
 
 [sub_resource type="Sky" id="Sky_pqv4c"]
 sky_material = SubResource("PhysicalSkyMaterial_km4k3")
@@ -43,12 +137,23 @@ sky_material = SubResource("PhysicalSkyMaterial_km4k3")
 background_mode = 2
 background_energy_multiplier = 0.69
 sky = SubResource("Sky_pqv4c")
+ambient_light_energy = 16.0
 tonemap_mode = 3
-tonemap_exposure = 0.9
 sdfgi_read_sky_light = false
 adjustment_enabled = true
 adjustment_saturation = 1.2
 adjustment_color_correction = SubResource("GradientTexture1D_sym4f")
+
+[sub_resource type="VoxelGIData" id="VoxelGIData_gigp0"]
+_data = {
+"bounds": AABB(-13.2563, -2.77625, -31.6113, 26.5127, 5.55249, 63.2227),
+"level_counts": PackedInt32Array(1, 0, 0, 0, 0, 0, 0, 0),
+"octree_cells": PackedByteArray("//////////////////////////////////////////8="),
+"octree_data": PackedByteArray("AAAAAAAAAAAAAAAAAAAAAA=="),
+"octree_df_png": PackedByteArray("iVBORw0KGgoAAAANSUhEUgAABAAAAACACAAAAACwiUSUAAAAAXNSR0IArs4c6QAAAZxJREFUeJzt1DEBACAMwDDAv+chY0cTBb165wBVbzsA2GMAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEGYAEPYB7AEB/2Zn1LoAAAAASUVORK5CYII="),
+"octree_size": Vector3(64, 16, 128),
+"to_cell_xform": Transform3D(2.02459, 0, 0, 0, 2.02459, 0, 0, 0, 2.02459, 26.8387, 5.62076, 64)
+}
 
 [sub_resource type="Gradient" id="Gradient_lcu8q"]
 offsets = PackedFloat32Array(0.996528, 1)
@@ -86,19 +191,39 @@ cell_size = Vector3(3, 1, 3)
 cell_center_y = false
 cell_scale = 3.0
 data = {
-"cells": PackedInt32Array(65533, 65528, 1048611, 2, 65528, 655395, -65536, 1, 35, 1, 65528, 655397, 0, 65528, 655397, 65535, 65528, 655397, 65534, 65528, 655397, 65534, 65527, 655394, 0, 65527, 655394, 2, 65527, 1048613, 65533, 65527, 1048613, 65535, 65527, 1048615, 1, 65527, 1048615, 65537, 65527, 1441806, 65536, 65527, 1048595, 131070, 65527, 1048593, 131071, 65527, 1441804, 65533, 65526, 1048612, 2, 65526, 1048612, 1, 65526, 1441848, 65534, 65526, 1048632, -1, 65526, 1048632, -65536, 65526, 1441848, 131069, 65528, 655446, 65538, 65528, 655446, 65538, 65527, 655404, 131069, 65526, 655404, 131069, 65527, 655400, 196605, 65526, 655406, 262141, 65526, 655406, 327677, 65526, 655406, 131074, 65527, 40, 65534, 8, 37, 65535, 8, 37, 0, 8, 37, 1, 8, 37, 2, 8, 1441827, 65533, 8, 35, 2, 9, 1441829, 65533, 9, 1441829, 65535, 9, 1441826, 1, 9, 1441826, 0, 9, 1441831, 65534, 9, 1441831, 131070, 9, 655422, 65537, 9, 655422, 65536, 9, 18, 131071, 9, 17, 131069, 9, 50, 65538, 9, 82, 65538, 8, 42, 131074, 8, 41, 131069, 8, 1441878)
+"cells": PackedInt32Array(65533, 65528, 1048611, 2, 65528, 655395, 1, 65528, 655397, 0, 65528, 655397, 65535, 65528, 655397, 65534, 65528, 655397, 65534, 65527, 655394, 0, 65527, 655394, 2, 65527, 1048613, 65533, 65527, 1048613, 65535, 65527, 1048615, 1, 65527, 1048615, 65537, 65527, 1441806, 65536, 65527, 1048595, 131070, 65527, 1048593, 131071, 65527, 1441804, 65533, 65526, 1048612, 2, 65526, 1048612, 1, 65526, 1441848, 65534, 65526, 1048632, -1, 65526, 1048632, -65536, 65526, 1441848, 131069, 65528, 655446, 65538, 65528, 655446, 65538, 65527, 655404, 131069, 65526, 655404, 131069, 65527, 655400, 196605, 65526, 655406, 262141, 65526, 655406, 327677, 65526, 655406, 131074, 65527, 40, 65534, 8, 37, 65535, 8, 37, 0, 8, 37, 1, 8, 37, 2, 8, 1441827, 65533, 8, 35, 2, 9, 1441829, 65533, 9, 1441829, 65535, 9, 1441826, 1, 9, 1441826, 0, 9, 1441831, 65534, 9, 1441831, 131070, 9, 655422, 65537, 9, 655422, 65536, 9, 18, 131071, 9, 17, 131069, 9, 50, 65538, 9, 82, 65538, 8, 42, 131074, 8, 41, 131069, 8, 1441878, 65532, 7, 1441829, 65532, 6, 1441829, 65532, 5, 1441829, 65532, 4, 1441829, 65532, 3, 1441829, 65532, 2, 1441829, 65532, 1, 1441829, 65532, 0, 1441829, 65532, 65535, 1441829, 65532, 65534, 1441829, 65532, 65533, 1441829, 65532, 65532, 1441829, 65532, 65531, 1441829, 65532, 65530, 1441829, 65532, 65529, 1441829, 3, 7, 1441829, 3, 6, 1441829, 3, 5, 1441829, 3, 4, 1441829, 3, 3, 1441829, 3, 2, 1441829, 3, 1, 1441829, 3, 0, 1441829, 3, 65535, 1441829, 3, 65534, 1441829, 3, 65533, 1441829, 3, 65532, 1441829, 3, 65531, 1441829, 3, 65530, 1441829, 3, 65529, 1441829, 3, 65528, 1048612, 3, 8, 1441828, 65532, 8, 1441828, 65532, 65528, 1048612, 65532, 65527, 655416, 3, 65527, 655416, 3, 9, 56, 65532, 9, 56)
 }
-metadata/_editor_floor_ = Vector3(0, 1, 0)
+metadata/_editor_floor_ = Vector3(0, -2, 0)
 
 [node name="Floor" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(14.4098, 0, 0, 0, 0.00811265, 0, 0, 0, 9.043, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.112478, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_34eua")
 use_collision = true
-size = Vector3(1.24515, 1, 6.04259)
+size = Vector3(18, 0.1, 50)
+
+[node name="Floor" type="MeshInstance3D" parent="Environment/Floor"]
+transform = Transform3D(8.94563, 0, 0, 0, 8.94563, 0, 0, 0, 24.9903, 0, -0.149434, 0)
+mesh = SubResource("ArrayMesh_em8wy")
+skeleton = NodePath("")
+
+[node name="Floor2" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(8.94563, 0, 0, 0, 8.94563, 0, 0, 0, 24.9903, 0.0685196, -0.149432, 0.0190582)
+material_override = SubResource("StandardMaterial3D_ut28p")
+mesh = SubResource("ArrayMesh_eolbo")
+skeleton = NodePath("")
 metadata/_edit_lock_ = true
+
+[node name="Goal A Sphere" type="CSGSphere3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15204, 20.6919)
+radius = 1.5
+radial_segments = 24
+rings = 12
+material = SubResource("ShaderMaterial_p1lqc")
 
 [node name="Goal A" type="CSGCylinder3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.096745, 20.6919)
+visible = false
 material_override = SubResource("StandardMaterial3D_6e3lt")
 radius = 1.5
 height = 0.3
@@ -112,8 +237,16 @@ collision_mask = 6
 transform = Transform3D(3.24487, 0, 0, 0, 3.24487, 0, 0, 0, 3.24487, 0, 0.748212, 0.0711651)
 shape = SubResource("BoxShape3D_cif0x")
 
+[node name="Goal B Sphere" type="CSGSphere3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15204, -18.7397)
+radius = 1.5
+radial_segments = 24
+rings = 12
+material = SubResource("ShaderMaterial_v00v3")
+
 [node name="Goal B" type="CSGCylinder3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.096745, -18.5674)
+visible = false
 material_override = SubResource("StandardMaterial3D_23vym")
 radius = 1.5
 height = 0.3
@@ -166,14 +299,25 @@ shape = SubResource("BoxShape3D_uv6fw")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = SubResource("Environment_qmlgc")
 
-[node name="DirectionalLight3D_SKY" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.806527, 0.591197, 0, -0.591197, -0.806527, 0, 17.7869, -12.9163)
+[node name="Lights" type="Node" parent="."]
+
+[node name="DirectionalLight3D_SUN" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -0.0397133, 0.999211, 0, -0.999211, -0.0397133, 0, 17.7869, 2.80607)
+light_bake_mode = 1
+shadow_enabled = true
+sky_mode = 1
+
+[node name="DirectionalLight3D_SKY" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -0.138153, 0.990411, 0, -0.990411, -0.138153, 0, 17.7869, -12.9163)
 light_energy = 20.0
+light_bake_mode = 1
+shadow_enabled = true
 sky_mode = 2
 
-[node name="DirectionalLight3D_SUN" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.986561, 0.163395, 0, -0.163395, 0.986561, 0, 17.7869, -12.9163)
-sky_mode = 1
+[node name="VoxelGI" type="VoxelGI" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63863, 0)
+size = Vector3(26.5127, 5.55249, 63.2227)
+data = SubResource("VoxelGIData_gigp0")
 
 [node name="Team A" type="Node" parent="." node_paths=PackedStringArray("goal")]
 script = ExtResource("2_qon7g")
