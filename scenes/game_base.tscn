@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://hf54dvayfhfp"]
+[gd_scene load_steps=40 format=4 uid="uid://hf54dvayfhfp"]
 
 [ext_resource type="Script" path="res://scripts/Team.gd" id="2_qon7g"]
 [ext_resource type="MeshLibrary" uid="uid://dc8u7nxstkwfp" path="res://assets/Modelos 3D/space station kenney/Library/space_station_library.tres" id="2_tbimu"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="5_thfdy"]
 [ext_resource type="Script" path="res://scripts/Ball.gd" id="6_i326r"]
 [ext_resource type="Script" path="res://scripts/score_manager.gd" id="7_ephk5"]
+[ext_resource type="Shader" path="res://assets/Shaders/3D/burn_dissolve.gdshader" id="8_hyb38"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34eua"]
 albedo_color = Color(0.207843, 0.623529, 0.109804, 1)
@@ -169,6 +170,21 @@ bounce = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fr8sp"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_33ttj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xwl47"]
+noise = SubResource("FastNoiseLite_33ttj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fhva0"]
+render_priority = 0
+shader = ExtResource("8_hyb38")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 0, 0, 1)
+shader_parameter/emission_amount = 1.0
+shader_parameter/burn_size = 0.284
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_xwl47")
+
 [node name="Game" type="Node"]
 
 [node name="Environment" type="Node" parent="."]
@@ -222,7 +238,7 @@ rings = 12
 material = SubResource("ShaderMaterial_p1lqc")
 
 [node name="Goal A" type="CSGCylinder3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.096745, 20.6919)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.76566e-05, -0.0964174, 20.6921)
 visible = false
 material_override = SubResource("StandardMaterial3D_6e3lt")
 radius = 1.5
@@ -482,6 +498,7 @@ transform = Transform3D(0.712953, 0, 0, 0, 0.712953, 0, 0, 0, 0.712953, 0, 0, 0)
 shape = SubResource("SphereShape3D_fr8sp")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Ball/CollisionShape3D"]
+material = SubResource("ShaderMaterial_fhva0")
 
 [node name="Game Manager" type="Node" parent="."]
 script = ExtResource("5_thfdy")
