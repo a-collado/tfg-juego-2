@@ -1,10 +1,17 @@
 extends Node
 
 var JavaScript = JavaScriptBridge
+var has_feature_web: bool
+
 func _init():
 	
-	if !OS.has_feature('web'): pass
-	JavaScript.eval("""
+	if not OS.has_feature('web'): 
+		has_feature_web = false
+		return
+
+	has_feature_web = true
+	JavaScript.eval(
+	"""
 		var acceleration = { x: 0, y: 0, z: 0 }
 
 		function handleMotionEvent(event) {
@@ -18,7 +25,7 @@ func _init():
 	""", true)
 
 func get_accelerometer() -> Vector3:
-	if !OS.has_feature('web'): return Input.get_gravity()
+	if not has_feature_web: return Input.get_gravity()
 	
 	var x = JavaScript.eval('acceleration.x')
 	var y = JavaScript.eval('acceleration.y')
