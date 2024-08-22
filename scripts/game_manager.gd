@@ -53,6 +53,7 @@ func _on_player_disconnected(_id):
 func _exit_to_menu():
 	if get_tree().paused:
 		get_tree().paused = false
+	print("test")
 	get_tree().change_scene_to_file(start_scren_scene_path)
 
 func _reset_ball(spawn: String):

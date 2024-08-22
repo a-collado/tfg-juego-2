@@ -14,7 +14,6 @@ const SPEED = 10.0
 @onready var hit_manager: HitManager = $hitManager
 @onready var animation_manager: animationManager = $animationManager
 @onready var root = $root
-@onready var navigator: Navigator = $navigator
 @onready var nav_agent: NavigationAgent3D = $navigationAgent
 @onready var hit_nodes: Node3D = $hitNodes
 @onready var hit_prediction_area: Node3D = $hitNodes/hitPredictionArea

@@ -18,5 +18,3 @@ func _start_camera_shake(intensity: float) -> void:
 	Time.get_ticks_msec()) * intensity
 	camera.h_offset = camera_offset
 	camera.v_offset = camera_offset
-
-

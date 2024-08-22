@@ -10,5 +10,3 @@ func _process(_delta: float) -> void:
 		visible = true
 	else:
 		visible = false
-
-

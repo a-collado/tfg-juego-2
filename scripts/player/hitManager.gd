@@ -36,4 +36,3 @@ func _process(_delta: float) -> void:
 
 func get_kick_force() -> float:
 	return hit_forces[charge_level]
-

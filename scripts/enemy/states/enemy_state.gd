@@ -20,8 +20,6 @@ func _setup() -> void:
 	if not ball:
 		ball = team.ball
 		ball_future = ball.future_position_node
-	if not navigator:
-		navigator = enemy.navigator
 	if not agent:
 		agent = enemy.nav_agent
 	if not hit_manager:
