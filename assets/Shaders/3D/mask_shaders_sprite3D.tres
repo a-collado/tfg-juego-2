@@ -56,7 +56,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-178.646, -53.6987)
 flags/unshaded = true
 nodes/fragment/0/position = Vector2(760, 160)
 nodes/fragment/4/node = SubResource("VisualShaderNodeTexture2DParameter_ggqnq")

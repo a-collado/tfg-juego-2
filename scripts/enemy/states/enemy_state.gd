@@ -11,6 +11,7 @@ var agent: NavigationAgent3D
 var hit_manager: HitManager
 var animation_manager: animationManager
 var enemy_ia_follow: EnemyIAFollow
+var charge_bar: ChargeBar
 
 func _setup() -> void:
 	if not team:
@@ -28,3 +29,5 @@ func _setup() -> void:
 		animation_manager = enemy.animation_manager
 	if not enemy_ia_follow:
 		enemy_ia_follow = enemy.enemy_ia_follow
+	if not charge_bar:
+		charge_bar = hit_manager.charge_bar

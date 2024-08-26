@@ -10,7 +10,8 @@ func enter():
 	enemy.movement = true
 
 func exit():
-	enemy.movement = false
+	#enemy.movement = false
+	pass
 
 func physics_update():
 	#var direction = ball.transform.origin - enemy.transform.origin

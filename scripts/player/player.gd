@@ -23,7 +23,7 @@ var virtual_joystick: VirtualJoystick
 var camera: Camera3D
 
 var id: int
-var is_multiplayer: bool = false;
+var is_multiplayer: bool = false
 
 var ball_cooldown: float = 0.5
 var movement: bool = true
@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	if _last_movement > time_to_stop_charge:
-		hit_manager.charging = false;
+		hit_manager.charging = false
 		_last_movement = 0
 
 	_last_movement += 1

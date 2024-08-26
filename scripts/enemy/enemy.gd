@@ -16,7 +16,7 @@ const SPEED = 10.0
 @onready var root = $root
 @onready var nav_agent: NavigationAgent3D = $navigationAgent
 @onready var hit_nodes: Node3D = $hitNodes
-@onready var hit_prediction_area: Node3D = $hitNodes/hitPredictionArea
+@onready var hit_prediction_area: Area3D = $hitNodes/hitPredictionArea
 
 var movement := false
 var last_movement:int = 0
@@ -77,3 +77,8 @@ func _calc_rotation() -> void:
 	goal_position.z = -1 * goal_position.z
 	goal_position.x = -1 * goal_position.x
 	hit_nodes.look_at(goal_position)
+
+func _on_attack_reset_prediction_area() -> void:
+	
+	hit_prediction_area.monitoring = false
+	hit_prediction_area.monitoring = true

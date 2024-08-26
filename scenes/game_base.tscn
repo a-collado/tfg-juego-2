@@ -163,6 +163,7 @@ offsets = PackedFloat32Array(0.996528, 1)
 gradient = SubResource("Gradient_lcu8q")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5ht4i"]
+size = Vector3(0.625565, 0.755676, 0.59552)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yho6n"]
 friction = 0.0
@@ -472,13 +473,13 @@ horizontal_alignment = 1
 
 [node name="BallFuturePosition" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.949508, 3.76684)
-visible = false
 
 [node name="Area3D" type="Area3D" parent="BallFuturePosition"]
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BallFuturePosition/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00823212, -0.0136414, -0.0107117)
 shape = SubResource("BoxShape3D_5ht4i")
 
 [node name="Ball" type="RigidBody3D" parent="." node_paths=PackedStringArray("future_position_node")]
@@ -502,6 +503,7 @@ material = SubResource("ShaderMaterial_fhva0")
 
 [node name="Game Manager" type="Node" parent="."]
 script = ExtResource("5_thfdy")
+points_to_win = 10
 
 [node name="Score Manager" type="Node" parent="Game Manager"]
 script = ExtResource("7_ephk5")
