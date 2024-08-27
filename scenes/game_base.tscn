@@ -512,6 +512,9 @@ script = ExtResource("7_ephk5")
 wait_time = 0.5
 one_shot = true
 
+[node name="Sprite3D" type="Sprite3D" parent="Game Manager/Score Manager"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 16.5844)
+
 [connection signal="body_entered" from="Environment/Goal A/Area3D" to="Game Manager/Score Manager" method="_on_goal_A_body_entered"]
 [connection signal="body_entered" from="Environment/Goal B/Area3D" to="Game Manager/Score Manager" method="_on_area_3d_body_entered"]
 [connection signal="pressed" from="UI/Pause" to="Game Manager" method="_on_pause_pressed"]

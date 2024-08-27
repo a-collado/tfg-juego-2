@@ -52,9 +52,12 @@ func _calc_movement(_delta: float) -> void:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 
-		root.look_at(global_transform.origin - direction, Vector3.UP)
+		var look_to: Vector3 = global_transform.origin - direction
+		if (root.global_position != look_to):
+			root.look_at(look_to, Vector3.UP)
+
 		animation_manager.moving()
-		hit_manager.charging = true;
+		hit_manager.charging = true
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)

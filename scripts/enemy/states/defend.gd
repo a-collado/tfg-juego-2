@@ -21,7 +21,8 @@ func physics_update():
 
 	agent.target_position = follow.transform.origin
 	
-	if agent.distance_to_target() < 0.1:
-		enemy.movement = false
-	else:
-		enemy.movement = true
+	enemy.movement = true
+	#if agent.distance_to_target() < 0.1:
+	#	enemy.movement = false
+	#else:
+	#	enemy.movement = true

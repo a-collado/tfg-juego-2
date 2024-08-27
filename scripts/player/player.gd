@@ -99,13 +99,14 @@ func hit_ball(charge_level: int):
 # Se llama cuando has golpeado un objeto.
 func _on_hit_area_body_entered(body):
 	if body is Ball:
-		var hit_direction = hit_nodes.global_transform.basis * Vector3.FORWARD
+		#var hit_direction = -1 * hit_nodes.global_transform.basis * Vector3.FORWARD
+		var hit_direction = body.global_position - hit_nodes.global_position
 		camera_shaker.shake_camera(hit_manager.charge_level)
 		vibrator.vibrate(hit_manager.charge_level)
 		if is_multiplayer:
-			body.kick.rpc(-1 * hit_direction.normalized()*hit_manager.get_kick_force())
+			body.kick.rpc(hit_direction.normalized()*hit_manager.get_kick_force())
 		else:
-			body.kick(-1 * hit_direction.normalized()*hit_manager.get_kick_force())
+			body.kick(hit_direction.normalized()*hit_manager.get_kick_force())
 
 func _is_this_not_multiplayer_authority() -> bool :
 	return is_multiplayer and mult_sync.get_multiplayer_authority() != multiplayer.get_unique_id()

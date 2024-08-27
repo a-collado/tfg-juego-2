@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://cxjwosgi5tj7r"]
+
+[ext_resource type="Texture2D" uid="uid://bei3ssi477w76" path="res://assets/Modelos 3D/jammo/textures/jammo_albedo_alpha.png" id="1_ua0ba"]
+[ext_resource type="Texture2D" uid="uid://bjji2tdq3g46n" path="res://assets/Modelos 3D/jammo/textures/jammo_ambientocclusion.png" id="2_370sc"]
+[ext_resource type="Texture2D" uid="uid://koq1m0etqnc2" path="res://assets/Modelos 3D/jammo/textures/jammo_metal_smoothness.png" id="3_j3op1"]
+[ext_resource type="Texture2D" uid="uid://b3fydf6yxrwcc" path="res://assets/Modelos 3D/jammo/textures/jammo_normal.png" id="4_radhb"]
+
+[resource]
+albedo_texture = ExtResource("1_ua0ba")
+metallic = 1.0
+metallic_texture = ExtResource("3_j3op1")
+metallic_texture_channel = 3
+normal_enabled = true
+normal_scale = 2.0
+normal_texture = ExtResource("4_radhb")
+ao_enabled = true
+ao_texture = ExtResource("2_370sc")
