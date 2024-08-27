@@ -1,0 +1,46 @@
+[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://cavkja45y3dfw"]
+
+[ext_resource type="Texture2D" uid="uid://bei3ssi477w76" path="res://assets/Modelos 3D/jammo/textures/jammo_albedo_alpha.png" id="1_ldf6p"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_s6ip5"]
+output_port_for_preview = 0
+expanded_output_ports = [0]
+texture = ExtResource("1_ldf6p")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_r8gnp"]
+output_port_for_preview = 0
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D tex_frg_2 : source_color;
+
+
+
+void fragment() {
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+	float n_out2p1 = n_out2p0.r;
+	float n_out2p2 = n_out2p0.g;
+	float n_out2p3 = n_out2p0.b;
+
+
+// VectorCompose:6
+	vec3 n_out6p0 = vec3(n_out2p3, n_out2p2, n_out2p1);
+
+
+// Output:0
+	ALBEDO = n_out6p0;
+
+
+}
+"
+graph_offset = Vector2(-367.59, 66.7337)
+nodes/fragment/0/position = Vector2(240, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_s6ip5")
+nodes/fragment/2/position = Vector2(-280, 180)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVectorCompose_r8gnp")
+nodes/fragment/6/position = Vector2(0, 300)
+nodes/fragment/connections = PackedInt32Array(2, 1, 6, 2, 2, 2, 6, 1, 2, 3, 6, 0, 6, 0, 0, 0)

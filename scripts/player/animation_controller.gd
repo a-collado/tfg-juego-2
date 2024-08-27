@@ -2,11 +2,11 @@ class_name animationManager
 extends Node3D
 
 const TREE_CONDITIONS = "parameters/conditions/"
-const HIT_ANIMATION_NAME = "fight_punch"
+const HIT_ANIMATION_NAME = "jammo_library/bat"
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var bat_tray_animation_player: AnimationPlayer = $"../hitNodes/hitDirection/Trail/AnimationPlayer"
-@onready var bat_animation_player: AnimationPlayer = $"../hitNodes/Bate/AnimationPlayer"
+#@onready var bat_animation_player: AnimationPlayer = $"../hitNodes/Bate/AnimationPlayer"
 
 var is_moving: bool = false
 var is_idle: bool = true
@@ -18,11 +18,11 @@ func _process(_delta):
 	animation_tree.set(TREE_CONDITIONS + "is_idle", is_idle)
 
 
-	hit_animation_happening = hit_ball;
+	hit_animation_happening = hit_ball
 	animation_tree.set(TREE_CONDITIONS + "hit_ball", hit_ball)
 	if hit_ball:
 		bat_tray_animation_player.play("swing")
-		bat_animation_player.play("swing")
+		#bat_animation_player.play("swing")
 		hit_ball = not hit_ball
 
 func moving():

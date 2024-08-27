@@ -82,6 +82,5 @@ func _calc_rotation() -> void:
 	hit_nodes.look_at(goal_position)
 
 func _on_attack_reset_prediction_area() -> void:
-	
 	hit_prediction_area.monitoring = false
 	hit_prediction_area.monitoring = true
