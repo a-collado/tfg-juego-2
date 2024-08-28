@@ -18,7 +18,6 @@ func _process(_delta):
 	animation_tree.set(TREE_CONDITIONS + "is_moving", is_moving)
 	animation_tree.set(TREE_CONDITIONS + "is_idle", is_idle)
 
-
 	hit_animation_happening = hit_ball
 	animation_tree.set(TREE_CONDITIONS + "hit_ball", hit_ball)
 	if hit_ball:
@@ -41,5 +40,6 @@ func is_hitting() -> bool:
 	return hit_animation_happening
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	print(anim_name)
 	if anim_name == HIT_ANIMATION_NAME:
 		hit_animation_happening = false

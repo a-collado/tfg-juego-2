@@ -1,9 +1,10 @@
-[gd_scene load_steps=45 format=4 uid="uid://nklwmh4e4jwg"]
+[gd_scene load_steps=46 format=4 uid="uid://nklwmh4e4jwg"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_o6j03"]
 [ext_resource type="Script" path="res://scripts/player/animation_controller.gd" id="2_hjy00"]
 [ext_resource type="Script" path="res://scripts/player/hitManager.gd" id="2_rbc1h"]
 [ext_resource type="Shader" uid="uid://rmua1fkabo1e" path="res://assets/Shaders/3D/bat_trail.tres" id="2_xaocs"]
+[ext_resource type="Material" uid="uid://6u8eqb223ln6" path="res://assets/Modelos 3D/jammo/materiales/jammo.material" id="3_1be1n"]
 [ext_resource type="AnimationLibrary" uid="uid://b77ecbxu8ulno" path="res://assets/Modelos 3D/jammo/animaciones/jammo_library.tres" id="3_csky1"]
 [ext_resource type="Texture2D" uid="uid://b6q4ll0eoj1wg" path="res://assets/Sprites/hit direction/hit_direction_mask.png" id="3_dcocl"]
 [ext_resource type="Texture2D" uid="uid://027637t71n23" path="res://assets/Modelos 3D/trail/trail_textura_text.png" id="3_qypry"]
@@ -189,12 +190,13 @@ animation = &"jammo_library/bat"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_dbtag"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_muwrp"]
-graph_offset = Vector2(-413.122, 79.7995)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_3khlo")
-nodes/Animation/position = Vector2(-80, 100)
+resource_local_to_scene = true
+graph_offset = Vector2(-364.122, 34.7995)
+nodes/Bateo/node = SubResource("AnimationNodeAnimation_3khlo")
+nodes/Bateo/position = Vector2(-80, 100)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_dbtag")
 nodes/TimeScale/position = Vector2(140, 120)
-node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+node_connections = [&"TimeScale", 0, &"Bateo", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0smal"]
 animation = &"jammo_library/idle"
@@ -298,6 +300,78 @@ bones/56/rotation = Quaternion(-0.132325, -0.0769156, 0.980672, 0.121891)
 bones/57/rotation = Quaternion(-0.25319, 0.0609678, -0.0792161, 0.962238)
 bones/58/rotation = Quaternion(0.709914, 0.130674, 0.151075, 0.675369)
 bones/59/rotation = Quaternion(0.184204, 0.0348806, -0.124481, 0.974349)
+
+[node name="ankle_low" parent="root/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="chest_low" parent="root/Skeleton3D" index="1"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="ear_joint_low" parent="root/Skeleton3D" index="2"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="ears_low" parent="root/Skeleton3D" index="3"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="feet_low" parent="root/Skeleton3D" index="4"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="finger_index_low" parent="root/Skeleton3D" index="5"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="finger_middle_low" parent="root/Skeleton3D" index="6"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="finger_pinky_low" parent="root/Skeleton3D" index="7"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="finger_thumb_low" parent="root/Skeleton3D" index="8"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="forearm_low" parent="root/Skeleton3D" index="9"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="head_main_low" parent="root/Skeleton3D" index="11"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="head_mohawk_low" parent="root/Skeleton3D" index="12"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="head_screen_low" parent="root/Skeleton3D" index="13"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="heels_low" parent="root/Skeleton3D" index="14"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="palm_low" parent="root/Skeleton3D" index="15"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="pelvis_low" parent="root/Skeleton3D" index="16"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="scarf_low" parent="root/Skeleton3D" index="17"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="screw_low" parent="root/Skeleton3D" index="18"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="shin_low" parent="root/Skeleton3D" index="19"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="shoulder_low" parent="root/Skeleton3D" index="20"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="thigh_low" parent="root/Skeleton3D" index="21"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="torso_mid_low" parent="root/Skeleton3D" index="22"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="upperarm_low" parent="root/Skeleton3D" index="23"]
+surface_material_override/0 = ExtResource("3_1be1n")
+
+[node name="wrist_low" parent="root/Skeleton3D" index="24"]
+surface_material_override/0 = ExtResource("3_1be1n")
 
 [node name="AnimationPlayer" parent="root" index="1"]
 libraries = {

@@ -26,10 +26,6 @@ func _ready():
 	hit_manager.connect("hit_ball", hit_ball)
 
 func _physics_process(delta: float) -> void:
-	if hit_area.monitoring:
-		print("----------------------------------------------------------------------------------------------------------------")
-		print("JESUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUS")
-		print("----------------------------------------------------------------------------------------------------------------")
 	if movement:
 		last_movement = 0
 		_calc_movement(delta)
@@ -89,5 +85,3 @@ func _calc_rotation() -> void:
 func _on_attack_reset_prediction_area() -> void:
 	hit_prediction_area.monitoring = false
 	hit_prediction_area.monitoring = true
-	#hit_area.monitoring = false
-	#hit_area.monitoring = true
