@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdfbqv27sgbbl"]
 
 [ext_resource type="PackedScene" uid="uid://cygpkvuj5g6fl" path="res://assets/Modelos 3D/jammo/jammo.fbx" id="1_07cfi"]
-[ext_resource type="Material" uid="uid://cxjwosgi5tj7r" path="res://assets/Modelos 3D/jammo/materiales/jammo.tres" id="2_k7ha7"]
+[ext_resource type="Material" uid="uid://6u8eqb223ln6" path="res://assets/Modelos 3D/jammo/materiales/jammo.material" id="2_k7ha7"]
 [ext_resource type="AnimationLibrary" uid="uid://b77ecbxu8ulno" path="res://assets/Modelos 3D/jammo/animaciones/jammo_library.tres" id="3_3g0ys"]
 
 [node name="root" instance=ExtResource("1_07cfi")]
@@ -82,7 +82,6 @@ bones/29/position = Vector3(1.34437e-09, 0.00223389, -2.7266e-09)
 bones/29/rotation = Quaternion(0.0796752, -8.12744e-08, -0.0120427, 0.996748)
 bones/30/position = Vector3(7.29523e-11, 0.000976562, 0)
 bones/30/rotation = Quaternion(0.0445194, 3.12896e-09, 7.02133e-08, 0.999009)
-bones/30/scale = Vector3(1, 1, 1)
 bones/31/position = Vector3(-0.00515354, 0.0061933, -0.00095877)
 bones/31/rotation = Quaternion(0.494141, -0.489394, 0.479849, 0.534848)
 bones/31/scale = Vector3(1, 1, 1)
@@ -137,7 +136,6 @@ bones/49/position = Vector3(-1.34437e-09, 0.00223389, -2.7266e-09)
 bones/49/rotation = Quaternion(0.013782, -1.07035e-09, 0.00209953, 0.999903)
 bones/50/position = Vector3(-7.29523e-11, 0.000976562, 0)
 bones/50/rotation = Quaternion(0.0445194, -3.12896e-09, -7.02133e-08, 0.999009)
-bones/50/scale = Vector3(1, 1, 1)
 bones/51/position = Vector3(0.00469643, -9.78088e-05, 6.2666e-05)
 bones/51/rotation = Quaternion(0.0765821, 0.40766, 0.909916, -0.000934757)
 bones/51/scale = Vector3(1.00003, 1, 1)

@@ -63,11 +63,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.1064)
 gizmo_extents = 2.84
 
 [node name="EnemyIAFollow" type="Node3D" parent="." index="7"]
+visible = false
 script = ExtResource("5_4mm33")
 
 [node name="DefendStateFollow" type="CSGBox3D" parent="EnemyIAFollow" index="0" node_paths=PackedStringArray("ball_future_pos")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.62921)
-visible = false
 script = ExtResource("5_mrguf")
 ball_future_pos = NodePath("../../BallFuturePosition")
 change_timeout = 30

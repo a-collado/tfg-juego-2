@@ -76,7 +76,7 @@ pointing/stretch/aspect="keep"
 
 [physics]
 
-3d/physics_engine="GodotPhysics3D"
+3d/physics_engine="JoltPhysics3D"
 
 [rendering]
 
