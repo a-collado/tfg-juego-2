@@ -16,6 +16,7 @@ const SPEED = 10.0
 @onready var root = $root
 @onready var nav_agent: NavigationAgent3D = $navigationAgent
 @onready var hit_nodes: Node3D = $hitNodes
+@onready var hit_area: Area3D = $hitNodes/hitArea
 @onready var hit_prediction_area: Area3D = $hitNodes/hitPredictionArea
 
 var movement := false
@@ -25,6 +26,10 @@ func _ready():
 	hit_manager.connect("hit_ball", hit_ball)
 
 func _physics_process(delta: float) -> void:
+	if hit_area.monitoring:
+		print("----------------------------------------------------------------------------------------------------------------")
+		print("JESUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUS")
+		print("----------------------------------------------------------------------------------------------------------------")
 	if movement:
 		last_movement = 0
 		_calc_movement(delta)
@@ -84,3 +89,5 @@ func _calc_rotation() -> void:
 func _on_attack_reset_prediction_area() -> void:
 	hit_prediction_area.monitoring = false
 	hit_prediction_area.monitoring = true
+	#hit_area.monitoring = false
+	#hit_area.monitoring = true

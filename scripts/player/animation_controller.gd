@@ -7,6 +7,7 @@ const HIT_ANIMATION_NAME = "jammo_library/bat"
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var bat_tray_animation_player: AnimationPlayer = $"../hitNodes/hitDirection/Trail/AnimationPlayer"
 #@onready var bat_animation_player: AnimationPlayer = $"../hitNodes/Bate/AnimationPlayer"
+#@onready var hit_area: Area3D = $"../hitNodes/hitArea"
 
 var is_moving: bool = false
 var is_idle: bool = true
