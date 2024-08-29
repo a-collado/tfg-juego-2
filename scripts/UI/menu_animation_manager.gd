@@ -23,3 +23,10 @@ func reset_timer():
 
 func _on_timer_timeout() -> void:
 	bat()
+
+func _on_start_button_down():
+	animation_tree.set("parameters/Sumergir/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+func hide_character():
+	robot.visible = false
+	move = false

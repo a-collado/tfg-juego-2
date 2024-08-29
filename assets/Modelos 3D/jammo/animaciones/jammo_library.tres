@@ -1,9 +1,10 @@
-[gd_resource type="AnimationLibrary" load_steps=5 format=3 uid="uid://b77ecbxu8ulno"]
+[gd_resource type="AnimationLibrary" load_steps=6 format=3 uid="uid://b77ecbxu8ulno"]
 
 [ext_resource type="Animation" uid="uid://dyuhrse22fdbl" path="res://assets/Modelos 3D/jammo/animaciones/idle.res" id="1_nm2c1"]
 [ext_resource type="Animation" uid="uid://b1juif6ybtb88" path="res://assets/Modelos 3D/jammo/animaciones/run.res" id="2_2p1pq"]
 [ext_resource type="Animation" uid="uid://wq6xn0doph62" path="res://assets/Modelos 3D/jammo/animaciones/baseball_strike.res" id="4_204ub"]
 [ext_resource type="Animation" uid="uid://b1b0dqfx774oy" path="res://assets/Modelos 3D/jammo/animaciones/bat.res" id="4_k10o8"]
+[ext_resource type="Animation" uid="uid://y5xb57l3gdhm" path="res://assets/Modelos 3D/jammo/animaciones/run_to_dive.res" id="5_qlfmp"]
 
 [resource]
 resource_name = "character_animation"
@@ -11,5 +12,6 @@ _data = {
 "baseball_strike": ExtResource("4_204ub"),
 "bat": ExtResource("4_k10o8"),
 "idle": ExtResource("1_nm2c1"),
-"run": ExtResource("2_2p1pq")
+"run": ExtResource("2_2p1pq"),
+"run_to_dive": ExtResource("5_qlfmp")
 }
