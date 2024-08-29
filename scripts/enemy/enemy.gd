@@ -54,7 +54,7 @@ func _calc_movement(_delta: float) -> void:
 		velocity.z = direction.z * speed
 
 		var look_to: Vector3 = global_transform.origin - direction
-		if (root.global_position != look_to):
+		if (not root.global_position.is_equal_approx(look_to)):
 			root.look_at(look_to, Vector3.UP)
 
 		animation_manager.moving()

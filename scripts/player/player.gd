@@ -60,6 +60,7 @@ func _physics_process(delta: float) -> void:
 	animation_manager.idle()
 
 	_calc_hit_roration()
+	print(animation_manager.is_hitting())
 
 	if movement and not animation_manager.is_hitting():
 	#if movement:

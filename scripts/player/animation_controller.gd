@@ -6,7 +6,6 @@ const HIT_ANIMATION_NAME = "jammo_library/bat"
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var bat_tray_animation_player: AnimationPlayer = $"../hitNodes/hitDirection/Trail/AnimationPlayer"
-#@onready var bat_animation_player: AnimationPlayer = $"../hitNodes/Bate/AnimationPlayer"
 #@onready var hit_area: Area3D = $"../hitNodes/hitArea"
 
 var is_moving: bool = false
@@ -18,11 +17,9 @@ func _process(_delta):
 	animation_tree.set(TREE_CONDITIONS + "is_moving", is_moving)
 	animation_tree.set(TREE_CONDITIONS + "is_idle", is_idle)
 
-	hit_animation_happening = hit_ball
 	animation_tree.set(TREE_CONDITIONS + "hit_ball", hit_ball)
 	if hit_ball:
 		bat_tray_animation_player.play("swing")
-		#bat_animation_player.play("swing")
 		hit_ball = not hit_ball
 
 func moving():
@@ -40,6 +37,11 @@ func is_hitting() -> bool:
 	return hit_animation_happening
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	print(anim_name)
 	if anim_name == HIT_ANIMATION_NAME:
 		hit_animation_happening = false
+
+func _on_animation_tree_animation_started(anim_name:StringName) -> void:
+	if anim_name == HIT_ANIMATION_NAME:
+		hit_animation_happening = true
+
+

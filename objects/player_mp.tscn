@@ -1,8 +1,99 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1opkas2hjrjk"]
+[gd_scene load_steps=13 format=3 uid="uid://c1opkas2hjrjk"]
 
 [ext_resource type="PackedScene" uid="uid://nklwmh4e4jwg" path="res://objects/player.tscn" id="1_r5irm"]
 [ext_resource type="Shader" uid="uid://rmua1fkabo1e" path="res://assets/Shaders/3D/bat_trail.tres" id="2_alae8"]
+[ext_resource type="Texture2D" uid="uid://bei3ssi477w76" path="res://assets/Modelos 3D/jammo/textures/jammo_albedo_alpha.png" id="2_uphta"]
 [ext_resource type="Texture2D" uid="uid://027637t71n23" path="res://assets/Modelos 3D/trail/trail_textura_text.png" id="3_3mryi"]
+[ext_resource type="Texture2D" uid="uid://bjji2tdq3g46n" path="res://assets/Modelos 3D/jammo/textures/jammo_ambientocclusion.png" id="3_ulhec"]
+[ext_resource type="Texture2D" uid="uid://koq1m0etqnc2" path="res://assets/Modelos 3D/jammo/textures/jammo_metal_smoothness.png" id="4_e4dj2"]
+[ext_resource type="Texture2D" uid="uid://b3fydf6yxrwcc" path="res://assets/Modelos 3D/jammo/textures/jammo_normal.png" id="5_lvwfs"]
+
+[sub_resource type="Shader" id="Shader_41ici"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+
+uniform bool enemy;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform sampler2D texture_normal : hint_roughness_normal, filter_linear_mipmap, repeat_enable;
+uniform float normal_scale : hint_range(-16.0, 16.0);
+
+uniform sampler2D texture_ambient_occlusion : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 ao_texture_channel;
+uniform float ao_light_affect : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	// Intercambiamos el canal x y el z para invertir los colores
+	if (enemy){
+		ALBEDO = vec3(ALBEDO.z, ALBEDO.y, ALBEDO.x);
+	}
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+
+	// Normal Map: Enabled
+	NORMAL_MAP = texture(texture_normal, base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+
+	// Ambient Occlusion: Enabled
+	AO = dot(texture(texture_ambient_occlusion, base_uv), ao_texture_channel);
+	AO_LIGHT_AFFECT = ao_light_affect;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtcyx"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_41ici")
+shader_parameter/enemy = false
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/normal_scale = 2.0
+shader_parameter/ao_texture_channel = null
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("2_uphta")
+shader_parameter/texture_metallic = ExtResource("4_e4dj2")
+shader_parameter/texture_normal = ExtResource("5_lvwfs")
+shader_parameter/texture_ambient_occlusion = ExtResource("3_ulhec")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7rsgk"]
 resource_local_to_scene = true
@@ -39,10 +130,86 @@ properties/6/replication_mode = 1
 
 [node name="Player" instance=ExtResource("1_r5irm")]
 
+[node name="ankle_low" parent="root/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="chest_low" parent="root/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="ear_joint_low" parent="root/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="ears_low" parent="root/Skeleton3D" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="feet_low" parent="root/Skeleton3D" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="finger_index_low" parent="root/Skeleton3D" index="5"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="finger_middle_low" parent="root/Skeleton3D" index="6"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="finger_pinky_low" parent="root/Skeleton3D" index="7"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="finger_thumb_low" parent="root/Skeleton3D" index="8"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="forearm_low" parent="root/Skeleton3D" index="9"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="head_main_low" parent="root/Skeleton3D" index="11"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="head_mohawk_low" parent="root/Skeleton3D" index="12"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="head_screen_low" parent="root/Skeleton3D" index="13"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="heels_low" parent="root/Skeleton3D" index="14"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="palm_low" parent="root/Skeleton3D" index="15"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="pelvis_low" parent="root/Skeleton3D" index="16"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="scarf_low" parent="root/Skeleton3D" index="17"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="screw_low" parent="root/Skeleton3D" index="18"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="shin_low" parent="root/Skeleton3D" index="19"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="shoulder_low" parent="root/Skeleton3D" index="20"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="thigh_low" parent="root/Skeleton3D" index="21"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="torso_mid_low" parent="root/Skeleton3D" index="22"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="upperarm_low" parent="root/Skeleton3D" index="23"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
+[node name="wrist_low" parent="root/Skeleton3D" index="24"]
+surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
+
 [node name="Trail" parent="hitNodes/hitDirection" index="0"]
 material_override = SubResource("ShaderMaterial_7rsgk")
 
+[node name="Bate" parent="hitNodes" index="2"]
+transform = Transform3D(0.968582, -0.0643333, 0.24023, -0.0662741, -0.997801, -2.74736e-08, 0.239702, -0.015921, -0.970716, -0.215741, 0.825369, -0.399936)
+
 [node name="AnimationTree" parent="animationManager" index="0"]
+parameters/bat/Blend2/blend_amount = 0
 parameters/bat/TimeScale/scale = 1.0
 
 [node name="Sprite3D" parent="hitManager" index="1"]
