@@ -8,16 +8,29 @@ extends Node
 
 signal end_loading
 
-@onready var UI_loading = $UI/Loading
 @export var player_ps: PackedScene = preload("res://objects/player_mp.tscn")
+@export var goal_A_base_color: Color
+@export var goal_A_pulse_color: Color
+@export var goal_B_base_color: Color
+@export var goal_B_pulse_color: Color
+
+@onready var UI_loading = $UI/Loading
 @onready var UI_score: Container = $UI/Scores
 @onready var joystick: VirtualJoystick = %"Virtual Joystick"
 
 @onready var score_label_A = $"UI/Scores/Score A"
 @onready var score_label_B = $"UI/Scores/Score B"
 
+@onready var goal_A_sphere: CSGSphere3D = $"Environment/Goal A Sphere"
+@onready var goal_B_sphere: CSGSphere3D = $"Environment/Goal B Sphere"
+
+var goal_A_sphere_material: ShaderMaterial
+var goal_B_sphere_material: ShaderMaterial
+
 func _ready():
 	UI_loading.visible = true
+	goal_A_sphere_material = goal_A_sphere.material
+	goal_B_sphere_material = goal_B_sphere.material
 
 	Lobby.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
 
@@ -43,6 +56,12 @@ func _spawn_players() -> void:
 			%"Camera 1".current = true
 			player.camera = %"Camera 2"
 			UI_score.move_child(score_label_A, 0)
+			
+			goal_A_sphere_material.set_shader_parameter("base_color", goal_A_base_color)
+			goal_A_sphere_material.set_shader_parameter("pulse_color", goal_A_base_color)
+
+			goal_B_sphere_material.set_shader_parameter("base_color", goal_B_base_color)
+			goal_B_sphere_material.set_shader_parameter("pulse_color", goal_B_base_color)
 		else:
 			spawn = $"Team A/Spawn 1"
 			team = $"Team A"
@@ -50,6 +69,12 @@ func _spawn_players() -> void:
 			%"Camera 2".current = true
 			player.camera = %"Camera 1"
 			UI_score.move_child(score_label_B, 0)
+
+			goal_A_sphere_material.set_shader_parameter("base_color", goal_B_base_color)
+			goal_A_sphere_material.set_shader_parameter("pulse_color", goal_B_base_color)
+
+			goal_B_sphere_material.set_shader_parameter("base_color", goal_A_base_color)
+			goal_B_sphere_material.set_shader_parameter("pulse_color", goal_A_base_color)
 
 		player.position = spawn.position
 		player.rotation = spawn.rotation

@@ -16,6 +16,10 @@ properties/2/replication_mode = 2
 
 [node name="Game" instance=ExtResource("1_xx2qk")]
 script = ExtResource("2_x5d1j")
+goal_A_base_color = Color(0.878431, 0.278431, 0.235294, 1)
+goal_A_pulse_color = Color(0.854902, 0.631373, 0.576471, 1)
+goal_B_base_color = Color(0, 0.501961, 1, 1)
+goal_B_pulse_color = Color(0.501961, 0.701961, 1, 1)
 
 [node name="Cameras" type="Node" parent="." index="1"]
 
