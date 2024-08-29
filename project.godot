@@ -27,7 +27,7 @@ Sensors="*res://scripts/sensors.gd"
 
 [display]
 
-window/size/viewport_width=725
+window/size/viewport_width=576
 window/size/viewport_height=1280
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"

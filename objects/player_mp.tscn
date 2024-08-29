@@ -130,6 +130,55 @@ properties/6/replication_mode = 1
 
 [node name="Player" instance=ExtResource("1_r5irm")]
 
+[node name="Skeleton3D" parent="root" index="0"]
+bones/2/position = Vector3(0.000191063, 0.0162169, -0.000324203)
+bones/2/rotation = Quaternion(-0.042676, -0.367661, -0.0127588, 0.928893)
+bones/3/rotation = Quaternion(0.0465279, 0.0388194, -0.0103435, 0.998109)
+bones/4/rotation = Quaternion(0.0924762, 0.0799328, -0.0167082, 0.992361)
+bones/5/rotation = Quaternion(0.080582, 0.0803383, -0.0159557, 0.993377)
+bones/6/rotation = Quaternion(0.0119989, -0.0107738, 0.00136514, 0.999869)
+bones/7/rotation = Quaternion(-0.0129574, 0.177012, -0.0173141, 0.983971)
+bones/11/rotation = Quaternion(0.465886, 0.521678, -0.504933, 0.505812)
+bones/12/rotation = Quaternion(0.595967, -0.0959794, 0.00459404, 0.797239)
+bones/13/rotation = Quaternion(0.027992, 0.0566234, 0.419757, 0.905436)
+bones/14/rotation = Quaternion(-0.137431, 0.181603, -0.0108586, 0.973661)
+bones/15/rotation = Quaternion(0.260614, 0.212384, 0.259611, 0.905304)
+bones/16/rotation = Quaternion(-0.00297115, 0.134215, -0.0319805, 0.990432)
+bones/17/rotation = Quaternion(4.73019e-08, 0.0435342, -1.1627e-08, 0.999052)
+bones/19/rotation = Quaternion(0.0390726, -0.0265759, 0.0916424, 0.99467)
+bones/20/rotation = Quaternion(0.155025, 0.00412753, -0.0109271, 0.987842)
+bones/21/rotation = Quaternion(-2.91038e-11, 1.02459e-17, 3.52048e-07, 1)
+bones/23/rotation = Quaternion(0.132354, -0.0242753, -0.0414454, 0.990038)
+bones/24/rotation = Quaternion(0.203992, 0.0119416, 0.00740919, 0.978872)
+bones/25/rotation = Quaternion(-1.35635e-06, -0.00292555, -0.000449612, 0.999996)
+bones/27/rotation = Quaternion(0.29772, -0.0295619, -0.122297, 0.946326)
+bones/28/rotation = Quaternion(0.350041, 0.0119071, 0.0392328, 0.935837)
+bones/29/rotation = Quaternion(-4.07365e-10, -7.63062e-17, -1.87317e-07, 1)
+bones/31/rotation = Quaternion(0.513189, -0.474206, 0.477579, 0.532619)
+bones/32/rotation = Quaternion(0.541104, 0.0600749, 0.220793, 0.809227)
+bones/33/rotation = Quaternion(0.0910375, 0.0128703, -0.360021, 0.928403)
+bones/34/rotation = Quaternion(0.120078, -0.0986898, -0.0525035, 0.986451)
+bones/35/rotation = Quaternion(0.173282, -0.072995, -0.303854, 0.93398)
+bones/36/rotation = Quaternion(0.0697323, -0.127394, 0.1981, 0.969363)
+bones/37/rotation = Quaternion(-8.84919e-08, -0.0435343, 3.14176e-08, 0.999052)
+bones/39/rotation = Quaternion(0.0393608, 0.0318273, -0.0214389, 0.998488)
+bones/40/rotation = Quaternion(0.15685, -0.0047498, 0.0143463, 0.987507)
+bones/41/rotation = Quaternion(-2.91038e-11, -1.02459e-17, -3.52048e-07, 1)
+bones/43/rotation = Quaternion(0.10572, 0.0359979, -0.00258484, 0.993741)
+bones/44/rotation = Quaternion(0.31311, -0.0111611, -0.00826816, 0.949615)
+bones/45/rotation = Quaternion(-1.35271e-06, 0.00292566, 0.000449672, 0.999996)
+bones/47/rotation = Quaternion(0.202366, 0.000390842, 0.0644711, 0.977185)
+bones/48/rotation = Quaternion(0.374146, -0.0133621, -0.0589501, 0.925398)
+bones/49/rotation = Quaternion(-4.07365e-10, 7.63062e-17, 1.87317e-07, 1)
+bones/51/rotation = Quaternion(0.0711361, 0.23374, 0.962711, -0.116162)
+bones/52/rotation = Quaternion(-0.306471, 0.127947, -0.0180699, 0.943069)
+bones/53/rotation = Quaternion(0.568319, -0.0542827, -0.0575568, 0.818996)
+bones/54/rotation = Quaternion(0.192027, -0.0168147, 0.0980065, 0.976339)
+bones/56/rotation = Quaternion(-0.133265, -0.0944624, 0.978499, 0.125927)
+bones/57/rotation = Quaternion(-0.227366, 0.0607595, -0.0752125, 0.968997)
+bones/58/rotation = Quaternion(0.700329, 0.130051, 0.150566, 0.685534)
+bones/59/rotation = Quaternion(0.184226, 0.0346814, -0.12437, 0.974367)
+
 [node name="ankle_low" parent="root/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
 
@@ -204,9 +253,6 @@ surface_material_override/0 = SubResource("ShaderMaterial_rtcyx")
 
 [node name="Trail" parent="hitNodes/hitDirection" index="0"]
 material_override = SubResource("ShaderMaterial_7rsgk")
-
-[node name="Bate" parent="hitNodes" index="2"]
-transform = Transform3D(0.968582, -0.0643333, 0.24023, -0.0662741, -0.997801, -2.74736e-08, 0.239702, -0.015921, -0.970716, -0.215741, 0.825369, -0.399936)
 
 [node name="AnimationTree" parent="animationManager" index="0"]
 parameters/bat/Blend2/blend_amount = 0

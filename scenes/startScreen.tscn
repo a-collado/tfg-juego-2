@@ -1,12 +1,66 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjwsskaxq376t"]
+[gd_scene load_steps=16 format=3 uid="uid://bjwsskaxq376t"]
 
 [ext_resource type="Script" path="res://scripts/StartMenu.gd" id="1_rlfnb"]
+[ext_resource type="Theme" uid="uid://b6uhtsi5wy8or" path="res://assets/Temas/default.theme" id="2_baduv"]
+[ext_resource type="PackedScene" uid="uid://cdfbqv27sgbbl" path="res://assets/Modelos 3D/jammo/root.tscn" id="2_pwupd"]
+[ext_resource type="Script" path="res://scripts/UI/menu_animation_manager.gd" id="4_2yvtr"]
+[ext_resource type="AnimationLibrary" uid="uid://b77ecbxu8ulno" path="res://assets/Modelos 3D/jammo/animaciones/jammo_library.tres" id="4_88vpu"]
 
 [sub_resource type="Gradient" id="Gradient_csi0f"]
 offsets = PackedFloat32Array(0.996528, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_srhlv"]
 gradient = SubResource("Gradient_csi0f")
+
+[sub_resource type="Environment" id="Environment_5bnlt"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0444c"]
+shading_mode = 0
+albedo_color = Color(0.129412, 0.619608, 0.737255, 1)
+
+[sub_resource type="Animation" id="Animation_qyehy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../animation_manager:move")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jv43l"]
+_data = {
+"RESET": SubResource("Animation_qyehy")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u4ggt"]
+animation = &"jammo_library/baseball_strike"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_7gvcx"]
+fadein_time = 1.0
+fadeout_time = 1.0
+break_loop_at_end = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aros8"]
+animation = &"jammo_library/run"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3cuse"]
+graph_offset = Vector2(-539.183, 38.1462)
+nodes/Bat/node = SubResource("AnimationNodeAnimation_u4ggt")
+nodes/Bat/position = Vector2(-380, 280)
+nodes/Bateo/node = SubResource("AnimationNodeOneShot_7gvcx")
+nodes/Bateo/position = Vector2(-20, 220)
+nodes/Correr/node = SubResource("AnimationNodeAnimation_aros8")
+nodes/Correr/position = Vector2(-360, 140)
+nodes/output/position = Vector2(220, 240)
+node_connections = [&"Bateo", 0, &"Correr", &"Bateo", 1, &"Bat", &"output", 0, &"Bateo"]
 
 [node name="StartScreen" type="Control"]
 layout_mode = 3
@@ -17,8 +71,82 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rlfnb")
 
+[node name="Start" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fondo" type="ColorRect" parent="Start"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 81.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.619608, 0.737255, 1)
+
+[node name="Start" type="RichTextLabel" parent="Start/Fondo"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 35.0
+offset_bottom = 65.0
+grow_horizontal = 2
+theme = ExtResource("2_baduv")
+bbcode_enabled = true
+text = "[center][shake rate=20.0 level=6 connected=1]TAP TO START[/shake][/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+text_direction = 1
+
+[node name="Settings" type="HBoxContainer" parent="Start/Fondo"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -121.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Button" type="Button" parent="Start/Fondo/Settings"]
+layout_mode = 2
+text = "Sound"
+
+[node name="Button2" type="Button" parent="Start/Fondo/Settings"]
+layout_mode = 2
+text = "Sensitividad"
+
+[node name="Button4" type="Button" parent="Start/Fondo/Settings"]
+layout_mode = 2
+text = "Como jugar"
+
+[node name="Button3" type="Button" parent="Start/Fondo/Settings"]
+layout_mode = 2
+text = "Creditos"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Start/Fondo"]
+layout_mode = 0
+offset_left = 199.0
+offset_top = -599.0
+offset_right = 389.0
+offset_bottom = -564.0
+theme = ExtResource("2_baduv")
+theme_override_colors/default_color = Color(0.0234375, 0.0231628, 0.0231628, 1)
+text = "ROBO BALL"
+
 [node name="Lobby Menu" type="VBoxContainer" parent="."]
 auto_translate_mode = 1
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,6 +174,7 @@ text = "Multiplayer"
 
 [node name="Loading" type="TextureRect" parent="."]
 auto_translate_mode = 1
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,14 +204,169 @@ theme_override_font_sizes/font_size = 64
 text = "Loading..."
 metadata/_edit_use_anchors_ = true
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="3D"]
+keep_aspect = 0
+environment = SubResource("Environment_5bnlt")
+projection = 1
+current = true
+size = 2.829
+
+[node name="root" parent="3D" instance=ExtResource("2_pwupd")]
+transform = Transform3D(0.294466, 0, 0.16796, 0, 0.339, 0, -0.16796, 0, 0.294466, -1.615, -0.412, -1.944)
+
+[node name="Skeleton3D" parent="3D/root" index="0"]
+transform = Transform3D(0.649355, 0, 0.760485, 0, 1, 0, -0.760485, 0, 0.649355, 0, 0, 0)
+bones/2/position = Vector3(8.82907e-06, 0.0170749, -0.00155098)
+bones/2/rotation = Quaternion(0.106338, 0.0676414, 0.0131029, 0.99194)
+bones/3/rotation = Quaternion(-0.0233182, -0.150299, -0.0239473, 0.988075)
+bones/4/rotation = Quaternion(0.0229473, -0.020157, 0.0270063, 0.999169)
+bones/5/rotation = Quaternion(0.0455406, -0.0212098, 0.0238862, 0.998452)
+bones/6/rotation = Quaternion(0.0177741, 0.0147714, -0.0113451, 0.999669)
+bones/7/rotation = Quaternion(-0.0806967, 0.0852619, -0.0299208, 0.992634)
+bones/11/rotation = Quaternion(0.476187, 0.506874, -0.479418, 0.535242)
+bones/12/rotation = Quaternion(0.450361, -0.164471, 0.21923, 0.849743)
+bones/13/rotation = Quaternion(0.0689118, -0.00582448, 0.849278, 0.523397)
+bones/14/rotation = Quaternion(-0.102706, -0.103052, -0.211928, 0.966395)
+bones/15/rotation = Quaternion(0.0232005, 0.123273, 0.211228, 0.969355)
+bones/16/rotation = Quaternion(0.0480486, 0.119718, -0.131265, 0.982918)
+bones/17/rotation = Quaternion(-0.00279957, 0.0379042, -0.0393962, 0.998501)
+bones/19/rotation = Quaternion(0.0126721, -0.0225118, 0.0283943, 0.999263)
+bones/20/rotation = Quaternion(0.0715489, 0.00521482, -0.0112075, 0.997361)
+bones/21/rotation = Quaternion(0.00838374, -2.54836e-09, -0.00126841, 0.999964)
+bones/23/rotation = Quaternion(0.0127605, -0.0305287, 0.0283123, 0.999051)
+bones/24/rotation = Quaternion(0.0716068, 0.0136555, -0.0113212, 0.997275)
+bones/25/rotation = Quaternion(0.0083799, -0.00292941, -0.00173455, 0.999959)
+bones/27/rotation = Quaternion(0.00761506, -0.0170652, -0.00685474, 0.999802)
+bones/28/rotation = Quaternion(0.077059, 0.00272454, 0.0243042, 0.996727)
+bones/29/rotation = Quaternion(0.0623707, 2.57442e-08, -0.00942722, 0.998009)
+bones/31/rotation = Quaternion(0.438194, -0.533527, 0.461548, 0.557054)
+bones/32/rotation = Quaternion(0.468119, -0.400648, 0.39705, 0.680219)
+bones/33/rotation = Quaternion(0.0603993, 0.00740014, -0.744368, 0.664991)
+bones/34/rotation = Quaternion(-0.154734, 0.0648969, 0.166051, 0.971737)
+bones/35/rotation = Quaternion(0.16253, -0.117262, -0.191155, 0.960882)
+bones/36/rotation = Quaternion(0.0403294, -0.102438, 0.226635, 0.967738)
+bones/37/rotation = Quaternion(-0.00898537, -0.029404, 0.0716462, 0.996956)
+bones/39/rotation = Quaternion(0.0652677, 0.0208831, -0.0209599, 0.997429)
+bones/40/rotation = Quaternion(0.183851, -0.00513727, 0.0290191, 0.982512)
+bones/41/rotation = Quaternion(0.0346621, 1.2302e-07, 0.0052855, 0.999385)
+bones/43/rotation = Quaternion(0.0654336, 0.0288811, -0.0204359, 0.99723)
+bones/44/rotation = Quaternion(0.183633, -0.0134014, 0.0299634, 0.982447)
+bones/45/rotation = Quaternion(0.0346502, 0.00293932, 0.00580322, 0.999378)
+bones/47/rotation = Quaternion(0.0870645, 0.0150524, -0.018298, 0.995921)
+bones/48/rotation = Quaternion(0.211705, -0.00013984, 0.0322831, 0.9768)
+bones/49/rotation = Quaternion(0.112366, -4.31736e-09, 0.0171183, 0.993519)
+bones/51/rotation = Quaternion(0.0492261, -0.30065, 0.952434, -0.00741007)
+bones/52/rotation = Quaternion(-0.277921, 0.0502679, 0.0274071, 0.958896)
+bones/53/rotation = Quaternion(0.38718, 0.0236074, 0.0247837, 0.921368)
+bones/54/rotation = Quaternion(0.173101, -0.0294749, 0.12212, 0.976859)
+bones/56/rotation = Quaternion(0.067531, 0.552999, 0.827999, 0.0636336)
+bones/57/rotation = Quaternion(-0.486382, 0.0856348, -0.017687, 0.86936)
+bones/58/rotation = Quaternion(0.440541, 0.0707625, 0.000265355, 0.894939)
+bones/59/rotation = Quaternion(0.175267, 0.0298037, -0.122164, 0.976457)
+
+[node name="ankle_low" parent="3D/root/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="chest_low" parent="3D/root/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="ear_joint_low" parent="3D/root/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="ears_low" parent="3D/root/Skeleton3D" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="feet_low" parent="3D/root/Skeleton3D" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="finger_index_low" parent="3D/root/Skeleton3D" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="finger_middle_low" parent="3D/root/Skeleton3D" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="finger_pinky_low" parent="3D/root/Skeleton3D" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="finger_thumb_low" parent="3D/root/Skeleton3D" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="forearm_low" parent="3D/root/Skeleton3D" index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="head_main_low" parent="3D/root/Skeleton3D" index="11"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="head_mohawk_low" parent="3D/root/Skeleton3D" index="12"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="head_screen_low" parent="3D/root/Skeleton3D" index="13"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="heels_low" parent="3D/root/Skeleton3D" index="14"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="palm_low" parent="3D/root/Skeleton3D" index="15"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="pelvis_low" parent="3D/root/Skeleton3D" index="16"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="scarf_low" parent="3D/root/Skeleton3D" index="17"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="screw_low" parent="3D/root/Skeleton3D" index="18"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="shin_low" parent="3D/root/Skeleton3D" index="19"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="shoulder_low" parent="3D/root/Skeleton3D" index="20"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="thigh_low" parent="3D/root/Skeleton3D" index="21"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="torso_mid_low" parent="3D/root/Skeleton3D" index="22"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="upperarm_low" parent="3D/root/Skeleton3D" index="23"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="wrist_low" parent="3D/root/Skeleton3D" index="24"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
+
+[node name="AnimationPlayer" parent="3D/root" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_jv43l"),
+"jammo_library": ExtResource("4_88vpu")
+}
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D"]
+
+[node name="animation_manager" type="Node" parent="3D"]
+script = ExtResource("4_2yvtr")
+
+[node name="AnimationTree" type="AnimationTree" parent="3D/animation_manager"]
+root_node = NodePath("../../root")
+tree_root = SubResource("AnimationNodeBlendTree_3cuse")
+anim_player = NodePath("../../root/AnimationPlayer")
+parameters/Bateo/active = false
+parameters/Bateo/internal_active = false
+parameters/Bateo/request = 0
+
+[node name="Timer" type="Timer" parent="3D/animation_manager"]
+one_shot = true
+autostart = true
+
+[node name="animation_timer" type="Timer" parent="3D/animation_manager"]
+wait_time = 7.0
+one_shot = true
 
 [connection signal="pressed" from="Lobby Menu/Single" to="." method="_on_single_pressed"]
 [connection signal="pressed" from="Lobby Menu/Multi" to="." method="_on_multiplayer_pressed"]
+[connection signal="timeout" from="3D/animation_manager/Timer" to="3D/animation_manager" method="_on_timer_timeout"]
+
+[editable path="3D/root"]
