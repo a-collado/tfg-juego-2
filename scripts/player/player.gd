@@ -18,6 +18,8 @@ const SPEED = 10.0
 @onready var camera_shaker: CameraShaker = $cameraShakeManager
 @onready var vibrator: vibrationManager = $vibrationManager
 
+var material: ShaderMaterial
+
 var mult_sync: MultiplayerSynchronizer
 var virtual_joystick: VirtualJoystick
 var camera: Camera3D
@@ -36,12 +38,15 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	hit_manager.connect("hit_ball", hit_ball)
+	material = $"root/Skeleton3D/ankle_low".get_active_material(0)
 
 	if has_node("MultiplayerSynchronizer"):
 		mult_sync = $MultiplayerSynchronizer
 		is_multiplayer = true
 		if _is_this_not_multiplayer_authority():
 			$hitManager/Sprite3D.hide()
+			set_enemy(true)
+			
 	else:
 		virtual_joystick = %"Virtual Joystick"
 		camera = %Camera
@@ -114,3 +119,6 @@ func _is_this_not_multiplayer_authority() -> bool :
 func _calc_hit_roration():
 	var gyro_rotation = Sensors.get_accelerometer()
 	hit_nodes.rotation.y = -1 * gyro_rotation.x * gyro_sensibility;
+
+func set_enemy(enemy: bool):
+	material.set_shader_parameter("enemy", enemy)
