@@ -4,6 +4,8 @@ extends Control
 @export_file("*.tscn") var multi_scene_path: String = "res://scenes/lobby.tscn"
 @onready var UI_loading = $Loading
 
+var loading_status: int
+
 func _ready():
 	UI_loading.visible = false
 
@@ -12,4 +14,10 @@ func _on_multiplayer_pressed() -> void:
 
 func _on_single_pressed() -> void:
 	UI_loading.visible = true
-	get_tree().change_scene_to_file(game_scene_path)
+	ResourceLoader.load_threaded_request(game_scene_path)
+
+func _process(_delta: float) -> void:
+	loading_status = ResourceLoader.load_threaded_get_status(game_scene_path)
+	
+	if loading_status == ResourceLoader.THREAD_LOAD_LOADED:
+		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(game_scene_path))

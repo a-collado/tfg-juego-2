@@ -1,10 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjwsskaxq376t"]
+[gd_scene load_steps=20 format=3 uid="uid://bjwsskaxq376t"]
 
 [ext_resource type="Script" path="res://scripts/StartMenu.gd" id="1_rlfnb"]
 [ext_resource type="Theme" uid="uid://b6uhtsi5wy8or" path="res://assets/Temas/default.theme" id="2_baduv"]
 [ext_resource type="PackedScene" uid="uid://cdfbqv27sgbbl" path="res://assets/Modelos 3D/jammo/root.tscn" id="2_pwupd"]
 [ext_resource type="Script" path="res://scripts/UI/menu_animation_manager.gd" id="4_2yvtr"]
 [ext_resource type="AnimationLibrary" uid="uid://b77ecbxu8ulno" path="res://assets/Modelos 3D/jammo/animaciones/jammo_library.tres" id="4_88vpu"]
+
+[sub_resource type="Gradient" id="Gradient_khvpp"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.129412, 0.619608, 0.737255, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ickrf"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_khvpp")
 
 [sub_resource type="Gradient" id="Gradient_csi0f"]
 offsets = PackedFloat32Array(0.996528, 1)
@@ -25,7 +33,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../animation_manager:move")
+tracks/0/path = NodePath("../../animation_manager:move")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -89,15 +97,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Start" type="Button" parent="Start"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 2
-flat = true
+[node name="Title" type="RichTextLabel" parent="Start"]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 122.0
+offset_right = 389.0
+offset_bottom = 157.0
+theme = ExtResource("2_baduv")
+theme_override_colors/default_color = Color(0.0234375, 0.0231628, 0.0231628, 1)
+text = "ROBO BALL"
 
 [node name="Fondo" type="ColorRect" parent="Start"]
 layout_mode = 1
@@ -126,7 +134,62 @@ scroll_active = false
 autowrap_mode = 0
 text_direction = 1
 
-[node name="Settings" type="HBoxContainer" parent="Start/Fondo"]
+[node name="Start" type="Button" parent="Start"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Lobby Menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -600.0
+offset_right = -600.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Single Menu" type="Sprite2D" parent="Lobby Menu"]
+position = Vector2(288.14, 386.471)
+rotation = -0.436332
+scale = Vector2(2.48174, 341.963)
+skew = 0.436332
+texture = SubResource("GradientTexture1D_ickrf")
+
+[node name="Multi Menu" type="Sprite2D" parent="Lobby Menu"]
+position = Vector2(288.14, 866.471)
+rotation = -0.436332
+scale = Vector2(2.48174, 341.963)
+skew = 0.436332
+texture = SubResource("GradientTexture1D_ickrf")
+
+[node name="Single" type="Button" parent="Lobby Menu"]
+auto_translate_mode = 1
+layout_mode = 2
+offset_left = 38.0
+offset_top = 332.0
+offset_right = 541.0
+offset_bottom = 428.0
+theme_override_font_sizes/font_size = 64
+text = "Singleplayer"
+
+[node name="Multi" type="Button" parent="Lobby Menu"]
+auto_translate_mode = 1
+layout_mode = 2
+offset_left = 35.0
+offset_top = 838.0
+offset_right = 538.0
+offset_bottom = 934.0
+theme_override_font_sizes/font_size = 64
+text = "Multiplayer"
+
+[node name="Settings" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -138,59 +201,21 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
-[node name="Button" type="Button" parent="Start/Fondo/Settings"]
+[node name="Button" type="Button" parent="Settings"]
 layout_mode = 2
 text = "Sound"
 
-[node name="Button2" type="Button" parent="Start/Fondo/Settings"]
+[node name="Button2" type="Button" parent="Settings"]
 layout_mode = 2
 text = "Sensitividad"
 
-[node name="Button4" type="Button" parent="Start/Fondo/Settings"]
+[node name="Button4" type="Button" parent="Settings"]
 layout_mode = 2
 text = "Como jugar"
 
-[node name="Button3" type="Button" parent="Start/Fondo/Settings"]
+[node name="Button3" type="Button" parent="Settings"]
 layout_mode = 2
 text = "Creditos"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Start/Fondo"]
-layout_mode = 0
-offset_left = 199.0
-offset_top = -599.0
-offset_right = 389.0
-offset_bottom = -564.0
-theme = ExtResource("2_baduv")
-theme_override_colors/default_color = Color(0.0234375, 0.0231628, 0.0231628, 1)
-text = "ROBO BALL"
-
-[node name="Lobby Menu" type="VBoxContainer" parent="."]
-auto_translate_mode = 1
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -251.5
-offset_top = -265.0
-offset_right = 251.5
-offset_bottom = 265.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Single" type="Button" parent="Lobby Menu"]
-auto_translate_mode = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "Singleplayer"
-
-[node name="Multi" type="Button" parent="Lobby Menu"]
-auto_translate_mode = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "Multiplayer"
 
 [node name="Loading" type="TextureRect" parent="."]
 auto_translate_mode = 1
@@ -204,6 +229,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource("GradientTexture1D_srhlv")
+expand_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Loading"]
@@ -238,53 +264,53 @@ transform = Transform3D(0.294466, 0, 0.16796, 0, 0.339, 0, -0.16796, 0, 0.294466
 
 [node name="Skeleton3D" parent="3D/root" index="0"]
 transform = Transform3D(0.649355, 0, 0.760485, 0, 1, 0, -0.760485, 0, 0.649355, 0, 0, 0)
-bones/2/position = Vector3(-0.000135366, 0.0169476, -0.00175078)
-bones/2/rotation = Quaternion(0.0702923, 0.0882283, 0.0361414, 0.99296)
-bones/3/rotation = Quaternion(0.128432, -0.0429263, -0.0632567, 0.988768)
-bones/4/rotation = Quaternion(-0.0284248, -0.00408146, 0.0334988, 0.999026)
-bones/5/rotation = Quaternion(-0.0403901, -0.0045511, 0.033892, 0.998599)
-bones/6/rotation = Quaternion(0.0492391, -0.0108124, -0.0402244, 0.997918)
-bones/7/rotation = Quaternion(-0.141325, -0.0349632, 0.0203385, 0.989137)
-bones/11/rotation = Quaternion(0.549533, 0.451141, -0.467249, 0.525513)
-bones/12/rotation = Quaternion(0.559447, 0.0860298, -0.0482365, 0.822977)
-bones/13/rotation = Quaternion(0.0626075, -0.00704421, 0.771581, 0.633003)
-bones/14/rotation = Quaternion(-0.0788114, 0.00244221, -0.115227, 0.990205)
-bones/15/rotation = Quaternion(0.0942568, 0.149078, 0.268151, 0.947094)
-bones/16/rotation = Quaternion(0.0388209, 0.131757, -0.0983604, 0.985626)
-bones/17/rotation = Quaternion(-0.0109711, 0.0434959, -0.024165, 0.998701)
-bones/19/rotation = Quaternion(0.016803, -0.022386, 0.02782, 0.999221)
-bones/20/rotation = Quaternion(0.0747456, 0.00521358, -0.0117082, 0.99712)
-bones/21/rotation = Quaternion(0.00998772, -6.92039e-08, -0.00151116, 0.999949)
-bones/23/rotation = Quaternion(0.0168866, -0.0304027, 0.0277047, 0.999011)
-bones/24/rotation = Quaternion(0.0747997, 0.0136507, -0.0118462, 0.997035)
-bones/25/rotation = Quaternion(0.00998332, -0.00293006, -0.00198043, 0.999944)
-bones/27/rotation = Quaternion(0.0117421, -0.0167912, -0.0074053, 0.999763)
-bones/28/rotation = Quaternion(0.0802549, 0.00283988, 0.023812, 0.996486)
-bones/29/rotation = Quaternion(0.0639713, 3.21791e-08, -0.00966909, 0.997905)
-bones/31/rotation = Quaternion(0.496982, -0.486922, 0.475556, 0.538296)
-bones/32/rotation = Quaternion(0.557646, -0.250939, 0.187706, 0.768653)
-bones/33/rotation = Quaternion(0.052824, 0.00842611, -0.651008, 0.757184)
-bones/34/rotation = Quaternion(-0.138891, -0.204043, 0.11708, 0.96196)
-bones/35/rotation = Quaternion(0.108972, -0.146903, -0.252254, 0.950217)
-bones/36/rotation = Quaternion(0.0157215, -0.141661, 0.132609, 0.980867)
-bones/37/rotation = Quaternion(-0.0321552, -0.0468313, 0.0274919, 0.998007)
-bones/39/rotation = Quaternion(0.0234817, 0.0221823, -0.0268575, 0.999117)
-bones/40/rotation = Quaternion(0.142688, -0.00517367, 0.022522, 0.989498)
-bones/41/rotation = Quaternion(0.0142128, -5.52937e-08, 0.00216725, 0.999897)
-bones/43/rotation = Quaternion(0.0236963, 0.0301939, -0.0266684, 0.998907)
-bones/44/rotation = Quaternion(0.14252, -0.0135158, 0.0231528, 0.989429)
-bones/45/rotation = Quaternion(0.0142071, 0.00293169, 0.00264485, 0.999891)
-bones/47/rotation = Quaternion(0.0233429, 0.0170318, -0.0269782, 0.999218)
-bones/48/rotation = Quaternion(0.142804, -0.000141642, 0.0217763, 0.989511)
-bones/49/rotation = Quaternion(0.0118679, -4.47178e-09, 0.001808, 0.999928)
-bones/51/rotation = Quaternion(-0.0106372, 0.282605, 0.95588, 0.0794617)
-bones/52/rotation = Quaternion(-0.350627, -0.00547038, -0.0304149, 0.936005)
-bones/53/rotation = Quaternion(0.642578, 0.0434925, 0.0830157, 0.760467)
-bones/54/rotation = Quaternion(0.175558, -0.0298478, 0.12217, 0.976403)
-bones/56/rotation = Quaternion(-0.137908, -0.177053, 0.973521, -0.0434824)
-bones/57/rotation = Quaternion(-0.934551, 0.055749, -0.137121, 0.323581)
-bones/58/rotation = Quaternion(0.783276, 0.000606409, -0.00509881, 0.621652)
-bones/59/rotation = Quaternion(0.16676, 0.0285121, -0.121988, 0.978007)
+bones/2/position = Vector3(0.000198464, 0.0165179, -0.000885752)
+bones/2/rotation = Quaternion(0.0858982, 0.0689057, 0.0271138, 0.993548)
+bones/3/rotation = Quaternion(0.0247952, -0.124311, -0.0333664, 0.991372)
+bones/4/rotation = Quaternion(0.0114883, -0.0151811, 0.0319079, 0.999309)
+bones/5/rotation = Quaternion(0.019849, -0.0157577, 0.0301087, 0.999225)
+bones/6/rotation = Quaternion(0.00956369, 0.00941609, -0.0100817, 0.999859)
+bones/7/rotation = Quaternion(-0.107134, 0.0557698, -0.0367768, 0.991998)
+bones/11/rotation = Quaternion(0.504204, 0.485615, -0.472873, 0.535114)
+bones/12/rotation = Quaternion(0.558708, 0.0953088, 0.0643958, 0.821349)
+bones/13/rotation = Quaternion(0.0647966, -0.00665881, 0.798561, 0.59838)
+bones/14/rotation = Quaternion(-0.0321284, 0.00254825, -0.0815419, 0.996149)
+bones/15/rotation = Quaternion(0.0532241, 0.138269, 0.232061, 0.961352)
+bones/16/rotation = Quaternion(0.0387851, 0.131803, -0.0982325, 0.985634)
+bones/17/rotation = Quaternion(-0.0110029, 0.0435175, -0.024106, 0.998701)
+bones/19/rotation = Quaternion(0.0127567, -0.0225093, 0.0283826, 0.999262)
+bones/20/rotation = Quaternion(0.0716331, 0.0052148, -0.0112207, 0.997354)
+bones/21/rotation = Quaternion(0.00842593, -1.11327e-08, -0.00127477, 0.999964)
+bones/23/rotation = Quaternion(0.0128449, -0.0305262, 0.0282999, 0.999051)
+bones/24/rotation = Quaternion(0.0716908, 0.0136554, -0.0113351, 0.997269)
+bones/25/rotation = Quaternion(0.00842206, -0.00292942, -0.00174101, 0.999959)
+bones/27/rotation = Quaternion(0.00769951, -0.0170596, -0.00686599, 0.999801)
+bones/28/rotation = Quaternion(0.0771432, 0.00272753, 0.0242912, 0.99672)
+bones/29/rotation = Quaternion(0.0624128, 2.60895e-08, -0.00943357, 0.998006)
+bones/31/rotation = Quaternion(0.468203, -0.510203, 0.475156, 0.542868)
+bones/32/rotation = Quaternion(0.537645, -0.249066, 0.343487, 0.728643)
+bones/33/rotation = Quaternion(0.0582269, 0.0077227, -0.717598, 0.693977)
+bones/34/rotation = Quaternion(-0.196903, -0.0393829, 0.087447, 0.975721)
+bones/35/rotation = Quaternion(0.128711, -0.146539, -0.255862, 0.946834)
+bones/36/rotation = Quaternion(0.0210795, -0.133257, 0.153171, 0.978947)
+bones/37/rotation = Quaternion(-0.0271342, -0.0430558, 0.0370833, 0.998015)
+bones/39/rotation = Quaternion(0.0573015, 0.0211339, -0.0220885, 0.997889)
+bones/40/rotation = Quaternion(0.17602, -0.00514494, 0.0277831, 0.983981)
+bones/41/rotation = Quaternion(0.0306789, 2.77677e-08, 0.00467811, 0.999518)
+bones/43/rotation = Quaternion(0.0574768, 0.0291356, -0.0216282, 0.997687)
+bones/44/rotation = Quaternion(0.175811, -0.0134251, 0.0286677, 0.983915)
+bones/45/rotation = Quaternion(0.0306683, 0.00293798, 0.00518809, 0.999512)
+bones/47/rotation = Quaternion(0.0804184, 0.0152622, -0.0192092, 0.996459)
+bones/48/rotation = Quaternion(0.204506, -0.000139947, 0.0311852, 0.978369)
+bones/49/rotation = Quaternion(0.0991184, -3.26237e-09, 0.0151001, 0.994961)
+bones/51/rotation = Quaternion(0.0145046, -0.37615, 0.926444, -0.00165745)
+bones/52/rotation = Quaternion(-0.618114, 0.0532006, 0.00956523, 0.784228)
+bones/53/rotation = Quaternion(0.501857, 0.0235284, 0.0362864, 0.863869)
+bones/54/rotation = Quaternion(0.169892, -0.0289876, 0.122054, 0.977445)
+bones/56/rotation = Quaternion(0.0757449, 0.408479, 0.908731, 0.0402011)
+bones/57/rotation = Quaternion(-0.00223613, 0.0798762, -0.0715179, 0.994233)
+bones/58/rotation = Quaternion(0.260935, 0.0722017, 0.0198263, 0.962448)
+bones/59/rotation = Quaternion(0.303077, 0.0491784, -0.123687, 0.943625)
 
 [node name="ankle_low" parent="3D/root/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_0444c")
@@ -366,13 +392,13 @@ libraries = {
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D"]
 
-[node name="animation_manager" type="Node" parent="3D"]
+[node name="animation_manager" type="Node" parent="."]
 script = ExtResource("4_2yvtr")
 
-[node name="AnimationTree" type="AnimationTree" parent="3D/animation_manager"]
-root_node = NodePath("../../root")
+[node name="AnimationTree" type="AnimationTree" parent="animation_manager"]
+root_node = NodePath("../../3D/root")
 tree_root = SubResource("AnimationNodeBlendTree_3cuse")
-anim_player = NodePath("../../root/AnimationPlayer")
+anim_player = NodePath("../../3D/root/AnimationPlayer")
 parameters/Bateo/active = false
 parameters/Bateo/internal_active = false
 parameters/Bateo/request = 0
@@ -380,17 +406,17 @@ parameters/Sumergir/active = false
 parameters/Sumergir/internal_active = false
 parameters/Sumergir/request = 0
 
-[node name="Timer" type="Timer" parent="3D/animation_manager"]
+[node name="Timer" type="Timer" parent="animation_manager"]
 one_shot = true
 autostart = true
 
-[node name="animation_timer" type="Timer" parent="3D/animation_manager"]
+[node name="animation_timer" type="Timer" parent="animation_manager"]
 wait_time = 7.0
 one_shot = true
 
-[connection signal="button_down" from="Start/Start" to="3D/animation_manager" method="_on_start_button_down"]
+[connection signal="button_down" from="Start/Start" to="animation_manager" method="_on_start_button_down"]
 [connection signal="pressed" from="Lobby Menu/Single" to="." method="_on_single_pressed"]
 [connection signal="pressed" from="Lobby Menu/Multi" to="." method="_on_multiplayer_pressed"]
-[connection signal="timeout" from="3D/animation_manager/Timer" to="3D/animation_manager" method="_on_timer_timeout"]
+[connection signal="timeout" from="animation_manager/Timer" to="animation_manager" method="_on_timer_timeout"]
 
 [editable path="3D/root"]
