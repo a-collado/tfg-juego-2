@@ -30,7 +30,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -11.9861)
 enemy_ia_follow = NodePath("../../EnemyIAFollow")
 goal_to_score = NodePath("../../Environment/Goal A")
 
-[node name="Debug" type="Control" parent="UI" index="5"]
+[node name="Debug" type="Control" parent="UI" index="4"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,20 +43,14 @@ script = ExtResource("4_yevkp")
 
 [node name="ReturnBall" type="Button" parent="UI/Debug" index="0"]
 layout_mode = 0
-offset_left = 589.0
+offset_left = 457.0
 offset_top = 9.0
-offset_right = 697.0
+offset_right = 565.0
 offset_bottom = 60.0
 text = "Return Ball"
 
-[node name="LogButton" type="CheckButton" parent="UI/Debug" index="1"]
-layout_mode = 0
-offset_left = 526.0
-offset_top = 25.0
-offset_right = 570.0
-offset_bottom = 49.0
-icon_alignment = 1
-expand_icon = true
+[node name="Pause" parent="UI" index="8"]
+process_mode = 3
 
 [node name="Marker3D" type="Marker3D" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.1064)

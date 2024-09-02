@@ -18,6 +18,7 @@ warnings/check_angle_interpolation_type_conflicting=false
 config/name="TFG"
 config/tags=PackedStringArray("tfg")
 run/main_scene="res://scenes/startScreen.tscn"
+config/quit_on_go_back=false
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://assets/Iconos/icon.svg"
 
@@ -28,7 +29,9 @@ buses/default_bus_layout="res://audio/default_bus_layout.tres"
 [autoload]
 
 Lobby="*res://scripts/multiplayer/Lobby.gd"
-Sensors="*res://scripts/sensors.gd"
+Sensors="*res://scripts/player/sensors.gd"
+Settings="*res://scripts/global/settings.gd"
+Variables="*res://scripts/global/global_variables.gd"
 
 [display]
 

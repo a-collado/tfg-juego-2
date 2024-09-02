@@ -4,7 +4,10 @@ extends Node
 @export_file("*.tscn") var start_scren_scene_path: String = "res://scenes/startScreen.tscn"
 
 @onready var UI_loading = $"../UI/Loading"
-@onready var UI_pause_menu = $"../UI/PauseMenu"
+@onready var UI_pause_menu_resume = $"../UI/Resume"
+@onready var UI_pause_menu_settings = $"../UI/Settings"
+@onready var UI_pause_menu_quit = $"../UI/Quit"
+
 @onready var game = $".."
 
 @onready var score_manager = $"Score Manager"
@@ -19,7 +22,7 @@ func _ready():
 	score_manager.connect("reset_ball", _reset_ball)
 	score_manager.connect("exit", _on_exit_pressed)
 
-	UI_pause_menu.visible = false
+	_change_menu_visibility(false)
 	score_manager.score_to_win = points_to_win
 	if game is MultiplayerGame:
 		is_multiplayer = true
@@ -31,19 +34,25 @@ func end_load_screen():
 	UI_loading.visible = false
 
 func _on_pause_pressed():
-	if not is_multiplayer:
-		get_tree().paused = true
-	UI_pause_menu.visible = true
+	if not UI_pause_menu_resume.visible:
+		if not is_multiplayer:
+			get_tree().paused = true
+		_change_menu_visibility(true) 
+	else:
+		_on_resume_pressed()
 
 func _on_resume_pressed():
 	if not is_multiplayer:
 		get_tree().paused = false
-	UI_pause_menu.visible = false
+	_change_menu_visibility(false)
 
 func _on_exit_pressed():
 	if is_multiplayer:
 		Lobby.remove_multiplayer_peer()
 	_exit_to_menu()
+
+func _on_settings_pressed() -> void:
+	pass # Replace with function body.
 
 func _on_player_disconnected(_id):
 	if is_multiplayer:
@@ -53,7 +62,6 @@ func _on_player_disconnected(_id):
 func _exit_to_menu():
 	if get_tree().paused:
 		get_tree().paused = false
-	print("test")
 	get_tree().change_scene_to_file(start_scren_scene_path)
 
 func _reset_ball(spawn: String):
@@ -67,3 +75,17 @@ func _reset_ball(spawn: String):
 		ball.reset.rpc(position)
 	else:
 		ball.reset(position)
+
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		if UI_pause_menu_resume.visible:
+			_on_resume_pressed()
+		else:
+			_on_pause_pressed()
+
+func _change_menu_visibility(visibility: bool) -> void:
+	UI_pause_menu_resume.visible = visibility
+	UI_pause_menu_settings.visible = visibility
+	UI_pause_menu_quit.visible = visibility
+
+

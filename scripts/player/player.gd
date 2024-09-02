@@ -37,6 +37,7 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(id)
 
 func _ready() -> void:
+	gyro_sensibility = Settings.get_config(Settings.CONFIG_NAMES.gyro_sens)
 	hit_manager.connect("hit_ball", hit_ball)
 	material = $"root/Skeleton3D/ankle_low".get_active_material(0)
 
@@ -62,7 +63,6 @@ func _physics_process(delta: float) -> void:
 	_calc_hit_roration()
 
 	if movement and not animation_manager.is_hitting():
-	#if movement:
 		_last_movement = 0
 		_calc_movement(delta)
 		return

@@ -1,14 +1,16 @@
-[gd_scene load_steps=40 format=4 uid="uid://hf54dvayfhfp"]
+[gd_scene load_steps=42 format=4 uid="uid://hf54dvayfhfp"]
 
-[ext_resource type="Script" path="res://scripts/Team.gd" id="2_qon7g"]
+[ext_resource type="Script" path="res://scripts/game/Team.gd" id="2_qon7g"]
 [ext_resource type="MeshLibrary" uid="uid://dc8u7nxstkwfp" path="res://assets/Modelos 3D/space station kenney/Library/space_station_library.tres" id="2_tbimu"]
 [ext_resource type="Texture2D" uid="uid://bckbrb36l5ey0" path="res://assets/Modelos 3D/floor/floor_texture.png" id="2_xqrfi"]
 [ext_resource type="Shader" path="res://assets/Shaders/3D/shield.gdshader" id="3_cuf5j"]
-[ext_resource type="Texture2D" uid="uid://b4x4wyx723h8q" path="res://assets/Iconos/UI/pause-button.svg" id="4_lvo3o"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick_scene.tscn" id="5_otsi1"]
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="5_thfdy"]
-[ext_resource type="Script" path="res://scripts/Ball.gd" id="6_i326r"]
-[ext_resource type="Script" path="res://scripts/score_manager.gd" id="7_ephk5"]
+[ext_resource type="Script" path="res://scripts/game/game_manager.gd" id="5_thfdy"]
+[ext_resource type="Theme" uid="uid://b6uhtsi5wy8or" path="res://assets/Temas/default.theme" id="6_8ljby"]
+[ext_resource type="Texture2D" uid="uid://ctmifxjo5lnt6" path="res://assets/Sprites/UI/controls_pack/flatLight12.png" id="6_bwr54"]
+[ext_resource type="Script" path="res://scripts/game/Ball.gd" id="6_i326r"]
+[ext_resource type="Script" path="res://scripts/game/score_manager.gd" id="7_ephk5"]
+[ext_resource type="Texture2D" uid="uid://bfo3wcu7igvxd" path="res://assets/Sprites/UI/space_pack/bar_square_large.png" id="7_w1pe1"]
 [ext_resource type="Shader" path="res://assets/Shaders/3D/burn_dissolve.gdshader" id="8_hyb38"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34eua"]
@@ -379,6 +381,7 @@ offset_bottom = 99.609
 
 [node name="Loading" type="TextureRect" parent="UI"]
 auto_translate_mode = 1
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -407,45 +410,6 @@ theme_override_font_sizes/font_size = 64
 text = "Loading..."
 metadata/_edit_use_anchors_ = true
 
-[node name="Pause" type="Button" parent="UI"]
-auto_translate_mode = 1
-offset_right = 808.0
-offset_bottom = 808.0
-scale = Vector2(0.0764221, 0.0764224)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-icon = ExtResource("4_lvo3o")
-flat = true
-icon_alignment = 1
-
-[node name="PauseMenu" type="VBoxContainer" parent="UI"]
-process_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -193.5
-offset_top = -98.0
-offset_right = 193.5
-offset_bottom = 98.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Resume" type="Button" parent="UI/PauseMenu"]
-auto_translate_mode = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "Resume "
-
-[node name="Exit" type="Button" parent="UI/PauseMenu"]
-auto_translate_mode = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "Exit"
-
 [node name="Scores" type="SplitContainer" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -454,6 +418,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 vertical = true
 
 [node name="Score A" type="Label" parent="UI/Scores"]
@@ -469,6 +434,64 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 300
 text = "0"
 horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="UI"]
+process_mode = 3
+offset_left = 200.0
+offset_top = 511.0
+offset_right = 400.0
+offset_bottom = 567.0
+focus_mode = 0
+theme = ExtResource("6_8ljby")
+text = "Resume"
+icon = ExtResource("7_w1pe1")
+flat = true
+icon_alignment = 1
+
+[node name="Settings" type="Button" parent="UI"]
+process_mode = 3
+offset_left = 200.0
+offset_top = 563.0
+offset_right = 400.0
+offset_bottom = 619.0
+focus_mode = 0
+theme = ExtResource("6_8ljby")
+text = "Settings"
+icon = ExtResource("7_w1pe1")
+flat = true
+icon_alignment = 1
+
+[node name="Quit" type="Button" parent="UI"]
+process_mode = 3
+offset_left = 199.0
+offset_top = 615.0
+offset_right = 399.0
+offset_bottom = 671.0
+focus_mode = 0
+theme = ExtResource("6_8ljby")
+text = "Quit"
+icon = ExtResource("7_w1pe1")
+flat = true
+icon_alignment = 1
+
+[node name="Pause" type="Button" parent="UI"]
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 71.0
+offset_bottom = 69.0
+focus_mode = 0
+mouse_filter = 1
+action_mode = 0
+icon = ExtResource("6_bwr54")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="BallFuturePosition" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.949508, 3.76684)
@@ -517,8 +540,9 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 
 [connection signal="body_entered" from="Environment/Goal A/Area3D" to="Game Manager/Score Manager" method="_on_goal_A_body_entered"]
 [connection signal="body_entered" from="Environment/Goal B/Area3D" to="Game Manager/Score Manager" method="_on_area_3d_body_entered"]
+[connection signal="pressed" from="UI/Resume" to="Game Manager" method="_on_resume_pressed"]
+[connection signal="pressed" from="UI/Settings" to="Game Manager" method="_on_settings_pressed"]
+[connection signal="pressed" from="UI/Quit" to="Game Manager" method="_on_exit_pressed"]
 [connection signal="pressed" from="UI/Pause" to="Game Manager" method="_on_pause_pressed"]
-[connection signal="pressed" from="UI/PauseMenu/Resume" to="Game Manager" method="_on_resume_pressed"]
-[connection signal="pressed" from="UI/PauseMenu/Exit" to="Game Manager" method="_on_exit_pressed"]
 
 [editable path="UI/Virtual Joystick"]

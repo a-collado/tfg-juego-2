@@ -13,8 +13,21 @@ extends Node
 @onready var start_button: Button = $/root/StartScreen/Start/Start
 @onready var start_screen_bottom: Control = $/root/StartScreen/Start/Fondo
 @onready var lobby_menu: Control = $"/root/StartScreen/Lobby Menu"
+@onready var lobby_menu_single: Control = $"/root/StartScreen/Lobby Menu/Single"
+@onready var lobby_menu_multi: Control = $"/root/StartScreen/Lobby Menu/Multi"
 
 @export var move: bool = true
+
+var started: bool = false
+
+func _ready():
+	started = Variables.screen_touched
+
+	if started:
+		robot.visible = false
+		start_screen_bottom.position.x = 580
+		lobby_menu_single.position.x = 600
+		lobby_menu_multi.position.x = 600
 
 func _process(delta: float) -> void:
 	if not move:
@@ -45,5 +58,19 @@ func hide_character():
 func _hide_main_screen():
 	var tween = create_tween()
 	tween.set_parallel(true)
-	tween.tween_property(start_screen_bottom, "position:x", 580, 1.0).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(lobby_menu, "position:x", 0, 2.0).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(start_screen_bottom, "position:x", 580, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(lobby_menu_single, "position:x", 600, 1.0).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(lobby_menu_multi, "position:x", 600, 1.0).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
+	started = true
+	Variables.screen_touched = true
+
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		get_tree().quit()
+		#get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+
+func _on_start_screen_start_singleplayer_mode() -> void:
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(lobby_menu_single, "position:y", 8, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(lobby_menu_multi, "position:y", 1300, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
