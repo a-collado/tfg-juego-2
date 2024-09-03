@@ -6,7 +6,7 @@
 [ext_resource type="Shader" path="res://assets/Shaders/3D/shield.gdshader" id="3_cuf5j"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick_scene.tscn" id="5_otsi1"]
 [ext_resource type="Script" path="res://scripts/game/game_manager.gd" id="5_thfdy"]
-[ext_resource type="Theme" uid="uid://b6uhtsi5wy8or" path="res://assets/Temas/default.theme" id="6_8ljby"]
+[ext_resource type="Theme" uid="uid://b6uhtsi5wy8or" path="res://assets/Recursos/Temas/default.theme" id="6_8ljby"]
 [ext_resource type="Texture2D" uid="uid://ctmifxjo5lnt6" path="res://assets/Sprites/UI/controls_pack/flatLight12.png" id="6_bwr54"]
 [ext_resource type="Script" path="res://scripts/game/Ball.gd" id="6_i326r"]
 [ext_resource type="Script" path="res://scripts/game/score_manager.gd" id="7_ephk5"]

@@ -27,3 +27,20 @@ func _on_animation_manager_load_singleplayer() -> void:
 	UI_loading.visible = true
 	ResourceLoader.load_threaded_request(game_scene_path)
 
+func _on_low_toggled(_toggled_on:bool) -> void:
+	Variables.difficulty = 0
+
+func _on_mid_toggled(_toggled_on:bool) -> void:
+	Variables.difficulty = 1
+
+func _on_top_toggled(_toggled_on:bool) -> void:
+	Variables.difficulty = 2
+
+func _on_low_goals_toggled(_toggled_on:bool) -> void:
+	Variables.goals_to_win = 5
+
+func _on_mid_goals_toggled(_toggled_on:bool) -> void:
+	Variables.goals_to_win = 10
+
+func _on_top_goals_toggled(_toggled_on:bool) -> void:
+	Variables.goals_to_win = 15

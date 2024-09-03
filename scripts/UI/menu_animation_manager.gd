@@ -112,25 +112,6 @@ func _on_back_pressed() -> void:
 	tween.tween_property(lobby_menu_multi, "position:y", 677, 1.0).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(singleplayer_nodes_goals, "position:x", 1235, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(singleplayer_nodes_difficulty, "position:x", 0, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(singleplayer_nodes_back, "position:x", 0, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(singleplayer_nodes_back, "position:x", -5, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(settings, "position:y", 1159, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
-
-
-func _on_low_toggled(_toggled_on:bool) -> void:
-	Variables.difficulty = 0
-
-func _on_mid_toggled(_toggled_on:bool) -> void:
-	Variables.difficulty = 1
-
-func _on_top_toggled(_toggled_on:bool) -> void:
-	Variables.difficulty = 2
-
-func _on_low_goals_toggled(_toggled_on:bool) -> void:
-	Variables.goals_to_win = 5
-
-func _on_mid_goals_toggled(_toggled_on:bool) -> void:
-	Variables.goals_to_win = 10
-
-func _on_top_goals_toggled(_toggled_on:bool) -> void:
-	Variables.goals_to_win = 15
 
