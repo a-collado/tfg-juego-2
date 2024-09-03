@@ -15,8 +15,6 @@ func _on_multi_pressed() -> void:
 	get_tree().change_scene_to_file(multi_scene_path)
 
 func _on_single_pressed() -> void:
-	#UI_loading.visible = true
-	#ResourceLoader.load_threaded_request(game_scene_path)
 	start_singleplayer_mode.emit()
 
 func _process(_delta: float) -> void:
@@ -25,5 +23,7 @@ func _process(_delta: float) -> void:
 	if loading_status == ResourceLoader.THREAD_LOAD_LOADED:
 		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(game_scene_path))
 
-
+func _on_animation_manager_load_singleplayer() -> void:
+	UI_loading.visible = true
+	ResourceLoader.load_threaded_request(game_scene_path)
 

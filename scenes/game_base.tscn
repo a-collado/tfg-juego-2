@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://hf54dvayfhfp"]
+[gd_scene load_steps=38 format=4 uid="uid://hf54dvayfhfp"]
 
 [ext_resource type="Script" path="res://scripts/game/Team.gd" id="2_qon7g"]
 [ext_resource type="MeshLibrary" uid="uid://dc8u7nxstkwfp" path="res://assets/Modelos 3D/space station kenney/Library/space_station_library.tres" id="2_tbimu"]
@@ -12,41 +12,6 @@
 [ext_resource type="Script" path="res://scripts/game/score_manager.gd" id="7_ephk5"]
 [ext_resource type="Texture2D" uid="uid://bfo3wcu7igvxd" path="res://assets/Sprites/UI/space_pack/bar_square_large.png" id="7_w1pe1"]
 [ext_resource type="Shader" path="res://assets/Shaders/3D/burn_dissolve.gdshader" id="8_hyb38"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34eua"]
-albedo_color = Color(0.207843, 0.623529, 0.109804, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tr24s"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_e3hpe"]
-_surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAAAAAAAAAAAA//8AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_em8wy"]
-resource_name = "floor_Plane"
-_surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
-"attribute_data": PackedByteArray("BgD4//iA+P8GAAYA+IAGAA=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAADAAEAAAACAAMA"),
-"material": SubResource("StandardMaterial3D_tr24s"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP///7///wAA////vwAAAAAAAP+///8AAAAA/7////9/////f/7//3////9/")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_e3hpe")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut28p"]
 albedo_texture = ExtResource("2_xqrfi")
@@ -192,18 +157,6 @@ shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_xwl47")
 
 [node name="Environment" type="Node" parent="."]
 
-[node name="GridMap2" type="GridMap" parent="Environment"]
-visible = false
-mesh_library = ExtResource("2_tbimu")
-cell_size = Vector3(3, 1, 3)
-cell_center_y = false
-cell_center_z = false
-cell_scale = 3.0
-data = {
-"cells": PackedInt32Array(65533, 65529, 110, 65534, 65529, 110, 65535, 65529, 110, 0, 65529, 110, 1, 65529, 110, 2, 65529, 110, 262141, 65529, 1048611, 262142, 65529, 655397, 262143, 65529, 655397, 196608, 65529, 655397, 196609, 65529, 655397, 196610, 65529, 655395, 196608, 65528, 1048610, 262143, 65528, 1048615, 262141, 65528, 1048613, 196609, 65528, 1048615, 196610, 65528, 1048613, 196610, 65527, 1048613, 196609, 65526, 1048615, 196608, 65526, 1048610, 262143, 65526, 1048615, 196608, 65527, 1048615, 196609, 65527, 1048610, 262143, 65527, 1048610, 262142, 65527, 1048615, 262142, 65526, 1048610, 262141, 65526, 1048612, 262141, 65527, 1048613, 196610, 65526, 1048612, 262142, 65528, 1048610)
-}
-metadata/_editor_floor_ = Vector3(0, 0, 0)
-
 [node name="GridMap3" type="GridMap" parent="Environment"]
 mesh_library = ExtResource("2_tbimu")
 cell_size = Vector3(3, 1, 3)
@@ -214,19 +167,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, -2, 0)
 
-[node name="Floor" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.112478, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_34eua")
-use_collision = true
-size = Vector3(18, 0.1, 50)
-
-[node name="Floor" type="MeshInstance3D" parent="Environment/Floor"]
-transform = Transform3D(8.94563, 0, 0, 0, 8.94563, 0, 0, 0, 24.9903, 0, -0.149434, 0)
-mesh = SubResource("ArrayMesh_em8wy")
-skeleton = NodePath("")
-
-[node name="Floor2" type="MeshInstance3D" parent="Environment"]
+[node name="Floor" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(8.94563, 0, 0, 0, 8.94563, 0, 0, 0, 24.9903, 0.0685196, -0.149432, 0.0190582)
 material_override = SubResource("StandardMaterial3D_ut28p")
 mesh = SubResource("ArrayMesh_eolbo")
@@ -435,44 +376,50 @@ theme_override_font_sizes/font_size = 300
 text = "0"
 horizontal_alignment = 1
 
-[node name="Resume" type="Button" parent="UI"]
-process_mode = 3
-offset_left = 200.0
-offset_top = 511.0
-offset_right = 400.0
-offset_bottom = 567.0
-focus_mode = 0
-theme = ExtResource("6_8ljby")
-text = "Resume"
-icon = ExtResource("7_w1pe1")
-flat = true
-icon_alignment = 1
-
 [node name="Settings" type="Button" parent="UI"]
 process_mode = 3
-offset_left = 200.0
-offset_top = 563.0
-offset_right = 400.0
-offset_bottom = 619.0
+offset_left = 137.0
+offset_top = 562.0
+offset_right = 466.0
+offset_bottom = 650.0
 focus_mode = 0
 theme = ExtResource("6_8ljby")
+theme_override_font_sizes/font_size = 46
 text = "Settings"
 icon = ExtResource("7_w1pe1")
 flat = true
 icon_alignment = 1
+expand_icon = true
+
+[node name="Resume" type="Button" parent="UI"]
+process_mode = 3
+offset_left = 137.0
+offset_top = 478.0
+offset_right = 466.0
+offset_bottom = 566.0
+focus_mode = 0
+theme = ExtResource("6_8ljby")
+theme_override_font_sizes/font_size = 46
+text = "Resume"
+icon = ExtResource("7_w1pe1")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Quit" type="Button" parent="UI"]
 process_mode = 3
-offset_left = 199.0
-offset_top = 615.0
-offset_right = 399.0
-offset_bottom = 671.0
+offset_left = 137.0
+offset_top = 644.0
+offset_right = 466.0
+offset_bottom = 737.0
 focus_mode = 0
 theme = ExtResource("6_8ljby")
+theme_override_font_sizes/font_size = 46
 text = "Quit"
 icon = ExtResource("7_w1pe1")
 flat = true
 icon_alignment = 1
+expand_icon = true
 
 [node name="Pause" type="Button" parent="UI"]
 offset_left = 7.0
@@ -526,7 +473,6 @@ material = SubResource("ShaderMaterial_fhva0")
 
 [node name="Game Manager" type="Node" parent="."]
 script = ExtResource("5_thfdy")
-points_to_win = 10
 
 [node name="Score Manager" type="Node" parent="Game Manager"]
 script = ExtResource("7_ephk5")
@@ -538,10 +484,12 @@ one_shot = true
 [node name="Sprite3D" type="Sprite3D" parent="Game Manager/Score Manager"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 16.5844)
 
+[node name="Node3D" type="Node3D" parent="."]
+
 [connection signal="body_entered" from="Environment/Goal A/Area3D" to="Game Manager/Score Manager" method="_on_goal_A_body_entered"]
 [connection signal="body_entered" from="Environment/Goal B/Area3D" to="Game Manager/Score Manager" method="_on_area_3d_body_entered"]
-[connection signal="pressed" from="UI/Resume" to="Game Manager" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/Settings" to="Game Manager" method="_on_settings_pressed"]
+[connection signal="pressed" from="UI/Resume" to="Game Manager" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/Quit" to="Game Manager" method="_on_exit_pressed"]
 [connection signal="pressed" from="UI/Pause" to="Game Manager" method="_on_pause_pressed"]
 

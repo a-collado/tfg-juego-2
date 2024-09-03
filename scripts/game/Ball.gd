@@ -10,7 +10,17 @@ var frames_between_hits: int = 10
 
 @rpc("any_peer", "call_local", "reliable")
 func kick(force: Vector3):
+	var difficulty
+	match Variables.difficulty:
+		0:
+			difficulty = 0.25
+		1:
+			difficulty = 0.5
+		2:
+			difficulty = 1
 
+	force *= difficulty
+	print(difficulty)
 	print("Force: %s" % force)
 	if force != Vector3.ZERO and last_hit > frames_between_hits:
 		var velocity = linear_velocity / 4
@@ -20,7 +30,6 @@ func kick(force: Vector3):
 		apply_impulse(force - velocity)
 		print("Resulting force:  %s" % (force - velocity))
 		last_hit = 0
-		print("HIT")
 
 @rpc("any_peer", "call_local", "reliable")
 func reset(spawn: Vector3):

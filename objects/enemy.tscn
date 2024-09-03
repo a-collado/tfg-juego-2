@@ -116,7 +116,7 @@ size = Vector3(1.21863, 2.35437, 1)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_yyxms")
-shader_parameter/progress = 0.0
+shader_parameter/progress = -0.1
 shader_parameter/Texture = ExtResource("4_ynvwr")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3khlo"]

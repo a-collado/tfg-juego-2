@@ -1,5 +1,7 @@
 extends Node
 
+signal load_singleplayer
+
 ## Nodos hijos
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var timer: Timer = $Timer
@@ -15,10 +17,21 @@ extends Node
 @onready var lobby_menu: Control = $"/root/StartScreen/Lobby Menu"
 @onready var lobby_menu_single: Control = $"/root/StartScreen/Lobby Menu/Single"
 @onready var lobby_menu_multi: Control = $"/root/StartScreen/Lobby Menu/Multi"
+@onready var settings: Control = $"/root/StartScreen/Settings"
+
+## Nodos de singleplayer
+@onready var singleplayer_nodes: Control = $"/root/StartScreen/Singleplayer"
+@onready var singleplayer_difficulty_low_button: Button =  $"/root/StartScreen/Singleplayer/Difficulty/Options/Low"
+@onready var singleplayer_difficulty_mid_button: Button =  $"/root/StartScreen/Singleplayer/Difficulty/Options/Mid"
+@onready var singleplayer_difficulty_top_button: Button =  $"/root/StartScreen/Singleplayer/Difficulty/Options/Top"
+@onready var singleplayer_difficulty_low_background: Sprite2D =  $"/root/StartScreen/Singleplayer/Difficulty/Options/Background Low"
+@onready var singleplayer_difficulty_mid_background: Sprite2D=  $"/root/StartScreen/Singleplayer/Difficulty/Options/Background Mid"
+@onready var singleplayer_difficulty_top_background: Sprite2D=  $"/root/StartScreen/Singleplayer/Difficulty/Options/Background Top"
 
 @export var move: bool = true
 
 var started: bool = false
+var singleplayer: bool = false
 
 func _ready():
 	started = Variables.screen_touched
@@ -70,7 +83,45 @@ func _notification(what):
 		#get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 
 func _on_start_screen_start_singleplayer_mode() -> void:
+	if not singleplayer:
+		singleplayer = true
+
+		singleplayer_nodes.position.x = -654
+
+		var tween = create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(lobby_menu_single, "position:y", 8, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(lobby_menu_multi, "position:y", 1300, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(singleplayer_nodes, "position:x", 0, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(settings, "position:y", 1300, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	else:
+		load_singleplayer.emit()
+
+func _on_back_pressed() -> void:
+	singleplayer = false
 	var tween = create_tween()
 	tween.set_parallel(true)
-	tween.tween_property(lobby_menu_single, "position:y", 8, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(lobby_menu_multi, "position:y", 1300, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(lobby_menu_single, "position:y", 284, 1.0).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(lobby_menu_multi, "position:y", 677, 1.0).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(singleplayer_nodes, "position:x", 700, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(settings, "position:y", 1159, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+
+
+func _on_low_toggled(_toggled_on:bool) -> void:
+	Variables.difficulty = 0
+
+func _on_mid_toggled(_toggled_on:bool) -> void:
+	Variables.difficulty = 1
+
+func _on_top_toggled(_toggled_on:bool) -> void:
+	Variables.difficulty = 2
+
+func _on_low_goals_toggled(_toggled_on:bool) -> void:
+	Variables.goals_to_win = 5
+
+func _on_mid_goals_toggled(_toggled_on:bool) -> void:
+	Variables.goals_to_win = 10
+
+func _on_top_goals_toggled(_toggled_on:bool) -> void:
+	Variables.goals_to_win = 15
+

@@ -1,6 +1,5 @@
 extends Node
 
-@export_range(1,10) var points_to_win: int = 5
 @export_file("*.tscn") var start_scren_scene_path: String = "res://scenes/startScreen.tscn"
 
 @onready var UI_loading = $"../UI/Loading"
@@ -23,7 +22,7 @@ func _ready():
 	score_manager.connect("exit", _on_exit_pressed)
 
 	_change_menu_visibility(false)
-	score_manager.score_to_win = points_to_win
+	score_manager.score_to_win = Variables.goals_to_win
 	if game is MultiplayerGame:
 		is_multiplayer = true
 		game.connect("end_loading", end_load_screen)
@@ -87,5 +86,3 @@ func _change_menu_visibility(visibility: bool) -> void:
 	UI_pause_menu_resume.visible = visibility
 	UI_pause_menu_settings.visible = visibility
 	UI_pause_menu_quit.visible = visibility
-
-

@@ -99,7 +99,7 @@ shader_parameter/texture_ambient_occlusion = ExtResource("3_ulhec")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_alae8")
-shader_parameter/progress = 0.0
+shader_parameter/progress = -0.1
 shader_parameter/Texture = ExtResource("3_3mryi")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3b4y1"]
