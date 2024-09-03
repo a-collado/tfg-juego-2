@@ -198,8 +198,3 @@ func _on_mid_goals_toggled(_toggled_on:bool) -> void:
 
 func _on_top_goals_toggled(_toggled_on:bool) -> void:
 	Variables.set_goals_to_win.rpc(15)
-
-@rpc("authority", "call_remote", "reliable")
-func _set_game_config(difficulty: int, goals_to_win: int) -> void:
-	Variables.difficulty = difficulty
-	Variables.goals_to_win = goals_to_win
