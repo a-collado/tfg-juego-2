@@ -25,12 +25,12 @@ signal load_singleplayer
 @onready var singleplayer_nodes_goals: Control = $"/root/StartScreen/Singleplayer/Goals"
 @onready var singleplayer_nodes_back: Control = $"/root/StartScreen/Singleplayer/Back"
 
-@onready var singleplayer_difficulty_low_button: Button =  $"/root/StartScreen/Singleplayer/Difficulty/Options/Low"
-@onready var singleplayer_difficulty_mid_button: Button =  $"/root/StartScreen/Singleplayer/Difficulty/Options/Mid"
-@onready var singleplayer_difficulty_top_button: Button =  $"/root/StartScreen/Singleplayer/Difficulty/Options/Top"
-@onready var singleplayer_difficulty_low_background: Sprite2D =  $"/root/StartScreen/Singleplayer/Difficulty/Options/Background Low"
-@onready var singleplayer_difficulty_mid_background: Sprite2D=  $"/root/StartScreen/Singleplayer/Difficulty/Options/Background Mid"
-@onready var singleplayer_difficulty_top_background: Sprite2D=  $"/root/StartScreen/Singleplayer/Difficulty/Options/Background Top"
+@onready var singleplayer_difficulty_low_button: Button = $"/root/StartScreen/Singleplayer/Difficulty/Options/Low"
+@onready var singleplayer_difficulty_mid_button: Button = $"/root/StartScreen/Singleplayer/Difficulty/Options/Mid"
+@onready var singleplayer_difficulty_top_button: Button = $"/root/StartScreen/Singleplayer/Difficulty/Options/Top"
+@onready var singleplayer_difficulty_low_background: Sprite2D = $"/root/StartScreen/Singleplayer/Difficulty/Options/Background Low"
+@onready var singleplayer_difficulty_mid_background: Sprite2D = $"/root/StartScreen/Singleplayer/Difficulty/Options/Background Mid"
+@onready var singleplayer_difficulty_top_background: Sprite2D = $"/root/StartScreen/Singleplayer/Difficulty/Options/Background Top"
 
 @export var move: bool = true
 

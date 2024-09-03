@@ -1,15 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://uwi28k8m6bka"]
+[gd_scene load_steps=16 format=3 uid="uid://uwi28k8m6bka"]
 
 [ext_resource type="Script" path="res://scripts/multiplayer/UI_Lobby.gd" id="1_hmgxf"]
 [ext_resource type="Texture2D" uid="uid://ra0j133x6ofg" path="res://assets/Iconos/UI/reload.png" id="2_6kglo"]
 [ext_resource type="Script" path="res://scripts/multiplayer/ServerBrowserLAN.gd" id="2_cpxfv"]
+[ext_resource type="Theme" uid="uid://b6uhtsi5wy8or" path="res://assets/Recursos/Temas/default.theme" id="4_vx4dw"]
+[ext_resource type="Texture2D" uid="uid://bq7rmridto5m2" path="res://assets/Sprites/UI/space_pack/button_square_header_blade_rectangle.png" id="5_8xqiv"]
+[ext_resource type="Texture2D" uid="uid://1vttv0npj64e" path="res://assets/Sprites/UI/space_pack/button_square_header_blade_rectangle_blue.png" id="6_m4aqn"]
+[ext_resource type="Script" path="res://scripts/UI/animation_manager_mp.gd" id="7_dfw6r"]
 
-[node name="Lobby" type="Control"]
+[sub_resource type="Gradient" id="Gradient_lpio8"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.129412, 0.619608, 0.737255, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o6c61"]
+gradient = SubResource("Gradient_lpio8")
+
+[sub_resource type="Gradient" id="Gradient_u6y1w"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.929412, 0.14902, 0.27451, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j4o4v"]
+gradient = SubResource("Gradient_u6y1w")
+
+[sub_resource type="Gradient" id="Gradient_khvpp"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.129412, 0.619608, 0.737255, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ywdsh"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_khvpp")
+
+[sub_resource type="Gradient" id="Gradient_k2pmu"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.933333, 0.152941, 0.278431, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_35po6"]
+gradient = SubResource("Gradient_k2pmu")
+
+[node name="Lobby" type="Control" node_paths=PackedStringArray("text_name", "menu_lobby", "button_host")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_hmgxf")
+text_name = NodePath("Lobby Menu 2/Name Selector/Name")
+menu_lobby = NodePath("Lobby Menu 2")
+button_host = NodePath("Lobby Menu 2/Host Game/Host")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 576.0
+offset_bottom = 1280.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Lobby Menu" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -22,16 +71,6 @@ offset_right = 537.0
 offset_bottom = 823.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Name" type="LineEdit" parent="Lobby Menu"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Name"
-placeholder_text = "Name"
-alignment = 1
-max_length = 15
-clear_button_enabled = true
-middle_mouse_paste_enabled = false
 
 [node name="Host" type="Button" parent="Lobby Menu"]
 layout_mode = 2
@@ -57,11 +96,6 @@ middle_mouse_paste_enabled = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Server List LAN"
-
-[node name="List_WAN" type="Button" parent="Lobby Menu"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "Server List WAN"
 
 [node name="Back" type="Button" parent="Lobby Menu"]
 auto_translate_mode = 1
@@ -131,6 +165,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Server List LAN"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 200
 alignment = 1
@@ -178,79 +213,436 @@ theme_override_font_sizes/font_size = 30
 text = "Go back"
 flat = true
 
-[node name="Server List WAN" type="VBoxContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 132.0
-offset_top = 92.0
-offset_right = 615.001
-offset_bottom = 429.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Server List WAN"]
-layout_mode = 2
-theme_override_constants/separation = 200
-alignment = 1
-
-[node name="Title" type="Label" parent="Server List WAN/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Server List"
-
-[node name="TextureRect" type="TextureRect" parent="Server List WAN/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("2_6kglo")
-expand_mode = 3
-
-[node name="Reload" type="Button" parent="Server List WAN/HBoxContainer/TextureRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.0545455
-anchor_right = 1.03927
-anchor_bottom = 1.0
-offset_right = -52.16
-grow_vertical = 2
-scale = Vector2(7.52, 1)
-flat = true
-metadata/_edit_use_anchors_ = true
-
-[node name="HSeparator" type="HSeparator" parent="Server List WAN"]
-layout_mode = 2
-
-[node name="Server Browser" type="Control" parent="Server List WAN"]
-layout_mode = 2
-script = ExtResource("2_cpxfv")
-
-[node name="BroadcastTimer" type="Timer" parent="Server List WAN/Server Browser"]
-
-[node name="TimeoutTimer" type="Timer" parent="Server List WAN/Server Browser"]
-wait_time = 5.0
-
-[node name="List" type="VBoxContainer" parent="Server List WAN"]
-layout_mode = 2
-
-[node name="Back" type="Button" parent="Server List WAN"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Go back"
-flat = true
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.5
 one_shot = true
 
-[connection signal="text_changed" from="Lobby Menu/Name" to="." method="_on_name_text_changed"]
+[node name="Lobby Menu 2" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Name Selector" type="Control" parent="Lobby Menu 2"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Sprite2D" parent="Lobby Menu 2/Name Selector"]
+position = Vector2(287.938, 1397.95)
+rotation = -0.191986
+scale = Vector2(2.29188, 112.868)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_o6c61")
+
+[node name="Text" type="RichTextLabel" parent="Lobby Menu 2/Name Selector"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 1435.0
+offset_right = 154.0
+offset_bottom = 1465.0
+rotation = -0.191986
+theme = ExtResource("4_vx4dw")
+bbcode_enabled = true
+text = "Name: "
+fit_content = true
+scroll_active = false
+
+[node name="Name" type="LineEdit" parent="Lobby Menu 2/Name Selector"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 1408.0
+offset_right = 525.0
+offset_bottom = 1446.0
+rotation = -0.191986
+theme = ExtResource("4_vx4dw")
+placeholder_text = "Enter a name"
+max_length = 15
+context_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+flat = true
+
+[node name="Host Game" type="Control" parent="Lobby Menu 2"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Sprite2D" parent="Lobby Menu 2/Host Game"]
+position = Vector2(287.938, 1397.95)
+rotation = -0.191986
+scale = Vector2(2.29188, 112.868)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_o6c61")
+
+[node name="Host" type="Button" parent="Lobby Menu 2/Host Game"]
+layout_mode = 0
+offset_left = -26.0
+offset_top = 1403.0
+offset_right = 587.0
+offset_bottom = 1513.0
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+text = "Create a game"
+flat = true
+
+[node name="Join Game" type="Control" parent="Lobby Menu 2"]
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 80.0
+
+[node name="Background" type="Sprite2D" parent="Lobby Menu 2/Join Game"]
+position = Vector2(287.938, 1397.95)
+rotation = -0.191986
+scale = Vector2(2.29188, 112.868)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_o6c61")
+
+[node name="Button" type="Button" parent="Lobby Menu 2/Join Game"]
+visible = false
+layout_mode = 0
+offset_left = -26.0
+offset_top = 1403.0
+offset_right = 587.0
+offset_bottom = 1513.0
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+text = "Server list"
+flat = true
+
+[node name="Text" type="RichTextLabel" parent="Lobby Menu 2/Join Game"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 1436.0
+offset_right = 569.0
+offset_bottom = 1466.0
+rotation = -0.191986
+theme = ExtResource("4_vx4dw")
+bbcode_enabled = true
+text = "Server list:"
+fit_content = true
+scroll_active = false
+
+[node name="Server List" type="VBoxContainer" parent="Lobby Menu 2"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1433.0
+offset_right = 576.0
+offset_bottom = 1822.0
+
+[node name="Server" type="Control" parent="Lobby Menu 2/Server List"]
+custom_minimum_size = Vector2(300, 108)
+layout_mode = 2
+
+[node name="Background" type="Sprite2D" parent="Lobby Menu 2/Server List/Server"]
+position = Vector2(286.974, 116.049)
+rotation = -0.191986
+scale = Vector2(2.29217, 112.868)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_o6c61")
+
+[node name="Button" type="Button" parent="Lobby Menu 2/Server List/Server"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 121.0
+offset_right = 586.0
+offset_bottom = 230.0
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+text = "Test server"
+flat = true
+
+[node name="Server2" type="Control" parent="Lobby Menu 2/Server List"]
+custom_minimum_size = Vector2(300, 108)
+layout_mode = 2
+
+[node name="Background" type="Sprite2D" parent="Lobby Menu 2/Server List/Server2"]
+position = Vector2(286.974, 116.049)
+rotation = -0.191986
+scale = Vector2(2.29217, 112.868)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_o6c61")
+
+[node name="Button" type="Button" parent="Lobby Menu 2/Server List/Server2"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 121.0
+offset_right = 586.0
+offset_bottom = 230.0
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+text = "Test server"
+flat = true
+
+[node name="Direct Connect" type="Control" parent="Lobby Menu 2"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Sprite2D" parent="Lobby Menu 2/Direct Connect"]
+position = Vector2(287.938, 1427.31)
+rotation = -0.191986
+scale = Vector2(2.29188, 171.592)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_o6c61")
+
+[node name="Text" type="RichTextLabel" parent="Lobby Menu 2/Direct Connect"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 1422.0
+offset_right = 214.0
+offset_bottom = 1482.0
+rotation = -0.191986
+theme = ExtResource("4_vx4dw")
+bbcode_enabled = true
+text = "Direct connect:"
+fit_content = true
+scroll_active = false
+
+[node name="IP" type="LineEdit" parent="Lobby Menu 2/Direct Connect"]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 1397.0
+offset_right = 553.0
+offset_bottom = 1435.0
+rotation = -0.191986
+theme = ExtResource("4_vx4dw")
+placeholder_text = "Server Ip"
+max_length = 30
+context_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+flat = true
+
+[node name="Button" type="Button" parent="Lobby Menu 2/Direct Connect"]
+layout_mode = 0
+offset_left = -22.0
+offset_top = 1511.0
+offset_right = 590.0
+offset_bottom = 1573.0
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+text = "Connect"
+flat = true
+
+[node name="Back" type="Control" parent="Lobby Menu 2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -17.0
+offset_top = 758.0
+offset_right = 23.0
+offset_bottom = 798.0
+
+[node name="Background" type="Sprite2D" parent="Lobby Menu 2/Back"]
+position = Vector2(310.5, 674.978)
+rotation = -0.191986
+scale = Vector2(2.48525, 177.644)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_j4o4v")
+
+[node name="Back" type="Button" parent="Lobby Menu 2/Back"]
+layout_mode = 0
+offset_left = -35.0
+offset_top = 653.0
+offset_right = 637.0
+offset_bottom = 829.0
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+text = "Go back"
+
+[node name="Lobby Menu Pre" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -566.0
+offset_top = 260.0
+offset_right = -566.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="RichTextLabel" parent="Lobby Menu Pre"]
+layout_mode = 0
+offset_left = 765.0
+offset_top = -138.0
+offset_right = 955.0
+offset_bottom = -103.0
+theme = ExtResource("4_vx4dw")
+theme_override_colors/default_color = Color(0.0234375, 0.0231628, 0.0231628, 1)
+text = "ROBO BALL"
+
+[node name="Single" type="Control" parent="Lobby Menu Pre"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 566.0
+offset_top = 24.0
+offset_right = 606.0
+offset_bottom = 64.0
+size_flags_horizontal = 0
+
+[node name="Single Menu" type="Sprite2D" parent="Lobby Menu Pre/Single"]
+position = Vector2(311.14, 102.471)
+rotation = -0.191986
+scale = Vector2(2.48174, 341.963)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_ywdsh")
+
+[node name="Single" type="Button" parent="Lobby Menu Pre/Single"]
+auto_translate_mode = 1
+layout_mode = 2
+offset_left = 199.0
+offset_top = 162.0
+offset_right = 413.0
+offset_bottom = 236.0
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+theme_override_colors/font_hover_color = Color(0.129412, 0.619608, 0.737255, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Play
+"
+icon = ExtResource("5_8xqiv")
+flat = true
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Title" type="RichTextLabel" parent="Lobby Menu Pre/Single"]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 6.0
+offset_right = 548.0
+offset_bottom = 58.0
+theme = ExtResource("4_vx4dw")
+theme_override_colors/default_color = Color(0.917969, 0.401841, 0.297623, 1)
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "Singleplayer"
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Lobby Menu Pre/Single"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 86.0
+offset_right = 553.0
+offset_bottom = 160.0
+theme = ExtResource("4_vx4dw")
+bbcode_enabled = true
+text = "[center] Play agains a machine in 1vs1 matches"
+
+[node name="Multi" type="Control" parent="Lobby Menu Pre"]
+anchors_preset = 0
+offset_left = 566.0
+offset_top = 417.0
+offset_right = 606.0
+offset_bottom = 457.0
+
+[node name="Multi Menu" type="Sprite2D" parent="Lobby Menu Pre/Multi"]
+position = Vector2(311.14, 106.471)
+rotation = -0.191986
+scale = Vector2(2.48174, 341.963)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_35po6")
+
+[node name="Title" type="RichTextLabel" parent="Lobby Menu Pre/Multi"]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 6.0
+offset_right = 548.0
+offset_bottom = 58.0
+theme = ExtResource("4_vx4dw")
+theme_override_colors/default_color = Color(0.0180054, 0.746932, 0.921875, 1)
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "Multiplayer"
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Lobby Menu Pre/Multi"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 86.0
+offset_right = 553.0
+offset_bottom = 160.0
+theme = ExtResource("4_vx4dw")
+bbcode_enabled = true
+text = "[center] Play agains another player in 1vs1 matches"
+
+[node name="Multi" type="Button" parent="Lobby Menu Pre/Multi"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 199.0
+offset_top = 162.0
+offset_right = 413.0
+offset_bottom = 236.0
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+theme_override_colors/font_hover_color = Color(0.784314, 0.376471, 0.294118, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Play
+"
+icon = ExtResource("6_m4aqn")
+flat = true
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Settings" type="HBoxContainer" parent="Lobby Menu Pre"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 566.0
+offset_top = 899.0
+offset_right = 1142.0
+offset_bottom = 963.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Button" type="Button" parent="Lobby Menu Pre/Settings"]
+layout_mode = 2
+text = "Sound"
+
+[node name="Button2" type="Button" parent="Lobby Menu Pre/Settings"]
+layout_mode = 2
+text = "Sensitividad"
+
+[node name="Button4" type="Button" parent="Lobby Menu Pre/Settings"]
+layout_mode = 2
+text = "Como jugar"
+
+[node name="Button3" type="Button" parent="Lobby Menu Pre/Settings"]
+layout_mode = 2
+text = "Creditos"
+
+[node name="animation_manager" type="Node" parent="." node_paths=PackedStringArray("lobby_menu_single", "lobby_menu_multi", "lobby_menu_settings", "lobby_menu_name_selector", "lobby_menu_create_game", "lobby_menu_back", "lobby_menu_server", "lobby_menu_server_list", "lobby_menu_direct_connect")]
+script = ExtResource("7_dfw6r")
+lobby_menu_single = NodePath("../Lobby Menu Pre/Single")
+lobby_menu_multi = NodePath("../Lobby Menu Pre/Multi")
+lobby_menu_settings = NodePath("../Lobby Menu Pre/Settings")
+lobby_menu_name_selector = NodePath("../Lobby Menu 2/Name Selector")
+lobby_menu_create_game = NodePath("../Lobby Menu 2/Host Game")
+lobby_menu_back = NodePath("../Lobby Menu 2/Back")
+lobby_menu_server = NodePath("../Lobby Menu 2/Join Game")
+lobby_menu_server_list = NodePath("../Lobby Menu 2/Server List")
+lobby_menu_direct_connect = NodePath("../Lobby Menu 2/Direct Connect")
+
+[connection signal="go_back_main_menu" from="." to="animation_manager" method="_on_lobby_go_back_main_menu"]
 [connection signal="pressed" from="Lobby Menu/Host" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="Lobby Menu/Join" to="." method="_on_join_button_pressed"]
 [connection signal="text_changed" from="Lobby Menu/Ip" to="." method="_on_ip_text_changed"]
 [connection signal="pressed" from="Lobby Menu/List" to="." method="_on_list_pressed"]
-[connection signal="pressed" from="Lobby Menu/List_WAN" to="." method="_on_list_pressed"]
 [connection signal="pressed" from="Lobby Menu/Back" to="." method="_on_back_title_pressed"]
 [connection signal="pressed" from="Players Menu/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Players Menu/Start" to="." method="_on_start_pressed"]
@@ -258,8 +650,8 @@ one_shot = true
 [connection signal="server_found" from="Server List LAN/Server Browser" to="." method="_on_server_browser_server_found"]
 [connection signal="timeout" from="Server List LAN/Server Browser/BroadcastTimer" to="Server List LAN/Server Browser" method="_on_broadcast_timer_timeout"]
 [connection signal="pressed" from="Server List LAN/Back" to="." method="_on_server_list_back_pressed"]
-[connection signal="pressed" from="Server List WAN/HBoxContainer/TextureRect/Reload" to="." method="_on_reload_pressed"]
-[connection signal="server_found" from="Server List WAN/Server Browser" to="." method="_on_server_browser_server_found"]
-[connection signal="timeout" from="Server List WAN/Server Browser/BroadcastTimer" to="Server List WAN/Server Browser" method="_on_broadcast_timer_timeout"]
-[connection signal="pressed" from="Server List WAN/Back" to="." method="_on_server_list_back_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="text_changed" from="Lobby Menu 2/Name Selector/Name" to="." method="_on_name_text_changed"]
+[connection signal="text_changed" from="Lobby Menu 2/Direct Connect/IP" to="." method="_on_name_text_changed"]
+[connection signal="pressed" from="Lobby Menu 2/Back/Back" to="." method="_on_back_title_pressed"]
+[connection signal="back_to_menu" from="animation_manager" to="." method="_on_animation_manager_back_to_menu"]

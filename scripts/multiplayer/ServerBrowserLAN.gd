@@ -10,6 +10,7 @@ const BROADCAST_PORT = 7002
 # Esta es la direccion de multicast valida con mi configuracion de red actual.
 # Podria ser diferente en otras redes: 255.255.255.255 deberia valer para todas.
 const BROADCAST_ADDRESS = "192.168.1.255"
+#const BROADCAST_ADDRESS = "255.255.255.255"
 
 var room_info: Dictionary = {"name": "Name", "count": 0}
 # Manually send UDP Packets

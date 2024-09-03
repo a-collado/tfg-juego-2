@@ -1,9 +1,8 @@
 extends Control
 
-@onready var menu_lobby: Container = $"Lobby Menu"
-@onready var text_name: LineEdit = $"Lobby Menu/Name"
+signal go_back_main_menu
+
 @onready var text_ip: LineEdit = $"Lobby Menu/Ip"
-@onready var button_host: Button = $"Lobby Menu/Host"
 @onready var button_join: Button = $"Lobby Menu/Join"
 
 @onready var menu_host: Container = $"Players Menu"
@@ -16,6 +15,11 @@ extends Control
 @onready var menu_server_list: Container = $"Server List LAN"
 @onready var menu_servers: Container = $"Server List LAN/List"
 
+@export_group("Main Menu")
+@export var text_name: LineEdit
+@export var menu_lobby: Control
+@export var button_host: Button
+
 @export_file("*.tscn") var game_scene_path: String = "res://scenes/game-mp.tscn"
 @export_file("*.tscn") var start_screen_scene_path: String = "res://scenes/startScreen.tscn"
 
@@ -23,6 +27,7 @@ func _ready() -> void:
 	Lobby.player_connected.connect(_on_player_connected)
 	Lobby.player_disconnected.connect(_on_player_disconnected)
 	Lobby.server_disconnected.connect(_on_server_disconnected)
+	text_name.text = Settings.get_config(Settings.CONFIG_NAMES.name)
 	button_start.disabled = true
 
 func _on_host_button_pressed() -> void:
@@ -83,6 +88,7 @@ func _clean_server_list() -> void:
 		n.queue_free()
 
 func _on_name_text_changed(new_text: String) -> void:
+	#Settings.set_config("name", new_text)
 	if (new_text == ""):
 		button_host.disabled = true
 		button_join.disabled = true
@@ -120,4 +126,8 @@ func _on_reload_pressed() -> void:
 	server_browser.set_up_listening()
 
 func _on_back_title_pressed() -> void:
+	go_back_main_menu.emit()
+
+func _on_animation_manager_back_to_menu() -> void:
 	get_tree().change_scene_to_file(start_screen_scene_path)
+
