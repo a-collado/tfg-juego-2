@@ -2,8 +2,6 @@ extends Control
 
 signal go_back_main_menu
 
-@onready var text_ip: LineEdit = $"Lobby Menu/Ip"
-@onready var button_join: Button = $"Lobby Menu/Join"
 
 @onready var menu_host: Container = $"Players Menu"
 @onready var text_host_player1: Label = $"Players Menu/Player 1"
@@ -19,6 +17,8 @@ signal go_back_main_menu
 @export var text_name: LineEdit
 @export var menu_lobby: Control
 @export var button_host: Button
+@export var text_ip: LineEdit
+@export var button_join: Button
 
 @export_file("*.tscn") var game_scene_path: String = "res://scenes/game-mp.tscn"
 @export_file("*.tscn") var start_screen_scene_path: String = "res://scenes/startScreen.tscn"
@@ -128,10 +128,10 @@ func _on_reload_pressed() -> void:
 	server_browser.set_up_listening()
 
 func _on_back_title_pressed() -> void:
-	ResourceLoader.load_threaded_request(start_screen_scene_path)
 	go_back_main_menu.emit()
 
 func _on_animation_manager_back_to_menu() -> void:
+	ResourceLoader.load_threaded_request(start_screen_scene_path)
 	change_scene = true
 
 func _process(_delta):

@@ -23,12 +23,8 @@ func _ready() -> void:
 	tween.tween_property(lobby_menu_single, "position:y", 1045, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(lobby_menu_settings, "position:y", 1300, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 
-	tween.tween_property(lobby_menu_name_selector, "position:y",-1050, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(lobby_menu_create_game, "position:y",-930, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(lobby_menu_back, "position:y",475, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(lobby_menu_server, "position:y",-809, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(lobby_menu_server_list, "position:y",585, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(lobby_menu_direct_connect, "position:y", -460, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	_set_lobby_menu_in_place(tween)
+
 
 func _on_lobby_go_back_main_menu() -> void:
 	var tween = create_tween()
@@ -47,3 +43,11 @@ func _on_lobby_go_back_main_menu() -> void:
 
 func _go_back_to_menu():
 	back_to_menu.emit()
+
+func _set_lobby_menu_in_place(tween: Tween):
+	tween.tween_property(lobby_menu_name_selector, "position:y",-1050, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(lobby_menu_create_game, "position:y",-930, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(lobby_menu_back, "position:y",475, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(lobby_menu_server, "position:y",-809, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(lobby_menu_server_list, "position:y",585, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(lobby_menu_direct_connect, "position:y", -460, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)

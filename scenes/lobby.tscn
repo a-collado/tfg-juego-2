@@ -37,13 +37,15 @@ colors = PackedColorArray(0.933333, 0.152941, 0.278431, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_35po6"]
 gradient = SubResource("Gradient_k2pmu")
 
-[node name="Lobby" type="Control" node_paths=PackedStringArray("text_name", "menu_lobby", "button_host")]
+[node name="Lobby" type="Control" node_paths=PackedStringArray("text_name", "menu_lobby", "button_host", "text_ip", "button_join")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_hmgxf")
 text_name = NodePath("Lobby Menu 2/Name Selector/Name")
 menu_lobby = NodePath("Lobby Menu 2")
 button_host = NodePath("Lobby Menu 2/Host Game/Host")
+text_ip = NodePath("Lobby Menu 2/Direct Connect/IP")
+button_join = NodePath("Lobby Menu 2/Direct Connect/Direct Connect")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -420,7 +422,7 @@ middle_mouse_paste_enabled = false
 drag_and_drop_selection_enabled = false
 flat = true
 
-[node name="Button" type="Button" parent="Lobby Menu 2/Direct Connect"]
+[node name="Direct Connect" type="Button" parent="Lobby Menu 2/Direct Connect"]
 layout_mode = 0
 offset_left = -22.0
 offset_top = 1511.0
