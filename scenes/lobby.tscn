@@ -37,15 +37,21 @@ colors = PackedColorArray(0.933333, 0.152941, 0.278431, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_35po6"]
 gradient = SubResource("Gradient_k2pmu")
 
-[node name="Lobby" type="Control" node_paths=PackedStringArray("text_name", "menu_lobby", "button_host", "text_ip", "button_join")]
+[node name="Lobby" type="Control" node_paths=PackedStringArray("text_name", "menu_lobby", "button_host", "text_ip", "button_join", "button_start", "text_host_player1", "text_host_player2", "menu_servers")]
 layout_mode = 3
 anchors_preset = 0
+offset_top = -1.0
+offset_bottom = -1.0
 script = ExtResource("1_hmgxf")
 text_name = NodePath("Lobby Menu 2/Name Selector/Name")
 menu_lobby = NodePath("Lobby Menu 2")
 button_host = NodePath("Lobby Menu 2/Host Game/Host")
 text_ip = NodePath("Lobby Menu 2/Direct Connect/IP")
 button_join = NodePath("Lobby Menu 2/Direct Connect/Direct Connect")
+button_start = NodePath("Players Menu 2/Start/Start")
+text_host_player1 = NodePath("Players Menu 2/Player 1/Player 1")
+text_host_player2 = NodePath("Players Menu 2/Player 2/Player 2")
+menu_servers = NodePath("Lobby Menu 2/Server List")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -302,19 +308,6 @@ scale = Vector2(2.29188, 112.868)
 skew = 0.191986
 texture = SubResource("GradientTexture1D_o6c61")
 
-[node name="Button" type="Button" parent="Lobby Menu 2/Join Game"]
-visible = false
-layout_mode = 0
-offset_left = -26.0
-offset_top = 1403.0
-offset_right = 587.0
-offset_bottom = 1513.0
-rotation = -0.191986
-focus_mode = 0
-theme = ExtResource("4_vx4dw")
-text = "Server list"
-flat = true
-
 [node name="Text" type="RichTextLabel" parent="Lobby Menu 2/Join Game"]
 layout_mode = 0
 offset_left = 32.0
@@ -328,58 +321,24 @@ text = "Server list:"
 fit_content = true
 scroll_active = false
 
+[node name="Reload" type="Button" parent="Lobby Menu 2/Join Game"]
+layout_mode = 0
+offset_left = 415.0
+offset_top = 1357.0
+offset_right = 553.0
+offset_bottom = 1395.0
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+text = "Reload"
+flat = true
+
 [node name="Server List" type="VBoxContainer" parent="Lobby Menu 2"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1433.0
 offset_right = 576.0
 offset_bottom = 1822.0
-
-[node name="Server" type="Control" parent="Lobby Menu 2/Server List"]
-custom_minimum_size = Vector2(300, 108)
-layout_mode = 2
-
-[node name="Background" type="Sprite2D" parent="Lobby Menu 2/Server List/Server"]
-position = Vector2(286.974, 116.049)
-rotation = -0.191986
-scale = Vector2(2.29217, 112.868)
-skew = 0.191986
-texture = SubResource("GradientTexture1D_o6c61")
-
-[node name="Button" type="Button" parent="Lobby Menu 2/Server List/Server"]
-layout_mode = 0
-offset_left = -18.0
-offset_top = 121.0
-offset_right = 586.0
-offset_bottom = 230.0
-rotation = -0.191986
-focus_mode = 0
-theme = ExtResource("4_vx4dw")
-text = "Test server"
-flat = true
-
-[node name="Server2" type="Control" parent="Lobby Menu 2/Server List"]
-custom_minimum_size = Vector2(300, 108)
-layout_mode = 2
-
-[node name="Background" type="Sprite2D" parent="Lobby Menu 2/Server List/Server2"]
-position = Vector2(286.974, 116.049)
-rotation = -0.191986
-scale = Vector2(2.29217, 112.868)
-skew = 0.191986
-texture = SubResource("GradientTexture1D_o6c61")
-
-[node name="Button" type="Button" parent="Lobby Menu 2/Server List/Server2"]
-layout_mode = 0
-offset_left = -18.0
-offset_top = 121.0
-offset_right = 586.0
-offset_bottom = 230.0
-rotation = -0.191986
-focus_mode = 0
-theme = ExtResource("4_vx4dw")
-text = "Test server"
-flat = true
 
 [node name="Direct Connect" type="Control" parent="Lobby Menu 2"]
 anchors_preset = 0
@@ -431,6 +390,7 @@ offset_bottom = 1573.0
 rotation = -0.191986
 focus_mode = 0
 theme = ExtResource("4_vx4dw")
+disabled = true
 text = "Connect"
 flat = true
 
@@ -460,6 +420,122 @@ focus_mode = 0
 theme = ExtResource("4_vx4dw")
 text = "Go back"
 
+[node name="Players Menu 2" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Control" parent="Players Menu 2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -608.0
+offset_top = 335.0
+offset_right = -568.0
+offset_bottom = 375.0
+
+[node name="Background" type="Sprite2D" parent="Players Menu 2/Title"]
+position = Vector2(287.971, 4.40977)
+rotation = -0.191986
+scale = Vector2(2.29188, 112.868)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_o6c61")
+
+[node name="Text" type="RichTextLabel" parent="Players Menu 2/Title"]
+layout_mode = 0
+offset_left = 0.0327759
+offset_top = 49.4598
+offset_right = 578.033
+offset_bottom = 79.4598
+rotation = -0.191986
+theme = ExtResource("4_vx4dw")
+bbcode_enabled = true
+text = "[center][shake rate=5.0 level=6 connected=1]Preparing the game..."
+fit_content = true
+scroll_active = false
+
+[node name="Player 1" type="Control" parent="Players Menu 2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -608.0
+offset_top = 487.0
+offset_right = -568.0
+offset_bottom = 527.0
+
+[node name="Background" type="Sprite2D" parent="Players Menu 2/Player 1"]
+position = Vector2(287.971, 4.40977)
+rotation = -0.191986
+scale = Vector2(2.29188, 112.868)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_o6c61")
+
+[node name="Player 1" type="Label" parent="Players Menu 2/Player 1"]
+layout_mode = 0
+offset_left = -23.0
+offset_top = 9.0
+offset_right = 587.0
+offset_bottom = 119.0
+rotation = -0.191986
+theme = ExtResource("4_vx4dw")
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Player 2" type="Control" parent="Players Menu 2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -608.0
+offset_top = 609.0
+offset_right = -568.0
+offset_bottom = 649.0
+
+[node name="Background" type="Sprite2D" parent="Players Menu 2/Player 2"]
+position = Vector2(287.971, 4.40977)
+rotation = -0.191986
+scale = Vector2(2.29188, 112.868)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_o6c61")
+
+[node name="Player 2" type="Label" parent="Players Menu 2/Player 2"]
+layout_mode = 0
+offset_left = -23.0
+offset_top = 9.0
+offset_right = 587.0
+offset_bottom = 119.0
+rotation = -0.191986
+theme = ExtResource("4_vx4dw")
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Start" type="Control" parent="Players Menu 2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -608.0
+offset_top = 1003.0
+offset_right = -568.0
+offset_bottom = 1043.0
+
+[node name="Background" type="Sprite2D" parent="Players Menu 2/Start"]
+position = Vector2(287.971, 4.40977)
+rotation = -0.191986
+scale = Vector2(2.29188, 112.868)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_o6c61")
+
+[node name="Start" type="Button" parent="Players Menu 2/Start"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 8.0
+offset_right = 587.0
+offset_bottom = 117.0
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+text = "Start the game"
+flat = true
+
 [node name="Lobby Menu Pre" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -476,11 +552,11 @@ grow_vertical = 2
 layout_mode = 0
 offset_left = 765.0
 offset_top = -138.0
-offset_right = 955.0
+offset_right = 998.0
 offset_bottom = -103.0
 theme = ExtResource("4_vx4dw")
 theme_override_colors/default_color = Color(0.0234375, 0.0231628, 0.0231628, 1)
-text = "ROBO BALL"
+text = "ROBO BOBALL"
 
 [node name="Single" type="Control" parent="Lobby Menu Pre"]
 layout_mode = 3
@@ -628,7 +704,7 @@ text = "Como jugar"
 layout_mode = 2
 text = "Creditos"
 
-[node name="animation_manager" type="Node" parent="." node_paths=PackedStringArray("lobby_menu_single", "lobby_menu_multi", "lobby_menu_settings", "lobby_menu_name_selector", "lobby_menu_create_game", "lobby_menu_back", "lobby_menu_server", "lobby_menu_server_list", "lobby_menu_direct_connect")]
+[node name="animation_manager" type="Node" parent="." node_paths=PackedStringArray("lobby_menu_single", "lobby_menu_multi", "lobby_menu_settings", "lobby_menu_name_selector", "lobby_menu_create_game", "lobby_menu_back", "lobby_menu_server", "lobby_menu_server_list", "lobby_menu_direct_connect", "player_menu_title", "player_menu_start", "player_name_1", "player_name_2")]
 script = ExtResource("7_dfw6r")
 lobby_menu_single = NodePath("../Lobby Menu Pre/Single")
 lobby_menu_multi = NodePath("../Lobby Menu Pre/Multi")
@@ -639,8 +715,14 @@ lobby_menu_back = NodePath("../Lobby Menu 2/Back")
 lobby_menu_server = NodePath("../Lobby Menu 2/Join Game")
 lobby_menu_server_list = NodePath("../Lobby Menu 2/Server List")
 lobby_menu_direct_connect = NodePath("../Lobby Menu 2/Direct Connect")
+player_menu_title = NodePath("../Players Menu 2/Title")
+player_menu_start = NodePath("../Players Menu 2/Start")
+player_name_1 = NodePath("../Players Menu 2/Player 1")
+player_name_2 = NodePath("../Players Menu 2/Player 2")
 
 [connection signal="go_back_main_menu" from="." to="animation_manager" method="_on_lobby_go_back_main_menu"]
+[connection signal="hide_host_menu" from="." to="animation_manager" method="_on_lobby_hide_host_menu"]
+[connection signal="show_host_menu" from="." to="animation_manager" method="_on_lobby_show_host_menu"]
 [connection signal="pressed" from="Lobby Menu/Host" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="Lobby Menu/Join" to="." method="_on_join_button_pressed"]
 [connection signal="text_changed" from="Lobby Menu/Ip" to="." method="_on_ip_text_changed"]
@@ -654,6 +736,10 @@ lobby_menu_direct_connect = NodePath("../Lobby Menu 2/Direct Connect")
 [connection signal="pressed" from="Server List LAN/Back" to="." method="_on_server_list_back_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="text_changed" from="Lobby Menu 2/Name Selector/Name" to="." method="_on_name_text_changed"]
-[connection signal="text_changed" from="Lobby Menu 2/Direct Connect/IP" to="." method="_on_name_text_changed"]
+[connection signal="pressed" from="Lobby Menu 2/Host Game/Host" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="Lobby Menu 2/Join Game/Reload" to="." method="_on_reload_pressed"]
+[connection signal="text_changed" from="Lobby Menu 2/Direct Connect/IP" to="." method="_on_ip_text_changed"]
+[connection signal="pressed" from="Lobby Menu 2/Direct Connect/Direct Connect" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="Lobby Menu 2/Back/Back" to="." method="_on_back_title_pressed"]
+[connection signal="pressed" from="Players Menu 2/Start/Start" to="." method="_on_start_pressed"]
 [connection signal="back_to_menu" from="animation_manager" to="." method="_on_animation_manager_back_to_menu"]
