@@ -254,21 +254,21 @@ texture = SubResource("GradientTexture1D_o6c61")
 layout_mode = 0
 offset_left = 39.0
 offset_top = 1435.0
-offset_right = 154.0
-offset_bottom = 1465.0
+offset_right = 190.0
+offset_bottom = 1495.0
 rotation = -0.191986
 theme = ExtResource("4_vx4dw")
 bbcode_enabled = true
-text = "Name: "
+text = "TITLE_NAME"
 fit_content = true
 scroll_active = false
 
 [node name="Name" type="LineEdit" parent="Lobby Menu 2/Name Selector"]
 layout_mode = 0
-offset_left = 149.0
-offset_top = 1408.0
-offset_right = 525.0
-offset_bottom = 1446.0
+offset_left = 198.527
+offset_top = 1398.71
+offset_right = 574.527
+offset_bottom = 1436.71
 rotation = -0.191986
 theme = ExtResource("4_vx4dw")
 placeholder_text = "Enter a name"
@@ -300,7 +300,7 @@ offset_bottom = 1513.0
 rotation = -0.191986
 focus_mode = 0
 theme = ExtResource("4_vx4dw")
-text = "Create a game"
+text = "BUTTON_HOST"
 flat = true
 
 [node name="Join Game" type="Control" parent="Lobby Menu 2"]
@@ -325,7 +325,7 @@ offset_bottom = 1466.0
 rotation = -0.191986
 theme = ExtResource("4_vx4dw")
 bbcode_enabled = true
-text = "Server list:"
+text = "TITLE_SERVER_LIST"
 fit_content = true
 scroll_active = false
 
@@ -338,7 +338,8 @@ offset_bottom = 1395.0
 rotation = -0.191986
 focus_mode = 0
 theme = ExtResource("4_vx4dw")
-text = "Reload"
+theme_override_font_sizes/font_size = 16
+text = "BUTTON_RELOAD"
 flat = true
 
 [node name="Server List" type="VBoxContainer" parent="Lobby Menu 2"]
@@ -369,7 +370,7 @@ offset_bottom = 1482.0
 rotation = -0.191986
 theme = ExtResource("4_vx4dw")
 bbcode_enabled = true
-text = "Direct connect:"
+text = "TEXT_DIRECT_CONNECT"
 fit_content = true
 scroll_active = false
 
@@ -399,7 +400,7 @@ rotation = -0.191986
 focus_mode = 0
 theme = ExtResource("4_vx4dw")
 disabled = true
-text = "Connect"
+text = "BUTTON_DIRECT_CONNECT"
 flat = true
 
 [node name="Back" type="Control" parent="Lobby Menu 2"]
@@ -492,7 +493,7 @@ theme = ExtResource("4_vx4dw")
 theme_override_colors/default_color = Color(0.917969, 0.401841, 0.297623, 1)
 theme_override_font_sizes/normal_font_size = 45
 bbcode_enabled = true
-text = "[center]Singleplayer"
+text = "TITLE_SINGLEPLAYER"
 fit_content = true
 scroll_active = false
 
@@ -503,7 +504,7 @@ offset_right = 576.0
 offset_bottom = 194.0
 theme = ExtResource("4_vx4dw")
 bbcode_enabled = true
-text = "[center]Play agains a machine 					in 1vs1 matches"
+text = "TEXT_SINGLEPLAYER"
 
 [node name="Multi" type="Control" parent="Lobby Menu Pre"]
 anchors_preset = 0
@@ -528,7 +529,7 @@ theme = ExtResource("4_vx4dw")
 theme_override_colors/default_color = Color(0.0180054, 0.746932, 0.921875, 1)
 theme_override_font_sizes/normal_font_size = 45
 bbcode_enabled = true
-text = "[center]Multiplayer"
+text = "TITLE_MULTIPLAYER"
 fit_content = true
 scroll_active = false
 
@@ -539,7 +540,7 @@ offset_right = 576.0
 offset_bottom = 194.0
 theme = ExtResource("4_vx4dw")
 bbcode_enabled = true
-text = "[center] Play agains another player 	in 1vs1 matches"
+text = "TEXT_MULTIPLAYER"
 
 [node name="Settings" type="HBoxContainer" parent="Lobby Menu Pre"]
 layout_mode = 1
@@ -656,7 +657,7 @@ offset_bottom = 118.0
 rotation = -0.191986
 focus_mode = 0
 theme = ExtResource("4_vx4dw")
-text = "Configure Game"
+text = "BUTTON_CONFIGURE"
 flat = true
 
 [node name="Start" type="Control" parent="Players Menu 2"]
@@ -683,7 +684,7 @@ offset_bottom = 117.0
 rotation = -0.191986
 focus_mode = 0
 theme = ExtResource("4_vx4dw")
-text = "Start the game"
+text = "BUTTON_START_MP"
 flat = true
 
 [node name="Difficulty" type="Control" parent="Players Menu 2"]
@@ -708,7 +709,7 @@ offset_right = 293.0
 offset_bottom = 63.0
 rotation = -0.191986
 theme = ExtResource("4_vx4dw")
-text = "ball velocity"
+text = "TITLE_VELOCITY"
 fit_content = true
 scroll_active = false
 
@@ -813,7 +814,7 @@ offset_right = 296.0
 offset_bottom = 438.0
 rotation = -0.191986
 theme = ExtResource("4_vx4dw")
-text = "Points to win"
+text = "TITLE_POINTS"
 fit_content = true
 scroll_active = false
 
@@ -918,7 +919,7 @@ offset_bottom = 79.4598
 rotation = -0.191986
 theme = ExtResource("4_vx4dw")
 bbcode_enabled = true
-text = "[center][shake rate=5.0 level=6 connected=1]Preparing the game..."
+text = "TITLE_PREPARING_MP"
 fit_content = true
 scroll_active = false
 

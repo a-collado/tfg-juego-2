@@ -75,6 +75,10 @@ move_down={
 pointing/emulate_touch_from_mouse=true
 pointing/stretch/aspect="keep"
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/Traducciones/traducciones.ca.translation", "res://assets/Traducciones/traducciones.en.translation", "res://assets/Traducciones/traducciones.es.translation")
+
 [layer_names]
 
 3d_physics/layer_1="Floor"

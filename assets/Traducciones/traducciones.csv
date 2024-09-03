@@ -1,0 +1,19 @@
+key,en,es,ca
+TAP_START,[center][shake rate=20.0 level=6 connected=1]Tap to start[/shake][/center],[center][shake rate=20.0 level=6 connected=1]Pulsa para empezar[/shake][/center],[center][shake rate=20.0 level=6 connected=1]Prem per començar[/shake][/center]
+TITLE_SINGLEPLAYER,[center]Singleplayer,[center]Un jugador,[center]Singleplayer
+TITLE_MULTIPLAYER,[center]Multiplayer,[center]Multijugador,[center]Multijugador
+TEXT_SINGLEPLAYER,[center]Play agains a machine      in 1vs1 matches,[center]Juega contra la maquina    en partidos de 1 contra 1,[center]Juga contra la màquina en       partits d’1 contra 1
+TEXT_MULTIPLAYER,[center] Play agains another player  in 1vs1 matches,[center]Juega contra otro jugador     en partidos de 1 contra 1,[center]Juga contra altre jugador  en partits d’1 contra 1
+BUTTON_BACK,Go back,Ir atrás,Anar enrere
+BUTTON_PLAY,Play,Jugar,Jugar
+TITLE_VELOCITY,Ball Velocity,Velocidad de la bola,Velocitat de la bola
+TITLE_POINTS,Points to win,Puntos para ganar,Punts per guanyar
+TITLE_NAME,Name,Nombre,Nom
+BUTTON_CONFIGURE,Configure Game,Configurar partida,Configurar partida
+BUTTON_START_MP,Start the game,Comenzar la partida,Començar la partida
+TITLE_PREPARING_MP,[center][shake rate=5.0 level=6 connected=1]Preparing the game...,[center][shake rate=5.0 level=6 connected=1]Preparando la partida…,[center][shake rate=5.0 level=6 connected=1]Preparant la partida…
+BUTTON_HOST,Create a game,Crear una partida,Crear una partida
+BUTTON_RELOAD,Reload,Recargar,Recarregar
+BUTTON_DIRECT_CONNECT,Connect,Conectar,Connectar
+TITLE_SERVER_LIST,Server list:,Lista de servidores:,Llista de servidors:
+TEXT_DIRECT_CONNECT,Direct connect:,Conexión directa:,Connexió directa:
