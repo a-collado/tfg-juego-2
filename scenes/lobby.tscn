@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://uwi28k8m6bka"]
+[gd_scene load_steps=18 format=3 uid="uid://uwi28k8m6bka"]
 
 [ext_resource type="Script" path="res://scripts/multiplayer/UI_Lobby.gd" id="1_hmgxf"]
 [ext_resource type="Texture2D" uid="uid://ra0j133x6ofg" path="res://assets/Iconos/UI/reload.png" id="2_6kglo"]
 [ext_resource type="Script" path="res://scripts/multiplayer/ServerBrowserLAN.gd" id="2_cpxfv"]
 [ext_resource type="Theme" uid="uid://b6uhtsi5wy8or" path="res://assets/Recursos/Temas/default.theme" id="4_vx4dw"]
-[ext_resource type="Texture2D" uid="uid://bq7rmridto5m2" path="res://assets/Sprites/UI/space_pack/button_square_header_blade_rectangle.png" id="5_8xqiv"]
-[ext_resource type="Texture2D" uid="uid://1vttv0npj64e" path="res://assets/Sprites/UI/space_pack/button_square_header_blade_rectangle_blue.png" id="6_m4aqn"]
+[ext_resource type="ButtonGroup" uid="uid://h2uolts0b0ce" path="res://assets/Recursos/ButtonGroups/singleplayer_difficulty.tres" id="5_ugyxf"]
+[ext_resource type="ButtonGroup" uid="uid://duv5by7fnjtbh" path="res://assets/Recursos/ButtonGroups/singleplayer_goals.tres" id="6_yjhll"]
 [ext_resource type="Script" path="res://scripts/UI/animation_manager_mp.gd" id="7_dfw6r"]
 
 [sub_resource type="Gradient" id="Gradient_lpio8"]
@@ -37,7 +37,14 @@ colors = PackedColorArray(0.933333, 0.152941, 0.278431, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_35po6"]
 gradient = SubResource("Gradient_k2pmu")
 
-[node name="Lobby" type="Control" node_paths=PackedStringArray("text_name", "menu_lobby", "button_host", "text_ip", "button_join", "button_start", "text_host_player1", "text_host_player2", "menu_servers")]
+[sub_resource type="Gradient" id="Gradient_yktx2"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.933333, 0.152941, 0.278431, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a7bwm"]
+gradient = SubResource("Gradient_yktx2")
+
+[node name="Lobby" type="Control" node_paths=PackedStringArray("text_name", "menu_lobby", "button_host", "text_ip", "button_join", "button_start", "button_settings", "text_host_player1", "text_host_player2", "menu_servers")]
 layout_mode = 3
 anchors_preset = 0
 offset_top = -1.0
@@ -49,6 +56,7 @@ button_host = NodePath("Lobby Menu 2/Host Game/Host")
 text_ip = NodePath("Lobby Menu 2/Direct Connect/IP")
 button_join = NodePath("Lobby Menu 2/Direct Connect/Direct Connect")
 button_start = NodePath("Players Menu 2/Start/Start")
+button_settings = NodePath("Players Menu 2/Configure/Configure")
 text_host_player1 = NodePath("Players Menu 2/Player 1/Player 1")
 text_host_player2 = NodePath("Players Menu 2/Player 2/Player 2")
 menu_servers = NodePath("Lobby Menu 2/Server List")
@@ -420,38 +428,153 @@ focus_mode = 0
 theme = ExtResource("4_vx4dw")
 text = "Go back"
 
+[node name="Lobby Menu Pre" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -566.0
+offset_top = 260.0
+offset_right = -566.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="RichTextLabel" parent="Lobby Menu Pre"]
+layout_mode = 0
+offset_left = 765.0
+offset_top = -138.0
+offset_right = 998.0
+offset_bottom = -103.0
+theme = ExtResource("4_vx4dw")
+theme_override_colors/default_color = Color(0.0234375, 0.0231628, 0.0231628, 1)
+text = "ROBO BOBALL"
+
+[node name="Single" type="Control" parent="Lobby Menu Pre"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 566.0
+offset_top = 24.0
+offset_right = 606.0
+offset_bottom = 64.0
+size_flags_horizontal = 0
+
+[node name="Single Menu" type="Sprite2D" parent="Lobby Menu Pre/Single"]
+position = Vector2(311.14, 102.471)
+rotation = -0.191986
+scale = Vector2(2.48174, 341.963)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_ywdsh")
+
+[node name="Single" type="Button" parent="Lobby Menu Pre/Single"]
+auto_translate_mode = 1
+layout_mode = 2
+offset_left = -66.0
+offset_top = 5.0
+offset_right = 586.0
+offset_bottom = 341.0
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+theme_override_colors/font_hover_color = Color(0.129412, 0.619608, 0.737255, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+flat = true
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Title" type="RichTextLabel" parent="Lobby Menu Pre/Single"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 576.0
+offset_bottom = 92.0
+theme = ExtResource("4_vx4dw")
+theme_override_colors/default_color = Color(0.917969, 0.401841, 0.297623, 1)
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]Singleplayer"
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Lobby Menu Pre/Single"]
+layout_mode = 0
+offset_top = 120.0
+offset_right = 576.0
+offset_bottom = 194.0
+theme = ExtResource("4_vx4dw")
+bbcode_enabled = true
+text = "[center]Play agains a machine 					in 1vs1 matches"
+
+[node name="Multi" type="Control" parent="Lobby Menu Pre"]
+anchors_preset = 0
+offset_left = 566.0
+offset_top = 417.0
+offset_right = 606.0
+offset_bottom = 457.0
+
+[node name="Multi Menu" type="Sprite2D" parent="Lobby Menu Pre/Multi"]
+position = Vector2(311.14, 106.471)
+rotation = -0.191986
+scale = Vector2(2.48174, 341.963)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_35po6")
+
+[node name="Title" type="RichTextLabel" parent="Lobby Menu Pre/Multi"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 576.0
+offset_bottom = 92.0
+theme = ExtResource("4_vx4dw")
+theme_override_colors/default_color = Color(0.0180054, 0.746932, 0.921875, 1)
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]Multiplayer"
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Lobby Menu Pre/Multi"]
+layout_mode = 0
+offset_top = 120.0
+offset_right = 576.0
+offset_bottom = 194.0
+theme = ExtResource("4_vx4dw")
+bbcode_enabled = true
+text = "[center] Play agains another player 	in 1vs1 matches"
+
+[node name="Settings" type="HBoxContainer" parent="Lobby Menu Pre"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 566.0
+offset_top = 899.0
+offset_right = 1142.0
+offset_bottom = 963.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Button" type="Button" parent="Lobby Menu Pre/Settings"]
+layout_mode = 2
+text = "Sound"
+
+[node name="Button2" type="Button" parent="Lobby Menu Pre/Settings"]
+layout_mode = 2
+text = "Sensitividad"
+
+[node name="Button4" type="Button" parent="Lobby Menu Pre/Settings"]
+layout_mode = 2
+text = "Como jugar"
+
+[node name="Button3" type="Button" parent="Lobby Menu Pre/Settings"]
+layout_mode = 2
+text = "Creditos"
+
 [node name="Players Menu 2" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="Title" type="Control" parent="Players Menu 2"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -608.0
-offset_top = 335.0
-offset_right = -568.0
-offset_bottom = 375.0
-
-[node name="Background" type="Sprite2D" parent="Players Menu 2/Title"]
-position = Vector2(287.971, 4.40977)
-rotation = -0.191986
-scale = Vector2(2.29188, 112.868)
-skew = 0.191986
-texture = SubResource("GradientTexture1D_o6c61")
-
-[node name="Text" type="RichTextLabel" parent="Players Menu 2/Title"]
-layout_mode = 0
-offset_left = 0.0327759
-offset_top = 49.4598
-offset_right = 578.033
-offset_bottom = 79.4598
-rotation = -0.191986
-theme = ExtResource("4_vx4dw")
-bbcode_enabled = true
-text = "[center][shake rate=5.0 level=6 connected=1]Preparing the game..."
-fit_content = true
-scroll_active = false
 
 [node name="Player 1" type="Control" parent="Players Menu 2"]
 layout_mode = 3
@@ -509,6 +632,33 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="Configure" type="Control" parent="Players Menu 2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -608.0
+offset_top = 758.0
+offset_right = -568.0
+offset_bottom = 798.0
+
+[node name="Background" type="Sprite2D" parent="Players Menu 2/Configure"]
+position = Vector2(287.971, 4.40977)
+rotation = -0.191986
+scale = Vector2(2.29188, 112.868)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_o6c61")
+
+[node name="Configure" type="Button" parent="Players Menu 2/Configure"]
+layout_mode = 0
+offset_left = -17.0
+offset_top = 7.0
+offset_right = 586.0
+offset_bottom = 118.0
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+text = "Configure Game"
+flat = true
+
 [node name="Start" type="Control" parent="Players Menu 2"]
 layout_mode = 3
 anchors_preset = 0
@@ -536,175 +686,243 @@ theme = ExtResource("4_vx4dw")
 text = "Start the game"
 flat = true
 
-[node name="Lobby Menu Pre" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -566.0
-offset_top = 260.0
-offset_right = -566.0
-offset_bottom = 260.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Title" type="RichTextLabel" parent="Lobby Menu Pre"]
-layout_mode = 0
-offset_left = 765.0
-offset_top = -138.0
-offset_right = 998.0
-offset_bottom = -103.0
-theme = ExtResource("4_vx4dw")
-theme_override_colors/default_color = Color(0.0234375, 0.0231628, 0.0231628, 1)
-text = "ROBO BOBALL"
-
-[node name="Single" type="Control" parent="Lobby Menu Pre"]
+[node name="Difficulty" type="Control" parent="Players Menu 2"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 566.0
-offset_top = 24.0
-offset_right = 606.0
-offset_bottom = 64.0
-size_flags_horizontal = 0
+offset_top = 1401.0
+offset_right = 40.0
+offset_bottom = 1441.0
 
-[node name="Single Menu" type="Sprite2D" parent="Lobby Menu Pre/Single"]
-position = Vector2(311.14, 102.471)
+[node name="Background" type="Sprite2D" parent="Players Menu 2/Difficulty"]
+position = Vector2(310.5, -6.29229)
 rotation = -0.191986
-scale = Vector2(2.48174, 341.963)
+scale = Vector2(2.48525, 112.76)
 skew = 0.191986
-texture = SubResource("GradientTexture1D_ywdsh")
+texture = SubResource("GradientTexture1D_a7bwm")
 
-[node name="Single" type="Button" parent="Lobby Menu Pre/Single"]
-auto_translate_mode = 1
-layout_mode = 2
-offset_left = 199.0
-offset_top = 162.0
-offset_right = 413.0
-offset_bottom = 236.0
-focus_mode = 0
-theme = ExtResource("4_vx4dw")
-theme_override_colors/font_hover_color = Color(0.129412, 0.619608, 0.737255, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Play
-"
-icon = ExtResource("5_8xqiv")
-flat = true
-clip_text = true
-icon_alignment = 1
-expand_icon = true
-
-[node name="Title" type="RichTextLabel" parent="Lobby Menu Pre/Single"]
+[node name="Difficulty" type="RichTextLabel" parent="Players Menu 2/Difficulty"]
 layout_mode = 0
-offset_left = 98.0
-offset_top = 6.0
-offset_right = 548.0
-offset_bottom = 58.0
+offset_left = 16.0
+offset_top = 33.0
+offset_right = 293.0
+offset_bottom = 63.0
+rotation = -0.191986
 theme = ExtResource("4_vx4dw")
-theme_override_colors/default_color = Color(0.917969, 0.401841, 0.297623, 1)
-theme_override_font_sizes/normal_font_size = 45
-bbcode_enabled = true
-text = "Singleplayer"
+text = "ball velocity"
 fit_content = true
 scroll_active = false
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Lobby Menu Pre/Single"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 86.0
-offset_right = 553.0
-offset_bottom = 160.0
-theme = ExtResource("4_vx4dw")
-bbcode_enabled = true
-text = "[center] Play agains a machine in 1vs1 matches"
-
-[node name="Multi" type="Control" parent="Lobby Menu Pre"]
+[node name="Options" type="Control" parent="Players Menu 2/Difficulty"]
+layout_mode = 3
 anchors_preset = 0
-offset_left = 566.0
-offset_top = 417.0
-offset_right = 606.0
-offset_bottom = 457.0
+offset_left = 310.5
+offset_top = 202.15
+offset_right = 350.5
+offset_bottom = 242.15
 
-[node name="Multi Menu" type="Sprite2D" parent="Lobby Menu Pre/Multi"]
-position = Vector2(311.14, 106.471)
+[node name="Background Low" type="Sprite2D" parent="Players Menu 2/Difficulty/Options"]
+position = Vector2(0, -114.839)
 rotation = -0.191986
-scale = Vector2(2.48174, 341.963)
+scale = Vector2(2.48525, 75.9657)
 skew = 0.191986
-texture = SubResource("GradientTexture1D_35po6")
+texture = SubResource("GradientTexture1D_a7bwm")
 
-[node name="Title" type="RichTextLabel" parent="Lobby Menu Pre/Multi"]
+[node name="Low" type="Button" parent="Players Menu 2/Difficulty/Options"]
 layout_mode = 0
-offset_left = 98.0
-offset_top = 6.0
-offset_right = 548.0
-offset_bottom = 58.0
+offset_left = -347.0
+offset_top = -86.0
+offset_right = 324.0
+offset_bottom = -11.0
+rotation = -0.191986
+focus_mode = 0
 theme = ExtResource("4_vx4dw")
-theme_override_colors/default_color = Color(0.0180054, 0.746932, 0.921875, 1)
-theme_override_font_sizes/normal_font_size = 45
-bbcode_enabled = true
-text = "Multiplayer"
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+toggle_mode = true
+button_group = ExtResource("5_ugyxf")
+text = "50%"
+flat = true
+expand_icon = true
+
+[node name="Background Mid" type="Sprite2D" parent="Players Menu 2/Difficulty/Options"]
+position = Vector2(0, -39.8394)
+rotation = -0.191986
+scale = Vector2(2.48525, 75.9657)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_a7bwm")
+
+[node name="Mid" type="Button" parent="Players Menu 2/Difficulty/Options"]
+layout_mode = 0
+offset_left = -347.0
+offset_top = -11.0
+offset_right = 324.0
+offset_bottom = 64.0
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("5_ugyxf")
+text = "100%"
+flat = true
+expand_icon = true
+
+[node name="Background Top" type="Sprite2D" parent="Players Menu 2/Difficulty/Options"]
+position = Vector2(0, 35.1606)
+rotation = -0.191986
+scale = Vector2(2.48525, 75.9657)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_a7bwm")
+
+[node name="Top" type="Button" parent="Players Menu 2/Difficulty/Options"]
+layout_mode = 0
+offset_left = -347.0
+offset_top = 64.0
+offset_right = 324.0
+offset_bottom = 139.0
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+toggle_mode = true
+button_group = ExtResource("5_ugyxf")
+text = "150%"
+flat = true
+expand_icon = true
+
+[node name="Goals" type="Control" parent="Players Menu 2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 1378.0
+offset_right = 41.0
+offset_bottom = 1418.0
+
+[node name="Background" type="Sprite2D" parent="Players Menu 2/Goals"]
+position = Vector2(310.5, 363)
+rotation = -0.191986
+scale = Vector2(2.48525, 112.76)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_a7bwm")
+
+[node name="Goals" type="RichTextLabel" parent="Players Menu 2/Goals"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 408.0
+offset_right = 296.0
+offset_bottom = 438.0
+rotation = -0.191986
+theme = ExtResource("4_vx4dw")
+text = "Points to win"
 fit_content = true
 scroll_active = false
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Lobby Menu Pre/Multi"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 86.0
-offset_right = 553.0
-offset_bottom = 160.0
-theme = ExtResource("4_vx4dw")
-bbcode_enabled = true
-text = "[center] Play agains another player in 1vs1 matches"
+[node name="Options" type="Control" parent="Players Menu 2/Goals"]
+anchors_preset = 0
+offset_left = 18.0
+offset_top = 408.0
+offset_right = 58.0
+offset_bottom = 448.0
 
-[node name="Multi" type="Button" parent="Lobby Menu Pre/Multi"]
-auto_translate_mode = 1
+[node name="Background Low" type="Sprite2D" parent="Players Menu 2/Goals/Options"]
+position = Vector2(292.5, 49.194)
+rotation = -0.191986
+scale = Vector2(2.48525, 75.9657)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_a7bwm")
+
+[node name="Low" type="Button" parent="Players Menu 2/Goals/Options"]
 layout_mode = 0
-offset_left = 199.0
-offset_top = 162.0
-offset_right = 413.0
-offset_bottom = 236.0
+offset_left = -54.5
+offset_top = 78.033
+offset_right = 616.5
+offset_bottom = 153.033
+rotation = -0.191986
 focus_mode = 0
 theme = ExtResource("4_vx4dw")
-theme_override_colors/font_hover_color = Color(0.784314, 0.376471, 0.294118, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Play
-"
-icon = ExtResource("6_m4aqn")
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+toggle_mode = true
+button_group = ExtResource("6_yjhll")
+text = "5"
 flat = true
-clip_text = true
-icon_alignment = 1
 expand_icon = true
 
-[node name="Settings" type="HBoxContainer" parent="Lobby Menu Pre"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 566.0
-offset_top = 899.0
-offset_right = 1142.0
-offset_bottom = 963.0
-grow_horizontal = 2
-grow_vertical = 0
-alignment = 1
+[node name="Background Mid" type="Sprite2D" parent="Players Menu 2/Goals/Options"]
+position = Vector2(292.5, 124.194)
+rotation = -0.191986
+scale = Vector2(2.48525, 75.9657)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_a7bwm")
 
-[node name="Button" type="Button" parent="Lobby Menu Pre/Settings"]
-layout_mode = 2
-text = "Sound"
+[node name="Mid" type="Button" parent="Players Menu 2/Goals/Options"]
+layout_mode = 0
+offset_left = -54.5
+offset_top = 153.033
+offset_right = 616.5
+offset_bottom = 228.033
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("6_yjhll")
+text = "10"
+flat = true
+expand_icon = true
 
-[node name="Button2" type="Button" parent="Lobby Menu Pre/Settings"]
-layout_mode = 2
-text = "Sensitividad"
+[node name="Background Top" type="Sprite2D" parent="Players Menu 2/Goals/Options"]
+position = Vector2(292.5, 199.194)
+rotation = -0.191986
+scale = Vector2(2.48525, 75.9657)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_a7bwm")
 
-[node name="Button4" type="Button" parent="Lobby Menu Pre/Settings"]
-layout_mode = 2
-text = "Como jugar"
+[node name="Top" type="Button" parent="Players Menu 2/Goals/Options"]
+layout_mode = 0
+offset_left = -54.5
+offset_top = 228.033
+offset_right = 616.5
+offset_bottom = 303.033
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("4_vx4dw")
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+toggle_mode = true
+button_group = ExtResource("6_yjhll")
+text = "15"
+flat = true
+expand_icon = true
 
-[node name="Button3" type="Button" parent="Lobby Menu Pre/Settings"]
-layout_mode = 2
-text = "Creditos"
+[node name="Title" type="Control" parent="Players Menu 2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -608.0
+offset_top = 335.0
+offset_right = -568.0
+offset_bottom = 375.0
 
-[node name="animation_manager" type="Node" parent="." node_paths=PackedStringArray("lobby_menu_single", "lobby_menu_multi", "lobby_menu_settings", "lobby_menu_name_selector", "lobby_menu_create_game", "lobby_menu_back", "lobby_menu_server", "lobby_menu_server_list", "lobby_menu_direct_connect", "player_menu_title", "player_menu_start", "player_name_1", "player_name_2")]
+[node name="Background" type="Sprite2D" parent="Players Menu 2/Title"]
+position = Vector2(287.971, 4.40977)
+rotation = -0.191986
+scale = Vector2(2.29188, 112.868)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_o6c61")
+
+[node name="Text" type="RichTextLabel" parent="Players Menu 2/Title"]
+layout_mode = 0
+offset_left = 0.0327759
+offset_top = 49.4598
+offset_right = 578.033
+offset_bottom = 79.4598
+rotation = -0.191986
+theme = ExtResource("4_vx4dw")
+bbcode_enabled = true
+text = "[center][shake rate=5.0 level=6 connected=1]Preparing the game..."
+fit_content = true
+scroll_active = false
+
+[node name="animation_manager" type="Node" parent="." node_paths=PackedStringArray("lobby_menu_single", "lobby_menu_multi", "lobby_menu_settings", "lobby_menu_name_selector", "lobby_menu_create_game", "lobby_menu_back", "lobby_menu_server", "lobby_menu_server_list", "lobby_menu_direct_connect", "player_menu_title", "player_menu_start", "player_name_1", "player_name_2", "config", "config_velocity", "config_points")]
 script = ExtResource("7_dfw6r")
 lobby_menu_single = NodePath("../Lobby Menu Pre/Single")
 lobby_menu_multi = NodePath("../Lobby Menu Pre/Multi")
@@ -719,9 +937,14 @@ player_menu_title = NodePath("../Players Menu 2/Title")
 player_menu_start = NodePath("../Players Menu 2/Start")
 player_name_1 = NodePath("../Players Menu 2/Player 1")
 player_name_2 = NodePath("../Players Menu 2/Player 2")
+config = NodePath("../Players Menu 2/Configure")
+config_velocity = NodePath("../Players Menu 2/Difficulty")
+config_points = NodePath("../Players Menu 2/Goals")
 
 [connection signal="go_back_main_menu" from="." to="animation_manager" method="_on_lobby_go_back_main_menu"]
+[connection signal="hide_config_menu" from="." to="animation_manager" method="_on_lobby_hide_config_menu"]
 [connection signal="hide_host_menu" from="." to="animation_manager" method="_on_lobby_hide_host_menu"]
+[connection signal="show_config_menu" from="." to="animation_manager" method="_on_lobby_show_config_menu"]
 [connection signal="show_host_menu" from="." to="animation_manager" method="_on_lobby_show_host_menu"]
 [connection signal="pressed" from="Lobby Menu/Host" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="Lobby Menu/Join" to="." method="_on_join_button_pressed"]
@@ -741,5 +964,12 @@ player_name_2 = NodePath("../Players Menu 2/Player 2")
 [connection signal="text_changed" from="Lobby Menu 2/Direct Connect/IP" to="." method="_on_ip_text_changed"]
 [connection signal="pressed" from="Lobby Menu 2/Direct Connect/Direct Connect" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="Lobby Menu 2/Back/Back" to="." method="_on_back_title_pressed"]
+[connection signal="pressed" from="Players Menu 2/Configure/Configure" to="." method="_on_configure_pressed"]
 [connection signal="pressed" from="Players Menu 2/Start/Start" to="." method="_on_start_pressed"]
+[connection signal="toggled" from="Players Menu 2/Difficulty/Options/Low" to="." method="_on_low_toggled"]
+[connection signal="toggled" from="Players Menu 2/Difficulty/Options/Mid" to="." method="_on_mid_toggled"]
+[connection signal="toggled" from="Players Menu 2/Difficulty/Options/Top" to="." method="_on_top_toggled"]
+[connection signal="toggled" from="Players Menu 2/Goals/Options/Low" to="." method="_on_low_goals_toggled"]
+[connection signal="toggled" from="Players Menu 2/Goals/Options/Mid" to="." method="_on_mid_goals_toggled"]
+[connection signal="toggled" from="Players Menu 2/Goals/Options/Top" to="." method="_on_top_goals_toggled"]
 [connection signal="back_to_menu" from="animation_manager" to="." method="_on_animation_manager_back_to_menu"]

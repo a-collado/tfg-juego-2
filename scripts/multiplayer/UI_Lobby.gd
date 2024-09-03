@@ -3,6 +3,8 @@ extends Control
 signal go_back_main_menu
 signal show_host_menu
 signal hide_host_menu
+signal show_config_menu
+signal hide_config_menu
 
 @onready var menu_host: Container = $"Players Menu"
 @onready var timer: Timer = $Timer
@@ -18,6 +20,7 @@ signal hide_host_menu
 
 @export_group("Player Menu")
 @export var button_start: Button
+@export var button_settings: Button
 @export var text_host_player1: Label
 @export var text_host_player2: Label
 
@@ -31,6 +34,7 @@ var server_button = preload("res:///objects/serverButton.tscn")
 
 var change_scene: bool = false
 var player_menu: bool = false
+var settings: bool = false
 
 func _ready() -> void:
 	Lobby.player_connected.connect(_on_player_connected)
@@ -38,6 +42,7 @@ func _ready() -> void:
 	Lobby.server_disconnected.connect(_on_server_disconnected)
 	text_name.text = Settings.get_config(Settings.CONFIG_NAMES.name)
 	button_start.disabled = true
+	button_settings.disabled = true
 	server_browser.set_up_listening()
 
 func _on_host_button_pressed() -> void:
@@ -49,7 +54,8 @@ func _on_host_button_pressed() -> void:
 		#menu_lobby.hide()
 		#menu_host.show()
 		server_browser.set_up_broadcast(text_name.text)
-		#button_start.disabled = true
+		button_start.disabled = true
+		button_settings.disabled = false
 
 func _on_join_button_pressed() -> void:
 	_connect_to_server(text_ip.text)
@@ -61,6 +67,8 @@ func _on_player_connected(peer_id: int, player_info: Dictionary) -> void:
 		text_host_player2.text = player_info.name
 	if Lobby.is_server() && Lobby.players.size() == 2:
 		button_start.disabled = false
+	if Lobby.is_server():
+		button_settings.disabled = false
 
 func _on_player_disconnected(peer_id: int) -> void:
 	if peer_id == 1:
@@ -146,13 +154,20 @@ func _on_reload_pressed() -> void:
 	server_browser.set_up_listening()
 
 func _on_back_title_pressed() -> void:
-	if player_menu:
+	if player_menu and not settings:
 		_on_back_pressed()
 		server_browser.set_up_listening()
 		player_menu = false
+	elif settings:
+		settings = false
+		hide_config_menu.emit()
 	else:
 		go_back_main_menu.emit()
 
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		_on_back_title_pressed()
+	
 func _on_animation_manager_back_to_menu() -> void:
 	ResourceLoader.load_threaded_request(start_screen_scene_path)
 	change_scene = true
@@ -161,3 +176,30 @@ func _process(_delta):
 	var loading_status = ResourceLoader.load_threaded_get_status(start_screen_scene_path)
 	if change_scene and loading_status == ResourceLoader.THREAD_LOAD_LOADED:
 		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(start_screen_scene_path))
+
+func _on_configure_pressed() -> void:
+	settings = true
+	show_config_menu.emit()
+
+func _on_low_toggled(_toggled_on:bool) -> void:
+	Variables.set_difficulty.rpc(0)
+
+func _on_mid_toggled(_toggled_on:bool) -> void:
+	Variables.set_difficulty.rpc(1)
+
+func _on_top_toggled(_toggled_on:bool) -> void:
+	Variables.set_difficulty.rpc(2)
+
+func _on_low_goals_toggled(_toggled_on:bool) -> void:
+	Variables.set_goals_to_win.rpc(5)
+
+func _on_mid_goals_toggled(_toggled_on:bool) -> void:
+	Variables.set_goals_to_win.rpc(10)
+
+func _on_top_goals_toggled(_toggled_on:bool) -> void:
+	Variables.set_goals_to_win.rpc(15)
+
+@rpc("authority", "call_remote", "reliable")
+func _set_game_config(difficulty: int, goals_to_win: int) -> void:
+	Variables.difficulty = difficulty
+	Variables.goals_to_win = goals_to_win

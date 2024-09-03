@@ -84,3 +84,4 @@ func _spawn_players() -> void:
 func end_load_screen() -> void:
 	_spawn_players()
 	end_loading.emit()
+

@@ -44,3 +44,4 @@ func _on_mid_goals_toggled(_toggled_on:bool) -> void:
 
 func _on_top_goals_toggled(_toggled_on:bool) -> void:
 	Variables.goals_to_win = 15
+

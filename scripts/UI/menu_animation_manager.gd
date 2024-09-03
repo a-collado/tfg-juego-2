@@ -24,6 +24,7 @@ signal load_singleplayer
 @onready var singleplayer_nodes_difficulty: Control = $"/root/StartScreen/Singleplayer/Difficulty"
 @onready var singleplayer_nodes_goals: Control = $"/root/StartScreen/Singleplayer/Goals"
 @onready var singleplayer_nodes_back: Control = $"/root/StartScreen/Singleplayer/Back"
+@onready var singleplayer_nodes_button_start: Control = $"/root/StartScreen/Singleplayer/Start"
 
 @onready var singleplayer_difficulty_low_button: Button = $"/root/StartScreen/Singleplayer/Difficulty/Options/Low"
 @onready var singleplayer_difficulty_mid_button: Button = $"/root/StartScreen/Singleplayer/Difficulty/Options/Mid"
@@ -83,7 +84,10 @@ func _hide_main_screen():
 
 func _notification(what):
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
-		get_tree().quit()
+		if not singleplayer:
+			get_tree().quit()
+		else:
+			_on_back_pressed()
 		#get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 
 func _on_start_screen_start_singleplayer_mode() -> void:
@@ -99,6 +103,7 @@ func _on_start_screen_start_singleplayer_mode() -> void:
 		tween.tween_property(lobby_menu_multi, "position:y", 1300, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(singleplayer_nodes_goals, "position:x", 650, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(singleplayer_nodes_difficulty, "position:x", 650, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(singleplayer_nodes_button_start, "position:x", 650, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(singleplayer_nodes_back, "position:x", 650, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(settings, "position:y", 1300, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	else:
@@ -112,6 +117,7 @@ func _on_back_pressed() -> void:
 	tween.tween_property(lobby_menu_multi, "position:y", 677, 1.0).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(singleplayer_nodes_goals, "position:x", 1235, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(singleplayer_nodes_difficulty, "position:x", 0, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(singleplayer_nodes_button_start, "position:x", -5, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(singleplayer_nodes_back, "position:x", -5, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(settings, "position:y", 1159, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 

@@ -2,7 +2,6 @@ extends Node
 
 signal back_to_menu
 
-
 @export_group("Pre Nodes")
 @export var lobby_menu_single: Control
 @export var lobby_menu_multi: Control
@@ -21,6 +20,9 @@ signal back_to_menu
 @export var player_menu_start: Control
 @export var player_name_1: Control
 @export var player_name_2: Control
+@export var config: Control
+@export var config_velocity: Control
+@export var config_points: Control
 
 func _ready() -> void:
 	var tween = create_tween()
@@ -30,7 +32,6 @@ func _ready() -> void:
 	tween.tween_property(lobby_menu_settings, "position:y", 1300, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 
 	_set_lobby_menu_in_place(tween)
-
 
 func _on_lobby_go_back_main_menu() -> void:
 	var tween = create_tween()
@@ -58,7 +59,6 @@ func _set_lobby_menu_in_place(tween: Tween):
 	tween.tween_property(lobby_menu_server_list, "position:y",585, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(lobby_menu_direct_connect, "position:y", -460, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 
-
 func _on_lobby_show_host_menu() -> void:
 	var tween = create_tween()
 	tween.set_parallel(true)
@@ -72,6 +72,7 @@ func _on_lobby_show_host_menu() -> void:
 	tween.tween_property(player_menu_start, "position:x", 0, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(player_name_1, "position:x", 0, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(player_name_2, "position:x", 0, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(config, "position:x", 0, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 
 func _on_lobby_hide_host_menu() -> void:
 	var tween = create_tween()
@@ -86,3 +87,28 @@ func _on_lobby_hide_host_menu() -> void:
 	tween.tween_property(player_menu_start, "position:x", -600, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(player_name_1, "position:x", -600, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(player_name_2, "position:x", -600, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(config, "position:x", -600, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+
+func _on_lobby_show_config_menu() -> void:
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(player_menu_start, "position:y", 335, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(player_name_1, "position:y", 335, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(player_name_2, "position:y", 335, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(config, "position:y", 335, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+
+	tween.tween_property(config_velocity, "position:y", 450, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(config_points, "position:y", 415, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+
+
+func _on_lobby_hide_config_menu() -> void:
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(player_menu_start, "position:y", 1003, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(player_name_1, "position:y", 487, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(player_name_2, "position:y", 609, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(config, "position:y", 758, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+
+	tween.tween_property(config_velocity, "position:y", 1450, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(config_points, "position:y", 1415, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+

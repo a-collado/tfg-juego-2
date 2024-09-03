@@ -18,9 +18,7 @@ func kick(force: Vector3):
 			difficulty = 0.5
 		2:
 			difficulty = 1
-
 	force *= difficulty
-	print(difficulty)
 	print("Force: %s" % force)
 	if force != Vector3.ZERO and last_hit > frames_between_hits:
 		var velocity = linear_velocity / 4
