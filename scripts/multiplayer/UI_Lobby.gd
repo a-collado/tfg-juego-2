@@ -23,6 +23,8 @@ signal go_back_main_menu
 @export_file("*.tscn") var game_scene_path: String = "res://scenes/game-mp.tscn"
 @export_file("*.tscn") var start_screen_scene_path: String = "res://scenes/startScreen.tscn"
 
+var change_scene: bool = false
+
 func _ready() -> void:
 	Lobby.player_connected.connect(_on_player_connected)
 	Lobby.player_disconnected.connect(_on_player_disconnected)
@@ -126,8 +128,14 @@ func _on_reload_pressed() -> void:
 	server_browser.set_up_listening()
 
 func _on_back_title_pressed() -> void:
+	ResourceLoader.load_threaded_request(start_screen_scene_path)
 	go_back_main_menu.emit()
 
 func _on_animation_manager_back_to_menu() -> void:
-	get_tree().change_scene_to_file(start_screen_scene_path)
+	change_scene = true
 
+func _process(_delta):
+
+	var loading_status = ResourceLoader.load_threaded_get_status(start_screen_scene_path)
+	if change_scene and loading_status == ResourceLoader.THREAD_LOAD_LOADED:
+		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(start_screen_scene_path))
