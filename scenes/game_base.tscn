@@ -320,37 +320,6 @@ anchor_bottom = 0.751
 offset_top = -100.391
 offset_bottom = 99.609
 
-[node name="Loading" type="TextureRect" parent="UI"]
-auto_translate_mode = 1
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = SubResource("GradientTexture1D_afqlx")
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="UI/Loading"]
-auto_translate_mode = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -44.0
-offset_right = 150.0
-offset_bottom = 44.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-text = "Loading..."
-metadata/_edit_use_anchors_ = true
-
 [node name="Scores" type="SplitContainer" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -439,6 +408,37 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Loading" type="TextureRect" parent="UI"]
+auto_translate_mode = 1
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture1D_afqlx")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="UI/Loading"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -44.0
+offset_right = 150.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Loading..."
+metadata/_edit_use_anchors_ = true
 
 [node name="BallFuturePosition" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.949508, 3.76684)

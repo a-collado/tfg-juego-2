@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://uwi28k8m6bka"]
+[gd_scene load_steps=20 format=3 uid="uid://uwi28k8m6bka"]
 
 [ext_resource type="Script" path="res://scripts/multiplayer/UI_Lobby.gd" id="1_hmgxf"]
 [ext_resource type="Texture2D" uid="uid://ra0j133x6ofg" path="res://assets/Iconos/UI/reload.png" id="2_6kglo"]
@@ -43,6 +43,12 @@ colors = PackedColorArray(0.933333, 0.152941, 0.278431, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_a7bwm"]
 gradient = SubResource("Gradient_yktx2")
+
+[sub_resource type="Gradient" id="Gradient_csi0f"]
+offsets = PackedFloat32Array(0.996528, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1hpkg"]
+gradient = SubResource("Gradient_csi0f")
 
 [node name="Lobby" type="Control" node_paths=PackedStringArray("text_name", "menu_lobby", "button_host", "text_ip", "button_join", "button_start", "button_settings", "text_host_player1", "text_host_player2", "menu_servers")]
 layout_mode = 3
@@ -265,10 +271,10 @@ scroll_active = false
 
 [node name="Name" type="LineEdit" parent="Lobby Menu 2/Name Selector"]
 layout_mode = 0
-offset_left = 198.527
-offset_top = 1398.71
-offset_right = 574.527
-offset_bottom = 1436.71
+offset_left = 199.0
+offset_top = 1399.0
+offset_right = 559.0
+offset_bottom = 1437.0
 rotation = -0.191986
 theme = ExtResource("4_vx4dw")
 placeholder_text = "Enter a name"
@@ -941,6 +947,40 @@ player_name_2 = NodePath("../Players Menu 2/Player 2")
 config = NodePath("../Players Menu 2/Configure")
 config_velocity = NodePath("../Players Menu 2/Difficulty")
 config_points = NodePath("../Players Menu 2/Goals")
+
+[node name="Loading" type="TextureRect" parent="."]
+auto_translate_mode = 1
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_right = 589.0
+offset_bottom = 1286.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture1D_1hpkg")
+
+[node name="Label" type="Label" parent="Loading"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -44.0
+offset_right = 150.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Loading..."
+metadata/_edit_use_anchors_ = true
 
 [connection signal="go_back_main_menu" from="." to="animation_manager" method="_on_lobby_go_back_main_menu"]
 [connection signal="hide_config_menu" from="." to="animation_manager" method="_on_lobby_hide_config_menu"]

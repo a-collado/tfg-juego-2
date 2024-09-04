@@ -10,6 +10,7 @@ signal hide_config_menu
 @onready var timer: Timer = $Timer
 
 @onready var server_browser = $"Server List LAN/Server Browser"
+@onready var UI_loading = $Loading
 
 @export_group("Main Menu")
 @export var text_name: LineEdit
@@ -40,6 +41,7 @@ func _ready() -> void:
 	Lobby.player_connected.connect(_on_player_connected)
 	Lobby.player_disconnected.connect(_on_player_disconnected)
 	Lobby.server_disconnected.connect(_on_server_disconnected)
+	Lobby.load_game_signal.connect(_load_game)
 	text_name.text = Settings.get_config(Settings.CONFIG_NAMES.name)
 	button_start.disabled = true
 	button_settings.disabled = true
@@ -177,6 +179,10 @@ func _process(_delta):
 	if change_scene and loading_status == ResourceLoader.THREAD_LOAD_LOADED:
 		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(start_screen_scene_path))
 
+	loading_status = ResourceLoader.load_threaded_get_status(game_scene_path)
+	if loading_status == ResourceLoader.THREAD_LOAD_LOADED:
+		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(game_scene_path))
+
 func _on_configure_pressed() -> void:
 	settings = true
 	show_config_menu.emit()
@@ -198,3 +204,7 @@ func _on_mid_goals_toggled(_toggled_on:bool) -> void:
 
 func _on_top_goals_toggled(_toggled_on:bool) -> void:
 	Variables.set_goals_to_win.rpc(15)
+
+func _load_game(game_scene_path_signal) -> void:
+	UI_loading.visible = true
+	ResourceLoader.load_threaded_request(game_scene_path_signal)
