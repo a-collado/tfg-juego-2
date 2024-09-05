@@ -89,46 +89,6 @@ viewport_path = NodePath("hitManager/SubViewport")
 transform = Transform3D(6.98928, 0, 0, 0, 6.98928, 0, 0, 0, 6.98928, 0, 0, 0)
 script = ExtResource("2_mtiaa")
 
-[node name="Skeleton3D" parent="root" index="0"]
-bones/2/rotation = Quaternion(-0.0413628, -0.364968, -0.012552, 0.930016)
-bones/3/rotation = Quaternion(0.047524, 0.0388992, -0.0102325, 0.99806)
-bones/4/rotation = Quaternion(0.094686, 0.0802133, -0.016608, 0.992131)
-bones/5/rotation = Quaternion(0.0823086, 0.0805927, -0.0156798, 0.993219)
-bones/6/rotation = Quaternion(0.011284, -0.010776, 0.00154934, 0.999877)
-bones/7/rotation = Quaternion(0.0165469, 0.175327, -0.0197182, 0.984174)
-bones/11/rotation = Quaternion(0.471404, 0.515776, -0.505811, 0.505874)
-bones/12/rotation = Quaternion(0.591276, -0.0988662, 0.00838331, 0.800342)
-bones/13/rotation = Quaternion(0.0270153, 0.053958, 0.415727, 0.907485)
-bones/14/rotation = Quaternion(-0.11418, 0.180597, -0.0138474, 0.976809)
-bones/15/rotation = Quaternion(0.260258, 0.209802, 0.262057, 0.905304)
-bones/16/rotation = Quaternion(-0.00170883, 0.134028, -0.0323216, 0.990449)
-bones/19/rotation = Quaternion(0.042396, -0.0276551, 0.0912453, 0.994541)
-bones/20/rotation = Quaternion(0.154787, 0.00412338, -0.010949, 0.987879)
-bones/23/rotation = Quaternion(0.129582, -0.0235612, -0.0458605, 0.990227)
-bones/24/rotation = Quaternion(0.201369, 0.0119657, 0.00723235, 0.979416)
-bones/27/rotation = Quaternion(0.295777, -0.0280532, -0.126305, 0.946455)
-bones/28/rotation = Quaternion(0.347864, 0.0118052, 0.0392775, 0.936648)
-bones/31/rotation = Quaternion(0.516469, -0.470754, 0.477542, 0.532546)
-bones/32/rotation = Quaternion(0.551764, 0.0549855, 0.2189, 0.80288)
-bones/33/rotation = Quaternion(0.0902101, 0.0140849, -0.358348, 0.929113)
-bones/34/rotation = Quaternion(0.110224, -0.101588, -0.0554405, 0.987146)
-bones/35/rotation = Quaternion(0.174418, -0.0754547, -0.300343, 0.934708)
-bones/36/rotation = Quaternion(0.0698321, -0.12757, 0.205028, 0.967891)
-bones/39/rotation = Quaternion(0.0335319, 0.0316701, -0.0201922, 0.998732)
-bones/40/rotation = Quaternion(0.145528, -0.00507254, 0.0150794, 0.989226)
-bones/43/rotation = Quaternion(0.107457, 0.0361448, -0.00319244, 0.993547)
-bones/44/rotation = Quaternion(0.280192, -0.0115522, -0.00668679, 0.959851)
-bones/47/rotation = Quaternion(0.201734, 0.00039872, 0.0648609, 0.97729)
-bones/48/rotation = Quaternion(0.359065, -0.0126875, -0.0584532, 0.931394)
-bones/51/rotation = Quaternion(0.0690695, 0.238187, 0.961806, -0.115869)
-bones/52/rotation = Quaternion(-0.309299, 0.12889, -0.017596, 0.942025)
-bones/53/rotation = Quaternion(0.568519, -0.0544414, -0.0577573, 0.818832)
-bones/54/rotation = Quaternion(0.192141, -0.0155063, 0.0981738, 0.976321)
-bones/56/rotation = Quaternion(-0.133585, -0.092061, 0.978903, 0.12421)
-bones/57/rotation = Quaternion(-0.232927, 0.0630116, -0.0764794, 0.967432)
-bones/58/rotation = Quaternion(0.702359, 0.130753, 0.151345, 0.683148)
-bones/59/rotation = Quaternion(0.184301, 0.0352667, -0.124687, 0.974291)
-
 [node name="ankle_low" parent="root/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("3_qw35q")
 
@@ -200,6 +160,9 @@ surface_material_override/0 = ExtResource("3_qw35q")
 
 [node name="wrist_low" parent="root/Skeleton3D" index="24"]
 surface_material_override/0 = ExtResource("3_qw35q")
+
+[node name="Sprite3D" parent="root" index="3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.0601775, 0)
 
 [node name="hitArea" parent="hitNodes" index="0"]
 priority = 5

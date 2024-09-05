@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://nklwmh4e4jwg"]
+[gd_scene load_steps=48 format=4 uid="uid://nklwmh4e4jwg"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_o6j03"]
 [ext_resource type="Script" path="res://scripts/player/animation_controller.gd" id="2_hjy00"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://027637t71n23" path="res://assets/Modelos 3D/trail/trail_textura_text.png" id="3_qypry"]
 [ext_resource type="Shader" uid="uid://cg1un4svx0ju" path="res://assets/Shaders/3D/mask_shaders_sprite3D.tres" id="3_xt1rb"]
 [ext_resource type="PackedScene" uid="uid://c5orexylhqra" path="res://objects/UI/chargeBar.tscn" id="4_ua3m4"]
+[ext_resource type="Texture2D" uid="uid://b432a0ft44qui" path="res://assets/Sprites/shadow.png" id="5_8v33c"]
 [ext_resource type="Texture2D" uid="uid://3ntdej8nln8l" path="res://assets/Modelos 3D/bate/Wooden Bat.png" id="6_v1f2t"]
 [ext_resource type="Script" path="res://scripts/player/camera_shaker.gd" id="10_a0h8g"]
 [ext_resource type="Script" path="res://scripts/player/vibration_manager.gd" id="11_wwuej"]
@@ -286,11 +287,13 @@ bones/16/rotation = Quaternion(-0.002837, 0.134069, -0.0319212, 0.990454)
 bones/17/rotation = Quaternion(4.73019e-08, 0.0435342, -1.1627e-08, 0.999052)
 bones/19/rotation = Quaternion(0.0298047, -0.0274621, 0.0911713, 0.99501)
 bones/20/rotation = Quaternion(0.142452, 0.00446133, -0.0120203, 0.989719)
+bones/21/rotation = Quaternion(-2.91038e-11, 1.02459e-17, 3.52048e-07, 1)
 bones/23/rotation = Quaternion(0.118347, -0.0212376, -0.0585834, 0.991015)
 bones/24/rotation = Quaternion(0.190155, 0.0120702, 0.00647458, 0.981659)
 bones/25/rotation = Quaternion(-1.35635e-06, -0.00292555, -0.000449612, 0.999996)
 bones/27/rotation = Quaternion(0.285139, -0.0228142, -0.138457, 0.948159)
 bones/28/rotation = Quaternion(0.337483, 0.0113442, 0.0394929, 0.940435)
+bones/29/rotation = Quaternion(-4.07365e-10, -7.63062e-17, -1.87317e-07, 1)
 bones/31/rotation = Quaternion(0.539188, -0.446162, 0.4842, 0.525134)
 bones/32/rotation = Quaternion(0.529826, 0.0739543, 0.22093, 0.815479)
 bones/33/rotation = Quaternion(0.0736308, 0.0394791, -0.354746, 0.931223)
@@ -300,11 +303,13 @@ bones/36/rotation = Quaternion(0.0695601, -0.12742, 0.199264, 0.969133)
 bones/37/rotation = Quaternion(-8.84919e-08, -0.0435343, 3.14176e-08, 0.999052)
 bones/39/rotation = Quaternion(0.0355628, 0.0317206, -0.0198278, 0.998667)
 bones/40/rotation = Quaternion(0.146858, -0.00496406, 0.0150008, 0.989031)
+bones/41/rotation = Quaternion(-2.91038e-11, -1.02459e-17, -3.52048e-07, 1)
 bones/43/rotation = Quaternion(0.106687, 0.0361372, -0.00323998, 0.993631)
 bones/44/rotation = Quaternion(0.264053, -0.0117308, -0.00591909, 0.964419)
 bones/45/rotation = Quaternion(-1.35271e-06, 0.00292566, 0.000449672, 0.999996)
 bones/47/rotation = Quaternion(0.201402, 0.000431515, 0.0646493, 0.977373)
 bones/48/rotation = Quaternion(0.351193, -0.012334, -0.0581992, 0.934411)
+bones/49/rotation = Quaternion(-4.07365e-10, 7.63062e-17, 1.87317e-07, 1)
 bones/51/rotation = Quaternion(0.0685084, 0.245011, 0.959798, -0.118589)
 bones/52/rotation = Quaternion(-0.312391, 0.128551, -0.0180501, 0.941042)
 bones/53/rotation = Quaternion(0.56857, -0.0565006, -0.0602954, 0.818475)
@@ -322,8 +327,16 @@ libraries = {
 
 [node name="Bate" type="MeshInstance3D" parent="root"]
 transform = Transform3D(22.8372, -5.76771, -0.356914, 5.80434, 21.1987, 2.53892, -1.01109, -8.57907, 6.51356, -0.274501, 0.366392, -0.0385333)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_e7mdx")
 skeleton = NodePath("")
+
+[node name="Sprite3D" type="Sprite3D" parent="root"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.0945484, 0)
+shaded = true
+double_sided = false
+alpha_antialiasing_mode = 1
+texture = ExtResource("5_8v33c")
 
 [node name="hitNodes" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.145832)
