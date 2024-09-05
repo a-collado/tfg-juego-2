@@ -22,6 +22,9 @@ current = true
 fov = 40.0
 size = 18.0
 
+[node name="DirectionalLight3D_SUN" parent="Lights" index="0"]
+light_angular_distance = 0.31
+
 [node name="Player" parent="Team A" index="0" instance=ExtResource("2_3xraw")]
 transform = Transform3D(-1.90187, 0, -1.66266e-07, 0, 1.90187, 0, 1.66266e-07, 0, -1.90187, 0.020771, 0.0492714, 10.7877)
 
@@ -49,7 +52,7 @@ offset_right = 565.0
 offset_bottom = 60.0
 text = "Return Ball"
 
-[node name="Pause" parent="UI" index="7"]
+[node name="Pause" parent="UI" index="6"]
 process_mode = 3
 
 [node name="Marker3D" type="Marker3D" parent="." index="6"]

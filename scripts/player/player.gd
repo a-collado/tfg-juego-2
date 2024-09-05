@@ -10,6 +10,9 @@ const SPEED = 10.0
 ## Porcentaje de velocidad extra al caminar hacia atras
 @export_range(1,2,0.01) var backwards_speed_boost: float = 1.15
 
+@onready var enemy_material: BaseMaterial3D = preload("res://assets/Modelos 3D/jammo/materiales/jammo_enemy.material")
+@onready var player_material: BaseMaterial3D = preload("res://assets/Modelos 3D/jammo/materiales/jammo.material")
+
 @onready var team: Team = self.get_parent()
 @onready var hit_manager: HitManager = $hitManager
 @onready var animation_manager: animationManager = $animationManager
@@ -18,7 +21,7 @@ const SPEED = 10.0
 @onready var camera_shaker: CameraShaker = $cameraShakeManager
 @onready var vibrator: vibrationManager = $vibrationManager
 
-var material: ShaderMaterial
+var material: BaseMaterial3D
 
 var mult_sync: MultiplayerSynchronizer
 var virtual_joystick: VirtualJoystick
@@ -121,4 +124,7 @@ func _calc_hit_roration():
 	hit_nodes.rotation.y = -1 * gyro_rotation.x * gyro_sensibility;
 
 func set_enemy(enemy: bool):
-	material.set_shader_parameter("enemy", enemy)
+	if enemy:
+		material = enemy_material
+	else:
+		material = player_material

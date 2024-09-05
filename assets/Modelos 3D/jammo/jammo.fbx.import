@@ -21,7 +21,7 @@ nodes/import_as_skeleton_bones=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=1
+meshes/light_baking=3
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
@@ -1839,8 +1839,8 @@ _subresources={
 "use_external/path": "res://assets/Modelos 3D/jammo/materiales/new_standard_material_3d.material"
 },
 "mixbox_mat.002": {
-"use_external/enabled": false,
-"use_external/path": "res://assets/Modelos 3D/jammo/materiales/new_standard_material_3d.material"
+"use_external/enabled": true,
+"use_external/path": "res://assets/Modelos 3D/jammo/materiales/jammo.material"
 }
 }
 }
