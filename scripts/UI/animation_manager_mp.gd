@@ -45,7 +45,7 @@ func _on_lobby_go_back_main_menu() -> void:
 
 	tween.tween_property(lobby_menu_multi, "position:y",417, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(lobby_menu_single, "position:y", 24, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(lobby_menu_settings, "position:y", 899, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(lobby_menu_settings, "position:y", 1172, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.connect("finished",_go_back_to_menu)
 
 func _go_back_to_menu():

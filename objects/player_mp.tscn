@@ -38,9 +38,6 @@ properties/6/spawn = true
 properties/6/replication_mode = 1
 
 [node name="Player" instance=ExtResource("1_r5irm")]
-gyro_sensibility = null
-time_to_stop_charge = null
-backwards_speed_boost = null
 
 [node name="Skeleton3D" parent="root" index="0"]
 bones/2/rotation = Quaternion(-0.0413589, -0.364955, -0.0125446, 0.930021)

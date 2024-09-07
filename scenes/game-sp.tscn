@@ -27,9 +27,6 @@ light_angular_distance = 0.31
 
 [node name="Player" parent="Team A" index="0" instance=ExtResource("2_3xraw")]
 transform = Transform3D(-1.90187, 0, -1.66266e-07, 0, 1.90187, 0, 1.66266e-07, 0, -1.90187, 0.020771, 0.0492714, 10.7877)
-gyro_sensibility = null
-time_to_stop_charge = null
-backwards_speed_boost = null
 
 [node name="Enemy" parent="Team B" index="0" node_paths=PackedStringArray("enemy_ia_follow", "goal_to_score") instance=ExtResource("3_fvqes")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -11.9861)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://uwi28k8m6bka"]
+[gd_scene load_steps=27 format=3 uid="uid://uwi28k8m6bka"]
 
 [ext_resource type="Script" path="res://scripts/multiplayer/UI_Lobby.gd" id="1_hmgxf"]
 [ext_resource type="Script" path="res://scripts/multiplayer/ServerBrowserLAN.gd" id="2_cpxfv"]
@@ -6,6 +6,13 @@
 [ext_resource type="ButtonGroup" uid="uid://h2uolts0b0ce" path="res://assets/Recursos/ButtonGroups/singleplayer_difficulty.tres" id="5_ugyxf"]
 [ext_resource type="ButtonGroup" uid="uid://duv5by7fnjtbh" path="res://assets/Recursos/ButtonGroups/singleplayer_goals.tres" id="6_yjhll"]
 [ext_resource type="Script" path="res://scripts/UI/animation_manager_mp.gd" id="7_dfw6r"]
+[ext_resource type="Theme" uid="uid://dkf2vyif5mn0o" path="res://assets/Recursos/Temas/settings_buttons.theme" id="7_m1egu"]
+[ext_resource type="Texture2D" uid="uid://dwb74umpi8i1p" path="res://assets/Iconos/UI/speaker.svg" id="8_dgc25"]
+[ext_resource type="Texture2D" uid="uid://dqnby0yubfhpa" path="res://assets/Iconos/UI/speaker-off.svg" id="9_rcrdq"]
+[ext_resource type="Texture2D" uid="uid://b5gsrem6cmvi5" path="res://assets/Iconos/UI/settings-knobs.svg" id="10_c40w8"]
+[ext_resource type="Texture2D" uid="uid://djbyrl41w6i0a" path="res://assets/Iconos/UI/uncertainty.svg" id="11_0i1io"]
+[ext_resource type="Texture2D" uid="uid://kti1ut0csdlj" path="res://assets/Iconos/UI/info.svg" id="12_d1pyg"]
+[ext_resource type="Texture2D" uid="uid://bf13scfddca8n" path="res://assets/Iconos/UI/exit-door.svg" id="13_gtdof"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8cout"]
 
@@ -549,36 +556,6 @@ theme = ExtResource("4_vx4dw")
 bbcode_enabled = true
 text = "TEXT_MULTIPLAYER"
 
-[node name="Settings" type="HBoxContainer" parent="Lobby Menu Pre"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 566.0
-offset_top = 899.0
-offset_right = 1142.0
-offset_bottom = 963.0
-grow_horizontal = 2
-grow_vertical = 0
-alignment = 1
-
-[node name="Button" type="Button" parent="Lobby Menu Pre/Settings"]
-layout_mode = 2
-text = "Sound"
-
-[node name="Button2" type="Button" parent="Lobby Menu Pre/Settings"]
-layout_mode = 2
-text = "Sensitividad"
-
-[node name="Button4" type="Button" parent="Lobby Menu Pre/Settings"]
-layout_mode = 2
-text = "Como jugar"
-
-[node name="Button3" type="Button" parent="Lobby Menu Pre/Settings"]
-layout_mode = 2
-text = "Creditos"
-
 [node name="Players Menu 2" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
@@ -934,7 +911,7 @@ scroll_active = false
 script = ExtResource("7_dfw6r")
 lobby_menu_single = NodePath("../Lobby Menu Pre/Single")
 lobby_menu_multi = NodePath("../Lobby Menu Pre/Multi")
-lobby_menu_settings = NodePath("../Lobby Menu Pre/Settings")
+lobby_menu_settings = NodePath("../Settings")
 lobby_menu_name_selector = NodePath("../Lobby Menu 2/Name Selector")
 lobby_menu_create_game = NodePath("../Lobby Menu 2/Host Game")
 lobby_menu_back = NodePath("../Lobby Menu 2/Back")
@@ -982,6 +959,65 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "Loading..."
 metadata/_edit_use_anchors_ = true
+
+[node name="Settings" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1172.0
+offset_right = 576.0
+offset_bottom = 1232.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Sound" type="TextureButton" parent="Settings"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme = ExtResource("7_m1egu")
+toggle_mode = true
+texture_normal = ExtResource("8_dgc25")
+texture_pressed = ExtResource("9_rcrdq")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Config" type="Button" parent="Settings"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("7_m1egu")
+icon = ExtResource("10_c40w8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Tutorial" type="Button" parent="Settings"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("7_m1egu")
+icon = ExtResource("11_0i1io")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Info" type="Button" parent="Settings"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("7_m1egu")
+icon = ExtResource("12_d1pyg")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Exit" type="Button" parent="Settings"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("7_m1egu")
+icon = ExtResource("13_gtdof")
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="go_back_main_menu" from="." to="animation_manager" method="_on_lobby_go_back_main_menu"]
 [connection signal="hide_config_menu" from="." to="animation_manager" method="_on_lobby_hide_config_menu"]
