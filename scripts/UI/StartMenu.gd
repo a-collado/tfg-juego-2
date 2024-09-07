@@ -9,6 +9,9 @@ signal start_singleplayer_mode
 var loading_status: int
 
 func _ready():
+	var locale = Settings.get_config(Settings.CONFIG_NAMES.language)
+	if locale:
+		TranslationServer.set_locale(locale)
 	UI_loading.visible = false
 
 func _on_multi_pressed() -> void:
@@ -45,3 +48,5 @@ func _on_mid_goals_toggled(_toggled_on:bool) -> void:
 func _on_top_goals_toggled(_toggled_on:bool) -> void:
 	Variables.goals_to_win = 15
 
+func _on_exit_pressed() -> void:
+	get_tree().quit()

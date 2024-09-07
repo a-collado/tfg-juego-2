@@ -55,10 +55,10 @@ shader_parameter/base_color = Color(0.879556, 0.277617, 0.234684, 1)
 shader_parameter/pulse_color = Color(0.856264, 0.632947, 0.577062, 1)
 shader_parameter/speed = 1.0
 shader_parameter/scale = 10.0
-shader_parameter/distortion = 0.371
-shader_parameter/shield_power = 0.036
-shader_parameter/rim_power = 0.783
-shader_parameter/pulse_frequency = 0.127
+shader_parameter/distortion = 2.622
+shader_parameter/shield_power = 0.529
+shader_parameter/rim_power = 5.0
+shader_parameter/pulse_frequency = 10.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6e3lt"]
 albedo_color = Color(0.945281, 0.129458, 0.176349, 1)
@@ -72,11 +72,11 @@ shader = ExtResource("3_cuf5j")
 shader_parameter/base_color = Color(0, 0.5, 1, 1)
 shader_parameter/pulse_color = Color(0.5, 0.7, 1, 1)
 shader_parameter/speed = 1.0
-shader_parameter/scale = 1.0
-shader_parameter/distortion = 0.371
-shader_parameter/shield_power = 0.036
-shader_parameter/rim_power = 0.677
-shader_parameter/pulse_frequency = 0.127
+shader_parameter/scale = 10.0
+shader_parameter/distortion = 2.622
+shader_parameter/shield_power = 0.529
+shader_parameter/rim_power = 5.0
+shader_parameter/pulse_frequency = 10.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23vym"]
 albedo_color = Color(0.0977035, 0.258915, 0.435264, 1)
@@ -184,7 +184,7 @@ rings = 12
 material = SubResource("ShaderMaterial_p1lqc")
 
 [node name="Goal A" type="CSGCylinder3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.76566e-05, -0.0964174, 20.6921)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.76566e-05, -0.0964174, 17.418)
 visible = false
 material_override = SubResource("StandardMaterial3D_6e3lt")
 radius = 1.5

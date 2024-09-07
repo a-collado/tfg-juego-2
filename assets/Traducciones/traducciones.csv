@@ -17,3 +17,23 @@ BUTTON_RELOAD,Reload,Recargar,Recarregar
 BUTTON_DIRECT_CONNECT,Connect,Conectar,Connectar
 TITLE_SERVER_LIST,Server list:,Lista de servidores:,Llista de servidors:
 TEXT_DIRECT_CONNECT,Direct connect:,Conexión directa:,Connexió directa:
+TITLE_PREFERENCES,[center]Preferences,[center]Preferencias,[center]Preferenciès
+BUTTON_VM,"Master
+Volume","Volumen
+Maestro","Volum
+Mestre"
+BUTTON_MUSIC,"Music
+Volume","Volumen
+Musica","Volum
+Musica"
+BUTTON_FX,"FX
+Volume","Efectos
+Musica","Volum
+Efectes"
+BUTTON_GYRO,"Gyroscope
+Sensibility","Sensibilidad
+Giroscopio","Sensibilitat
+Giroscopi
+"
+BUTTON_VIBRATE,Vibration,Vibración,Vibracio
+BUTTON_LANGUAGE,Language,Idioma,

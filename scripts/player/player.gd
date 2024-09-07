@@ -41,6 +41,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	gyro_sensibility = Settings.get_config(Settings.CONFIG_NAMES.gyro_sens)
+	print(gyro_sensibility)
 	hit_manager.connect("hit_ball", hit_ball)
 	material = $"root/Skeleton3D/ankle_low".get_active_material(0)
 
