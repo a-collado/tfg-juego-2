@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://scripts/UI/animation_manager_mp.gd" id="7_dfw6r"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8cout"]
-load_path = "res://.godot/imported/reload.png-3c78158190c997f1ec18636b1e5a35a1.ctex"
 
 [sub_resource type="Gradient" id="Gradient_lpio8"]
 offsets = PackedFloat32Array(0)

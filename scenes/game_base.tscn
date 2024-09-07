@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://hf54dvayfhfp"]
+[gd_scene load_steps=41 format=4 uid="uid://hf54dvayfhfp"]
 
 [ext_resource type="Script" path="res://scripts/game/Team.gd" id="2_qon7g"]
 [ext_resource type="MeshLibrary" uid="uid://dc8u7nxstkwfp" path="res://assets/Modelos 3D/space station kenney/Library/space_station_library.tres" id="2_tbimu"]
@@ -9,9 +9,10 @@
 [ext_resource type="Theme" uid="uid://b6uhtsi5wy8or" path="res://assets/Recursos/Temas/default.theme" id="6_8ljby"]
 [ext_resource type="Texture2D" uid="uid://ctmifxjo5lnt6" path="res://assets/Sprites/UI/controls_pack/flatLight12.png" id="6_bwr54"]
 [ext_resource type="Script" path="res://scripts/game/Ball.gd" id="6_i326r"]
+[ext_resource type="Texture2D" uid="uid://dfkudc1o7tv4k" path="res://assets/Sprites/UI/bar_square_large.png" id="7_74jgd"]
 [ext_resource type="Script" path="res://scripts/game/score_manager.gd" id="7_ephk5"]
-[ext_resource type="Texture2D" uid="uid://bfo3wcu7igvxd" path="res://assets/Sprites/UI/space_pack/bar_square_large.png" id="7_w1pe1"]
 [ext_resource type="Shader" path="res://assets/Shaders/3D/burn_dissolve.gdshader" id="8_hyb38"]
+[ext_resource type="Script" path="res://scripts/settings_menu.gd" id="8_lpegr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut28p"]
 albedo_texture = ExtResource("2_xqrfi")
@@ -130,6 +131,13 @@ offsets = PackedFloat32Array(0.996528, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_afqlx"]
 gradient = SubResource("Gradient_lcu8q")
+
+[sub_resource type="Gradient" id="Gradient_3kh65"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.929412, 0.14902, 0.27451, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qvkph"]
+gradient = SubResource("Gradient_3kh65")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5ht4i"]
 size = Vector3(0.625565, 0.755676, 0.59552)
@@ -357,7 +365,7 @@ focus_mode = 0
 theme = ExtResource("6_8ljby")
 theme_override_font_sizes/font_size = 46
 text = "Settings"
-icon = ExtResource("7_w1pe1")
+icon = ExtResource("7_74jgd")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -372,7 +380,7 @@ focus_mode = 0
 theme = ExtResource("6_8ljby")
 theme_override_font_sizes/font_size = 46
 text = "Resume"
-icon = ExtResource("7_w1pe1")
+icon = ExtResource("7_74jgd")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -387,7 +395,7 @@ focus_mode = 0
 theme = ExtResource("6_8ljby")
 theme_override_font_sizes/font_size = 46
 text = "Quit"
-icon = ExtResource("7_w1pe1")
+icon = ExtResource("7_74jgd")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -442,6 +450,204 @@ theme_override_font_sizes/font_size = 64
 text = "Loading..."
 metadata/_edit_use_anchors_ = true
 
+[node name="Settings Screen" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -613.0
+offset_right = -613.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_lpegr")
+
+[node name="Fondo" type="Sprite2D" parent="UI/Settings Screen"]
+position = Vector2(-1.99997, 333)
+rotation = -0.191986
+scale = Vector2(2.29893, 610.15)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_qvkph")
+centered = false
+
+[node name="Ajustes" type="Control" parent="UI/Settings Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 220.07
+offset_bottom = -249.93
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="RichTextLabel" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -284.0
+offset_top = 151.0
+offset_right = 292.0
+offset_bottom = 181.0
+grow_horizontal = 2
+rotation = -0.191986
+theme = ExtResource("6_8ljby")
+bbcode_enabled = true
+text = "TITLE_PREFERENCES"
+scroll_active = false
+
+[node name="VM Slider" type="HSlider" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 195.0
+offset_right = 547.0
+offset_bottom = 211.0
+rotation = -0.191986
+focus_mode = 0
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 10
+
+[node name="VM Titulo" type="Label" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 203.0
+offset_right = 175.0
+offset_bottom = 258.0
+rotation = -0.191986
+theme = ExtResource("6_8ljby")
+theme_override_font_sizes/font_size = 22
+text = "BUTTON_VM"
+horizontal_alignment = 1
+
+[node name="Musica Slider" type="HSlider" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 271.31
+offset_right = 547.0
+offset_bottom = 287.31
+rotation = -0.191986
+focus_mode = 0
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 10
+
+[node name="Musica Titulo" type="Label" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 279.31
+offset_right = 175.0
+offset_bottom = 334.31
+rotation = -0.191986
+theme = ExtResource("6_8ljby")
+theme_override_font_sizes/font_size = 22
+text = "BUTTON_MUSIC"
+horizontal_alignment = 1
+
+[node name="Efectos Slider" type="HSlider" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 346.31
+offset_right = 547.0
+offset_bottom = 362.31
+rotation = -0.191986
+focus_mode = 0
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 10
+
+[node name="Efectos Titulo" type="Label" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 354.31
+offset_right = 175.0
+offset_bottom = 409.31
+rotation = -0.191986
+theme = ExtResource("6_8ljby")
+theme_override_font_sizes/font_size = 22
+text = "BUTTON_FX"
+horizontal_alignment = 1
+
+[node name="Giroscopio Slider" type="HSlider" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 434.0
+offset_right = 545.0
+offset_bottom = 450.0
+rotation = -0.191986
+focus_mode = 0
+max_value = 1.0
+step = 0.1
+value = 0.4
+tick_count = 10
+
+[node name="Giroscopio Titulo" type="Label" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 454.0
+offset_right = 228.0
+offset_bottom = 509.0
+rotation = -0.191986
+theme = ExtResource("6_8ljby")
+theme_override_font_sizes/font_size = 22
+text = "BUTTON_GYRO"
+horizontal_alignment = 1
+
+[node name="Vibracion Boton" type="CheckButton" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 514.0
+offset_right = 266.0
+offset_bottom = 538.0
+rotation = -0.191986
+scale = Vector2(1.5, 1.5)
+focus_mode = 0
+button_pressed = true
+
+[node name="Vibracion Titulo" type="Label" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 555.0
+offset_right = 228.0
+offset_bottom = 610.0
+rotation = -0.191986
+theme = ExtResource("6_8ljby")
+theme_override_font_sizes/font_size = 22
+text = "BUTTON_VIBRATE"
+horizontal_alignment = 1
+
+[node name="Back_aux" type="Button" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 704.0
+offset_right = 576.0
+offset_bottom = 1062.0
+focus_mode = 0
+flat = true
+
+[node name="Back_aux2" type="Button" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -216.0
+offset_right = 581.0
+offset_bottom = 90.0
+focus_mode = 0
+flat = true
+
+[node name="Back" type="Button" parent="UI/Settings Screen/Ajustes"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 604.0
+offset_right = 584.0
+offset_bottom = 722.0
+rotation = -0.191986
+focus_mode = 0
+theme = ExtResource("6_8ljby")
+text = "BUTTON_BACK"
+flat = true
+
 [node name="BallFuturePosition" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.949508, 3.76684)
 visible = false
@@ -494,5 +700,10 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 [connection signal="pressed" from="UI/Resume" to="Game Manager" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/Quit" to="Game Manager" method="_on_exit_pressed"]
 [connection signal="pressed" from="UI/Pause" to="Game Manager" method="_on_pause_pressed"]
+[connection signal="value_changed" from="UI/Settings Screen/Ajustes/VM Slider" to="UI/Settings Screen" method="_on_vm_slider_value_changed"]
+[connection signal="value_changed" from="UI/Settings Screen/Ajustes/Musica Slider" to="UI/Settings Screen" method="_on_musica_slider_value_changed"]
+[connection signal="value_changed" from="UI/Settings Screen/Ajustes/Efectos Slider" to="UI/Settings Screen" method="_on_efectos_slider_value_changed"]
+[connection signal="value_changed" from="UI/Settings Screen/Ajustes/Giroscopio Slider" to="UI/Settings Screen" method="_on_giroscopio_slider_value_changed"]
+[connection signal="toggled" from="UI/Settings Screen/Ajustes/Vibracion Boton" to="UI/Settings Screen" method="_on_vibracion_boton_toggled"]
 
 [editable path="UI/Virtual Joystick"]

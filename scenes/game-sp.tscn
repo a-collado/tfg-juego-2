@@ -27,11 +27,16 @@ light_angular_distance = 0.31
 
 [node name="Player" parent="Team A" index="0" instance=ExtResource("2_3xraw")]
 transform = Transform3D(-1.90187, 0, -1.66266e-07, 0, 1.90187, 0, 1.66266e-07, 0, -1.90187, 0.020771, 0.0492714, 10.7877)
+gyro_sensibility = null
+time_to_stop_charge = null
+backwards_speed_boost = null
 
 [node name="Enemy" parent="Team B" index="0" node_paths=PackedStringArray("enemy_ia_follow", "goal_to_score") instance=ExtResource("3_fvqes")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -11.9861)
+time_to_stop_charge = 5
 enemy_ia_follow = NodePath("../../EnemyIAFollow")
 goal_to_score = NodePath("../../Environment/Goal A")
+backwards_speed_boost = 1.15
 
 [node name="Debug" type="Control" parent="UI" index="4"]
 layout_mode = 3
@@ -54,6 +59,13 @@ text = "Return Ball"
 
 [node name="Pause" parent="UI" index="6"]
 process_mode = 3
+
+[node name="Settings Screen" parent="UI" index="9" node_paths=PackedStringArray("master_slider", "music_slider", "effects_slider", "gyro_slider", "vibration_button")]
+master_slider = NodePath("Ajustes/VM Slider")
+music_slider = NodePath("Ajustes/Musica Slider")
+effects_slider = NodePath("Ajustes/Efectos Slider")
+gyro_slider = NodePath("Ajustes/Giroscopio Slider")
+vibration_button = NodePath("Ajustes/Vibracion Boton")
 
 [node name="Marker3D" type="Marker3D" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.1064)
@@ -82,5 +94,6 @@ collision_mask = 0
 size = Vector3(1.24515, 1, 3.01562)
 
 [connection signal="pressed" from="UI/Debug/ReturnBall" to="UI/Debug" method="_on_return_ball_pressed"]
+[connection signal="pressed" from="UI/Settings Screen/Ajustes/Back" to="Team A/Player" method="_on_back_settings_pressed"]
 
 [editable path="UI/Virtual Joystick"]

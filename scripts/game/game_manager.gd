@@ -6,6 +6,7 @@ extends Node
 @onready var UI_pause_menu_resume = $"../UI/Resume"
 @onready var UI_pause_menu_settings = $"../UI/Settings"
 @onready var UI_pause_menu_quit = $"../UI/Quit"
+@onready var UI_settings = $"../UI/Settings Screen"
 
 @onready var game = $".."
 
@@ -51,7 +52,9 @@ func _on_exit_pressed():
 	_exit_to_menu()
 
 func _on_settings_pressed() -> void:
-	pass # Replace with function body.
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(UI_settings, "position:x", 0, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 
 func _on_player_disconnected(_id):
 	if is_multiplayer:
@@ -86,3 +89,10 @@ func _change_menu_visibility(visibility: bool) -> void:
 	UI_pause_menu_resume.visible = visibility
 	UI_pause_menu_settings.visible = visibility
 	UI_pause_menu_quit.visible = visibility
+
+
+func _on_settings_back_pressed() -> void:
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(UI_settings, "position:x", -600, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+

@@ -34,6 +34,8 @@ signal load_singleplayer
 @onready var singleplayer_difficulty_top_background: Sprite2D = $"/root/StartScreen/Singleplayer/Difficulty/Options/Background Top"
 
 @onready var settings_screen: Control = $"/root/StartScreen/Settings Screen"
+@onready var credits_screen: Control = $"/root/StartScreen/Creditos"
+@onready var tutorial_screen: Control = $"/root/StartScreen/Tutorial"
 
 @export var move: bool = true
 
@@ -132,3 +134,24 @@ func _on_settings_back_pressed() -> void:
 	var tween = create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(settings_screen, "position:x", -600, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+
+func _on_back_creditos_pressed() -> void:
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(credits_screen, "position:x", -600, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+
+func _on_credits_pressed() -> void:
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(credits_screen, "position:x", 0, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+
+func _on_tutorial_pressed() -> void:
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(tutorial_screen, "position:x", 0, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+
+func _on_back_tutorial_pressed() -> void:
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(tutorial_screen, "position:x", -600, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
+

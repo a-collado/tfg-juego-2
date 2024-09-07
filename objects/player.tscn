@@ -263,6 +263,9 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_o6j03")
+gyro_sensibility = null
+time_to_stop_charge = null
+backwards_speed_boost = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.904499, 0)

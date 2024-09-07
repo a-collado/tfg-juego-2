@@ -38,6 +38,9 @@ properties/6/spawn = true
 properties/6/replication_mode = 1
 
 [node name="Player" instance=ExtResource("1_r5irm")]
+gyro_sensibility = null
+time_to_stop_charge = null
+backwards_speed_boost = null
 
 [node name="Skeleton3D" parent="root" index="0"]
 bones/2/rotation = Quaternion(-0.0413589, -0.364955, -0.0125446, 0.930021)
@@ -78,6 +81,9 @@ bones/56/rotation = Quaternion(-0.133588, -0.0920088, 0.978908, 0.124205)
 bones/57/rotation = Quaternion(-0.233064, 0.0630091, -0.0765057, 0.967398)
 bones/58/rotation = Quaternion(0.702412, 0.130762, 0.151358, 0.683088)
 bones/59/rotation = Quaternion(0.184301, 0.0352651, -0.124686, 0.974291)
+
+[node name="Bate" parent="root" index="2"]
+transform = Transform3D(22.8372, -5.76771, -0.356914, 5.80434, 21.1987, 2.53892, -1.01109, -8.57907, 6.51356, -0.274501, 0.366392, -0.0385333)
 
 [node name="Sprite3D" parent="root" index="3"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.0544382, 0)
