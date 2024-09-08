@@ -8,11 +8,13 @@ signal start_singleplayer_mode
 
 var loading_status: int
 
+
 func _ready():
 	var locale = Settings.get_config(Settings.CONFIG_NAMES.language)
 	if locale:
 		TranslationServer.set_locale(locale)
 	UI_loading.visible = false
+	Music._game_exited()
 
 func _on_multi_pressed() -> void:
 	get_tree().change_scene_to_file(multi_scene_path)

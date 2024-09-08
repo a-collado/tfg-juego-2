@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://nklwmh4e4jwg"]
+[gd_scene load_steps=52 format=4 uid="uid://nklwmh4e4jwg"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_o6j03"]
 [ext_resource type="Script" path="res://scripts/player/animation_controller.gd" id="2_hjy00"]
@@ -14,6 +14,10 @@
 [ext_resource type="Script" path="res://scripts/player/camera_shaker.gd" id="10_a0h8g"]
 [ext_resource type="Script" path="res://scripts/player/vibration_manager.gd" id="11_wwuej"]
 [ext_resource type="PackedScene" uid="uid://cdfbqv27sgbbl" path="res://assets/Modelos 3D/jammo/root.tscn" id="12_y0lb5"]
+[ext_resource type="Script" path="res://scripts/player/sound_manager.gd" id="15_1u0cu"]
+[ext_resource type="AudioStream" uid="uid://divsc4lkw2gh3" path="res://assets/Audio/FX/Game/baseball_bat_swing_1.ogg" id="16_2f6v6"]
+[ext_resource type="AudioStream" uid="uid://hxokhw7otvo" path="res://assets/Audio/FX/Game/baseball_bat_swing_2.ogg" id="16_2n4f7"]
+[ext_resource type="AudioStream" uid="uid://dux4uh00bsab" path="res://assets/Audio/FX/Game/baseball_bat_swing_3.ogg" id="18_u17tp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5h0mp"]
 
@@ -443,7 +447,14 @@ script = ExtResource("10_a0h8g")
 [node name="vibrationManager" type="Node3D" parent="."]
 script = ExtResource("11_wwuej")
 
+[node name="soundManager" type="Node" parent="."]
+script = ExtResource("15_1u0cu")
+baseball_swing_1 = ExtResource("16_2f6v6")
+baseball_swing_2 = ExtResource("16_2n4f7")
+baseball_swing_3 = ExtResource("18_u17tp")
+
 [connection signal="body_entered" from="hitNodes/hitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="bat_swing_sound" from="animationManager" to="soundManager" method="_on_animation_manager_bat_swing_sound"]
 [connection signal="animation_finished" from="animationManager/AnimationTree" to="animationManager" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="animationManager/AnimationTree" to="animationManager" method="_on_animation_tree_animation_started"]
 

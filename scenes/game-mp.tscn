@@ -21,6 +21,12 @@ goal_A_pulse_color = Color(0.854902, 0.631373, 0.576471, 1)
 goal_B_base_color = Color(0, 0.501961, 1, 1)
 goal_B_pulse_color = Color(0.501961, 0.701961, 1, 1)
 
+[node name="Goal B Sphere" parent="Environment" index="4"]
+visible = false
+
+[node name="Goal B" parent="Environment" index="5"]
+visible = true
+
 [node name="Cameras" type="Node" parent="." index="1"]
 
 [node name="Camera 1" type="Camera3D" parent="Cameras" index="0"]

@@ -1,6 +1,8 @@
 class_name animationManager
 extends Node3D
 
+signal bat_swing_sound(charge_level: int)
+
 const TREE_CONDITIONS = "parameters/conditions/"
 const HIT_ANIMATION_NAME = "jammo_library/bat"
 
@@ -32,6 +34,7 @@ func idle():
 
 func hit(_charge_level: int):
 	hit_ball = true
+	bat_swing_sound.emit(_charge_level)
 
 func is_hitting() -> bool:
 	return hit_animation_happening
