@@ -20,6 +20,7 @@ const SPEED = 10.0
 @onready var hit_nodes: Node3D = $hitNodes
 @onready var camera_shaker: CameraShaker = $cameraShakeManager
 @onready var vibrator: vibrationManager = $vibrationManager
+@onready var sound_manager: SoundManager = $soundManager
 
 var material: BaseMaterial3D
 
@@ -131,3 +132,9 @@ func set_enemy(enemy: bool):
 
 func _on_back_settings_pressed() -> void:
 	gyro_sensibility = Settings.get_config(Settings.CONFIG_NAMES.gyro_sens)
+
+func _on_animation_manager_bat_swing_sound(charge_level:int) -> void:
+	if has_node("MultiplayerSynchronizer"):
+		sound_manager.play_bat_swing_sound.rpc(charge_level)
+	else:
+		sound_manager.play_bat_swing_sound(charge_level)

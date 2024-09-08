@@ -88,6 +88,8 @@ viewport_path = NodePath("hitManager/SubViewport")
 [node name="Enemy" instance=ExtResource("1_djgfh")]
 transform = Transform3D(6.98928, 0, 0, 0, 6.98928, 0, 0, 0, 6.98928, 0, 0, 0)
 script = ExtResource("2_mtiaa")
+time_to_stop_charge = 5
+backwards_speed_boost = 1.15
 
 [node name="ankle_low" parent="root/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("3_qw35q")
@@ -160,9 +162,6 @@ surface_material_override/0 = ExtResource("3_qw35q")
 
 [node name="wrist_low" parent="root/Skeleton3D" index="24"]
 surface_material_override/0 = ExtResource("3_qw35q")
-
-[node name="Bate" parent="root" index="2"]
-transform = Transform3D(22.8372, -5.76771, -0.356914, 5.80434, 21.1987, 2.53892, -1.01109, -8.57907, 6.51356, -0.274501, 0.366392, -0.0385333)
 
 [node name="Sprite3D" parent="root" index="3"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.0601775, 0)

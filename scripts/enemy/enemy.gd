@@ -18,6 +18,7 @@ const SPEED = 10.0
 @onready var hit_nodes: Node3D = $hitNodes
 @onready var hit_area: Area3D = $hitNodes/hitArea
 @onready var hit_prediction_area: Area3D = $hitNodes/hitPredictionArea
+@onready var sound_manager: SoundManager = $soundManager
 
 var movement := false
 var last_movement:int = 0
@@ -85,3 +86,7 @@ func _calc_rotation() -> void:
 func _on_attack_reset_prediction_area() -> void:
 	hit_prediction_area.monitoring = false
 	hit_prediction_area.monitoring = true
+
+func _on_animation_manager_bat_swing_sound(charge_level:int) -> void:
+	sound_manager.play_bat_swing_sound(charge_level)
+

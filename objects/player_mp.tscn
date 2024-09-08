@@ -38,49 +38,9 @@ properties/6/spawn = true
 properties/6/replication_mode = 1
 
 [node name="Player" instance=ExtResource("1_r5irm")]
-
-[node name="Skeleton3D" parent="root" index="0"]
-bones/2/rotation = Quaternion(-0.0413589, -0.364955, -0.0125446, 0.930021)
-bones/3/rotation = Quaternion(0.0475397, 0.0389015, -0.0102373, 0.998059)
-bones/4/rotation = Quaternion(0.0947185, 0.0802187, -0.0166197, 0.992128)
-bones/5/rotation = Quaternion(0.0823409, 0.0805906, -0.0156885, 0.993217)
-bones/6/rotation = Quaternion(0.0112934, -0.0107774, 0.00154826, 0.999877)
-bones/7/rotation = Quaternion(0.0166626, 0.17532, -0.01972, 0.984173)
-bones/11/rotation = Quaternion(0.471512, 0.515662, -0.505845, 0.505855)
-bones/12/rotation = Quaternion(0.591217, -0.0989155, 0.00838344, 0.80038)
-bones/13/rotation = Quaternion(0.0269793, 0.0539254, 0.415648, 0.907525)
-bones/14/rotation = Quaternion(-0.114464, 0.180615, -0.0138211, 0.976773)
-bones/15/rotation = Quaternion(0.260183, 0.209733, 0.262211, 0.905297)
-bones/16/rotation = Quaternion(-0.0017132, 0.134028, -0.0323193, 0.990449)
-bones/19/rotation = Quaternion(0.0422828, -0.027647, 0.091258, 0.994545)
-bones/20/rotation = Quaternion(0.154786, 0.00412344, -0.0109492, 0.987879)
-bones/23/rotation = Quaternion(0.12949, -0.0235503, -0.0459413, 0.990236)
-bones/24/rotation = Quaternion(0.201285, 0.0119666, 0.0072267, 0.979433)
-bones/27/rotation = Quaternion(0.295703, -0.0280266, -0.126364, 0.94647)
-bones/28/rotation = Quaternion(0.347811, 0.011803, 0.0392786, 0.936667)
-bones/31/rotation = Quaternion(0.516584, -0.470636, 0.477574, 0.53251)
-bones/32/rotation = Quaternion(0.551625, 0.0550886, 0.218907, 0.802967)
-bones/33/rotation = Quaternion(0.0901458, 0.0141952, -0.358316, 0.92913)
-bones/34/rotation = Quaternion(0.110107, -0.101648, -0.0554628, 0.987152)
-bones/35/rotation = Quaternion(0.174451, -0.0754954, -0.300312, 0.934709)
-bones/36/rotation = Quaternion(0.0698661, -0.127551, 0.20511, 0.967874)
-bones/39/rotation = Quaternion(0.0335298, 0.0316693, -0.0201871, 0.998732)
-bones/40/rotation = Quaternion(0.145538, -0.00507172, 0.0150788, 0.989225)
-bones/43/rotation = Quaternion(0.107454, 0.0361448, -0.00319264, 0.993548)
-bones/44/rotation = Quaternion(0.279852, -0.0115558, -0.00667055, 0.959951)
-bones/47/rotation = Quaternion(0.201732, 0.00039886, 0.0648599, 0.977291)
-bones/48/rotation = Quaternion(0.358895, -0.0126797, -0.0584475, 0.93146)
-bones/51/rotation = Quaternion(0.0690666, 0.238224, 0.961797, -0.115875)
-bones/52/rotation = Quaternion(-0.309309, 0.12889, -0.0175975, 0.942022)
-bones/53/rotation = Quaternion(0.568514, -0.054447, -0.057764, 0.818835)
-bones/54/rotation = Quaternion(0.192142, -0.0155115, 0.0981734, 0.976321)
-bones/56/rotation = Quaternion(-0.133588, -0.0920088, 0.978908, 0.124205)
-bones/57/rotation = Quaternion(-0.233064, 0.0630091, -0.0765057, 0.967398)
-bones/58/rotation = Quaternion(0.702412, 0.130762, 0.151358, 0.683088)
-bones/59/rotation = Quaternion(0.184301, 0.0352651, -0.124686, 0.974291)
-
-[node name="Bate" parent="root" index="2"]
-transform = Transform3D(22.8372, -5.76771, -0.356914, 5.80434, 21.1987, 2.53892, -1.01109, -8.57907, 6.51356, -0.274501, 0.366392, -0.0385333)
+gyro_sensibility = 0.4
+time_to_stop_charge = 5
+backwards_speed_boost = 1.15
 
 [node name="Sprite3D" parent="root" index="3"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.0544382, 0)

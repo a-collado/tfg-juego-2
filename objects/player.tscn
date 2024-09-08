@@ -267,9 +267,6 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_o6j03")
-gyro_sensibility = null
-time_to_stop_charge = null
-backwards_speed_boost = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.904499, 0)
@@ -454,7 +451,7 @@ baseball_swing_2 = ExtResource("16_2n4f7")
 baseball_swing_3 = ExtResource("18_u17tp")
 
 [connection signal="body_entered" from="hitNodes/hitArea" to="." method="_on_hit_area_body_entered"]
-[connection signal="bat_swing_sound" from="animationManager" to="soundManager" method="_on_animation_manager_bat_swing_sound"]
+[connection signal="bat_swing_sound" from="animationManager" to="." method="_on_animation_manager_bat_swing_sound"]
 [connection signal="animation_finished" from="animationManager/AnimationTree" to="animationManager" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="animationManager/AnimationTree" to="animationManager" method="_on_animation_tree_animation_started"]
 

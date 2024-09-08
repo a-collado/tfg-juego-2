@@ -1,3 +1,4 @@
+class_name SoundManager
 extends Node
 
 @export var baseball_swing_1: AudioStream
@@ -20,7 +21,8 @@ func _ready():
 	playback = player.get_stream_playback()
 	player.bus = "Efectos"
 
-func _on_animation_manager_bat_swing_sound(charge_level: int) -> void:
+@rpc("any_peer", "call_local")
+func play_bat_swing_sound(charge_level: int) -> void:
 	var sound: AudioStream
 	match charge_level:
 		1: sound = baseball_swing_1
