@@ -2,11 +2,11 @@ extends Node
 
 @export_file("*.tscn") var start_scren_scene_path: String = "res://scenes/startScreen.tscn"
 
-@onready var UI_loading = $"../UI/Loading"
-@onready var UI_pause_menu_resume = $"../UI/Resume"
-@onready var UI_pause_menu_settings = $"../UI/Settings"
-@onready var UI_pause_menu_quit = $"../UI/Quit"
-@onready var UI_settings = $"../UI/Settings Screen"
+@onready var UI_loading: TextureRect = $"../UI/Loading"
+@onready var UI_pause_menu_resume: Control = $"../UI/Resume"
+@onready var UI_pause_menu_settings: Control = $"../UI/Settings"
+@onready var UI_pause_menu_quit: Control = $"../UI/Quit"
+@onready var UI_settings: Control = $"../UI/Settings Screen"
 
 @onready var game = $".."
 
@@ -53,7 +53,6 @@ func _on_exit_pressed():
 
 func _on_settings_pressed() -> void:
 	var tween = create_tween()
-	tween.set_parallel(true)
 	tween.tween_property(UI_settings, "position:x", 0, 1.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 
 func _on_player_disconnected(_id):

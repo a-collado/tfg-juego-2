@@ -40,6 +40,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 460.0
+offset_bottom = -1197.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -48,21 +50,14 @@ script = ExtResource("4_yevkp")
 
 [node name="ReturnBall" type="Button" parent="UI/Debug" index="0"]
 layout_mode = 0
-offset_left = 457.0
+offset_left = 1.0
 offset_top = 9.0
-offset_right = 565.0
+offset_right = 109.0
 offset_bottom = 60.0
 text = "Return Ball"
 
 [node name="Pause" parent="UI" index="6"]
 process_mode = 3
-
-[node name="Settings Screen" parent="UI" index="9" node_paths=PackedStringArray("master_slider", "music_slider", "effects_slider", "gyro_slider", "vibration_button")]
-master_slider = NodePath("Ajustes/VM Slider")
-music_slider = NodePath("Ajustes/Musica Slider")
-effects_slider = NodePath("Ajustes/Efectos Slider")
-gyro_slider = NodePath("Ajustes/Giroscopio Slider")
-vibration_button = NodePath("Ajustes/Vibracion Boton")
 
 [node name="Marker3D" type="Marker3D" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.1064)

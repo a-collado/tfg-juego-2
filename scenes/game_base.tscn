@@ -355,36 +355,6 @@ theme_override_font_sizes/font_size = 300
 text = "0"
 horizontal_alignment = 1
 
-[node name="Settings" type="Button" parent="UI"]
-process_mode = 3
-offset_left = 137.0
-offset_top = 562.0
-offset_right = 466.0
-offset_bottom = 650.0
-focus_mode = 0
-theme = ExtResource("6_8ljby")
-theme_override_font_sizes/font_size = 46
-text = "Settings"
-icon = ExtResource("7_74jgd")
-flat = true
-icon_alignment = 1
-expand_icon = true
-
-[node name="Resume" type="Button" parent="UI"]
-process_mode = 3
-offset_left = 137.0
-offset_top = 478.0
-offset_right = 466.0
-offset_bottom = 566.0
-focus_mode = 0
-theme = ExtResource("6_8ljby")
-theme_override_font_sizes/font_size = 46
-text = "Resume"
-icon = ExtResource("7_74jgd")
-flat = true
-icon_alignment = 1
-expand_icon = true
-
 [node name="Quit" type="Button" parent="UI"]
 process_mode = 3
 offset_left = 137.0
@@ -395,6 +365,37 @@ focus_mode = 0
 theme = ExtResource("6_8ljby")
 theme_override_font_sizes/font_size = 46
 text = "Quit"
+icon = ExtResource("7_74jgd")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Resume" type="Button" parent="UI"]
+process_mode = 3
+offset_left = 137.0
+offset_top = 468.0
+offset_right = 466.0
+offset_bottom = 561.0
+focus_mode = 0
+theme = ExtResource("6_8ljby")
+theme_override_font_sizes/font_size = 46
+text = "Resume
+"
+icon = ExtResource("7_74jgd")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Settings" type="Button" parent="UI"]
+process_mode = 3
+offset_left = 137.0
+offset_top = 555.0
+offset_right = 466.0
+offset_bottom = 648.0
+focus_mode = 0
+theme = ExtResource("6_8ljby")
+theme_override_font_sizes/font_size = 46
+text = "Settings"
 icon = ExtResource("7_74jgd")
 flat = true
 icon_alignment = 1
@@ -413,12 +414,6 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="Control" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="Loading" type="TextureRect" parent="UI"]
 auto_translate_mode = 1
 visible = false
@@ -429,6 +424,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 texture = SubResource("GradientTexture1D_afqlx")
 metadata/_edit_use_anchors_ = true
 
@@ -450,16 +446,22 @@ theme_override_font_sizes/font_size = 64
 text = "Loading..."
 metadata/_edit_use_anchors_ = true
 
-[node name="Settings Screen" type="Control" parent="UI"]
+[node name="Settings Screen" type="Control" parent="UI" node_paths=PackedStringArray("master_slider", "music_slider", "effects_slider", "gyro_slider", "vibration_button")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -613.0
-offset_right = -613.0
+offset_left = -600.0
+offset_right = -600.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_lpegr")
+master_slider = NodePath("Ajustes/VM Slider")
+music_slider = NodePath("Ajustes/Musica Slider")
+effects_slider = NodePath("Ajustes/Efectos Slider")
+gyro_slider = NodePath("Ajustes/Giroscopio Slider")
+vibration_button = NodePath("Ajustes/Vibracion Boton")
 
 [node name="Fondo" type="Sprite2D" parent="UI/Settings Screen"]
 position = Vector2(-1.99997, 333)
@@ -475,7 +477,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 220.07
-offset_bottom = -249.93
+offset_bottom = 180.07
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -680,6 +682,7 @@ shape = SubResource("SphereShape3D_fr8sp")
 material = SubResource("ShaderMaterial_fhva0")
 
 [node name="Game Manager" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("5_thfdy")
 
 [node name="Score Manager" type="Node" parent="Game Manager"]
@@ -696,14 +699,15 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 
 [connection signal="body_entered" from="Environment/Goal A/Area3D" to="Game Manager/Score Manager" method="_on_goal_A_body_entered"]
 [connection signal="body_entered" from="Environment/Goal B/Area3D" to="Game Manager/Score Manager" method="_on_area_3d_body_entered"]
-[connection signal="pressed" from="UI/Settings" to="Game Manager" method="_on_settings_pressed"]
-[connection signal="pressed" from="UI/Resume" to="Game Manager" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/Quit" to="Game Manager" method="_on_exit_pressed"]
+[connection signal="pressed" from="UI/Resume" to="Game Manager" method="_on_resume_pressed"]
+[connection signal="pressed" from="UI/Settings" to="Game Manager" method="_on_settings_pressed"]
 [connection signal="pressed" from="UI/Pause" to="Game Manager" method="_on_pause_pressed"]
 [connection signal="value_changed" from="UI/Settings Screen/Ajustes/VM Slider" to="UI/Settings Screen" method="_on_vm_slider_value_changed"]
 [connection signal="value_changed" from="UI/Settings Screen/Ajustes/Musica Slider" to="UI/Settings Screen" method="_on_musica_slider_value_changed"]
 [connection signal="value_changed" from="UI/Settings Screen/Ajustes/Efectos Slider" to="UI/Settings Screen" method="_on_efectos_slider_value_changed"]
 [connection signal="value_changed" from="UI/Settings Screen/Ajustes/Giroscopio Slider" to="UI/Settings Screen" method="_on_giroscopio_slider_value_changed"]
 [connection signal="toggled" from="UI/Settings Screen/Ajustes/Vibracion Boton" to="UI/Settings Screen" method="_on_vibracion_boton_toggled"]
+[connection signal="pressed" from="UI/Settings Screen/Ajustes/Back" to="Game Manager" method="_on_settings_back_pressed"]
 
 [editable path="UI/Virtual Joystick"]

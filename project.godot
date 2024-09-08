@@ -24,7 +24,7 @@ config/icon="res://assets/Iconos/icon.svg"
 
 [audio]
 
-buses/default_bus_layout="res://audio/buses/default_bus_layout.tres"
+buses/default_bus_layout="res://assets/Recursos/Audio/buses/default_bus_layout.tres"
 
 [autoload]
 
@@ -32,6 +32,8 @@ Lobby="*res://scripts/multiplayer/Lobby.gd"
 Sensors="*res://scripts/player/sensors.gd"
 Settings="*res://scripts/global/settings.gd"
 Variables="*res://scripts/global/global_variables.gd"
+AudioButtons="*res://scripts/global/audio_buttons.gd"
+Music="*res://scripts/global/menu_music.gd"
 
 [display]
 
