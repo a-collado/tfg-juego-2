@@ -21,11 +21,12 @@ goal_A_pulse_color = Color(0.854902, 0.631373, 0.576471, 1)
 goal_B_base_color = Color(0, 0.501961, 1, 1)
 goal_B_pulse_color = Color(0.501961, 0.701961, 1, 1)
 
-[node name="Goal B Sphere" parent="Environment" index="4"]
-visible = false
-
 [node name="Goal B" parent="Environment" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.097, -17.418)
 visible = true
+
+[node name="Back" parent="Environment/Collisions/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0286803, 3.41836, 21.1328)
 
 [node name="Cameras" type="Node" parent="." index="1"]
 
