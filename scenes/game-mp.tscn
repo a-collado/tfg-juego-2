@@ -52,7 +52,7 @@ size = 18.0
 transform = Transform3D(-1.90187, 0, -1.66266e-07, 0, 1.90187, 0, 1.66266e-07, 0, -1.90187, 0, 0.004, 10.7706)
 
 [node name="Spawn 2" type="Marker3D" parent="Team B" index="0"]
-transform = Transform3D(1.90183, 0, 0.0122485, 0, 1.90187, 0, -0.0122485, 0, 1.90183, 0, 0.004, -15.4491)
+transform = Transform3D(1.90183, 0, 0.0122485, 0, 1.90187, 0, -0.0122485, 0, 1.90183, 0, 0.004, -10.771)
 
 [node name="Settings" parent="UI" index="4"]
 visible = false

@@ -38,9 +38,6 @@ properties/6/spawn = true
 properties/6/replication_mode = 1
 
 [node name="Player" instance=ExtResource("1_r5irm")]
-gyro_sensibility = 0.4
-time_to_stop_charge = 5
-backwards_speed_boost = 1.15
 
 [node name="Sprite3D" parent="root" index="3"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.0544382, 0)

@@ -66,6 +66,7 @@ func _spawn_players() -> void:
 			spawn = $"Team A/Spawn 1"
 			team = $"Team A"
 			player.name = "Player 2"
+			player.enemy = true
 			%"Camera 2".current = true
 			player.camera = %"Camera 1"
 			UI_score.move_child(score_label_B, 0)

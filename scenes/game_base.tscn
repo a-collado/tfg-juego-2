@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://hf54dvayfhfp"]
+[gd_scene load_steps=42 format=4 uid="uid://hf54dvayfhfp"]
 
 [ext_resource type="Script" path="res://scripts/game/Team.gd" id="2_qon7g"]
 [ext_resource type="MeshLibrary" uid="uid://dc8u7nxstkwfp" path="res://assets/Modelos 3D/space station kenney/Library/space_station_library.tres" id="2_tbimu"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/game/score_manager.gd" id="7_ephk5"]
 [ext_resource type="Shader" path="res://assets/Shaders/3D/burn_dissolve.gdshader" id="8_hyb38"]
 [ext_resource type="Script" path="res://scripts/settings_menu.gd" id="8_lpegr"]
+[ext_resource type="AudioStream" uid="uid://c04pwpqer85au" path="res://assets/Audio/FX/Game/baseball_bat_sound.ogg" id="11_tho74"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut28p"]
 albedo_texture = ExtResource("2_xqrfi")
@@ -242,7 +243,7 @@ collision_mask = 12
 metadata/_edit_lock_ = true
 
 [node name="Back" type="CollisionShape3D" parent="Environment/Collisions/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0286803, 3.41836, 23.8784)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0286803, 3.41836, 20.9865)
 shape = SubResource("BoxShape3D_uv6fw")
 
 [node name="Front" type="CollisionShape3D" parent="Environment/Collisions/StaticBody3D"]
@@ -673,6 +674,7 @@ continuous_cd = true
 max_contacts_reported = 1
 script = ExtResource("6_i326r")
 future_position_node = NodePath("../BallFuturePosition")
+baseball_bat_sound = ExtResource("11_tho74")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
 transform = Transform3D(0.712953, 0, 0, 0, 0.712953, 0, 0, 0, 0.712953, 0, 0, 0)

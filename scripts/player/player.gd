@@ -10,8 +10,9 @@ const SPEED = 10.0
 ## Porcentaje de velocidad extra al caminar hacia atras
 @export_range(1,2,0.01) var backwards_speed_boost: float = 1.15
 
-@onready var enemy_material: BaseMaterial3D = preload("res://assets/Modelos 3D/jammo/materiales/jammo_enemy.material")
 @onready var player_material: BaseMaterial3D = preload("res://assets/Modelos 3D/jammo/materiales/jammo.material")
+@onready var enemy_material: BaseMaterial3D = preload("res://assets/Modelos 3D/jammo/materiales/jammo_enemy.material")
+
 
 @onready var team: Team = self.get_parent()
 @onready var hit_manager: HitManager = $hitManager
@@ -37,6 +38,8 @@ var _last_movement:int = 0
 
 var direction: Vector3
 
+var enemy: bool = false
+
 func _enter_tree() -> void:
 	set_multiplayer_authority(id)
 
@@ -45,17 +48,18 @@ func _ready() -> void:
 	hit_manager.connect("hit_ball", hit_ball)
 	material = $"root/Skeleton3D/ankle_low".get_active_material(0)
 
+
 	if has_node("MultiplayerSynchronizer"):
 		mult_sync = $MultiplayerSynchronizer
 		is_multiplayer = true
 		if _is_this_not_multiplayer_authority():
 			$hitManager/Sprite3D.hide()
-			set_enemy(true)
 			
 	else:
 		virtual_joystick = %"Virtual Joystick"
 		camera = %Camera
 	camera_shaker.camera = camera
+	_set_material()
 
 func _physics_process(delta: float) -> void:
 	if _is_this_not_multiplayer_authority():
@@ -124,11 +128,11 @@ func _calc_hit_roration():
 	var gyro_rotation = Sensors.get_accelerometer()
 	hit_nodes.rotation.y = -1 * gyro_rotation.x * gyro_sensibility;
 
-func set_enemy(enemy: bool):
+func _set_material():
 	if enemy:
-		material = enemy_material
-	else:
-		material = player_material
+		for mesh in $"root/Skeleton3D".get_children():
+			mesh.set_surface_override_material(0, enemy_material)
+		
 
 func _on_back_settings_pressed() -> void:
 	gyro_sensibility = Settings.get_config(Settings.CONFIG_NAMES.gyro_sens)

@@ -5,8 +5,25 @@ class_name Ball
 @export var future_position_node: Node3D
 @export_range(0, 0.3, 0.01) var future_position_time: float = 0.1
 
+@export var baseball_bat_sound: AudioStream
+
 var frames_between_hits: int = 10
 @export var last_hit: int = 0
+
+var playback:AudioStreamPlaybackPolyphonic
+
+func _ready():
+	var player = AudioStreamPlayer.new()
+	add_child(player)
+
+	var stream = AudioStreamPolyphonic.new()
+	stream.polyphony = 32
+	player.stream = stream
+	player.volume_db = -10
+	player.play()
+
+	playback = player.get_stream_playback()
+	player.bus = "Efectos"
 
 @rpc("any_peer", "call_local", "reliable")
 func kick(force: Vector3):
@@ -28,6 +45,7 @@ func kick(force: Vector3):
 		apply_impulse(force - velocity)
 		print("Resulting force:  %s" % (force - velocity))
 		last_hit = 0
+		playback.play_stream(baseball_bat_sound, 0, 0, randf_range(0.8, 1.2))
 
 @rpc("any_peer", "call_local", "reliable")
 func reset(spawn: Vector3):
