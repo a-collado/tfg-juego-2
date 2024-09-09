@@ -153,7 +153,7 @@ tracks/1/enabled = true
 tracks/1/path = NodePath("Goal B Sphere")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 1.152, -17.456)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kl71c"]
 _data = {
@@ -333,6 +333,7 @@ transform = Transform3D(3.24487, 0, 0, 0, 3.24487, 0, 0, 0, 3.24487, 0, 0.748212
 shape = SubResource("BoxShape3D_cif0x")
 
 [node name="Goal B Sphere" type="CSGSphere3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.152, -17.456)
 radius = 1.5
 radial_segments = 24
 rings = 12

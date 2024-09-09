@@ -37,3 +37,29 @@ Giroscopi
 "
 BUTTON_VIBRATE,Vibration,Vibración,Vibració
 BUTTON_LANGUAGE,Language,Idioma,Llenguatge
+TITLE_HOWTO,[center]How to play,[center]Como jugar,[center]Com jugar
+TEXT_HOWTO,"[center] Move the character with the stick to charge his hit.
+
+The moment you stop moving, he will hit.
+
+The longer you move, the harder you hit.
+
+TRY TO GET THE BALL INTO THE OPPONENT'S GOAL.","[center] Mueve al personaje con el stick para cargar su golpe.
+
+En el momento en el que te dejes de mover, golpeara.
+
+Mientras máas tiempo te muevas, más fuerte golpearas.
+
+INTENTA METER LA PELOTA EN LA PORTERIA DEL ADVERSARIO.","[center] Mou el personatge amb l'stick per carregar el seu cop.
+
+En el moment en què et deixis de moure, golpejaras.
+
+Mentre més temps et moguis, més fort golpejaras.
+
+INTENTA FICAR LA PILOTA A LA PORTERIA DE L'ADVERSARI."
+TITLE_CREDITOS,[center]CREDITS,[center]CREDITOS,[center]Crèdits
+TEXT_CREATED,Game created by:,Juego creado por:,Joc creat per:
+TEXT_HERRAMIENTAS,Tools:,Herramientas:,Eines:
+TEXT_VISUALES,Visuals:,VISUALES:,Visuals:
+TEXT_AUDIO,AUDIO:,AUDIO:,àudio:
+TITLE_LOADING,[center][shake rate=20.0 level=6 connected=1]Loading...,[center][shake rate=20.0 level=6 connected=1]Cargando…,[center][shake rate=20.0 level=6 connected=1]Carregant…
