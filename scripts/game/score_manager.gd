@@ -4,7 +4,7 @@ extends Node
 signal reset_ball(spawn: String)
 signal exit
 
-@onready var UI_scores: Container = $"../../UI/Scores"
+@onready var UI_scores: Control = $"../../UI/Scores"
 @onready var label_score_A = $"../../UI/Scores/Score A"
 @onready var label_score_B = $"../../UI/Scores/Score B"
 @onready var score_timer = $Timer
@@ -25,14 +25,22 @@ func _process(_delta):
 		return
 
 	if score_A >= score_to_win:
+		_reformat_labels()
 		label_score_A.text = "WINS"
 		label_score_B.text = "LOSE"
 	if score_B >= score_to_win:
+		_reformat_labels()
 		label_score_A.text = "LOSE"
 		label_score_B.text = "WINS"
 	finished = true
 	score_timer.wait_time = end_time
 	_show_score()
+
+func _reformat_labels():
+	label_score_A.position.y = 67
+	label_score_B.position.y = 890
+	label_score_A.set("theme_override_font_sizes/font_size", 140)
+	label_score_B.set("theme_override_font_sizes/font_size", 140)
 
 func _on_goal_A_body_entered(body):
 	if body is Ball:
