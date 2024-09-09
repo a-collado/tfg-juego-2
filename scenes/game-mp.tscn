@@ -61,3 +61,4 @@ visible = false
 replication_config = SubResource("SceneReplicationConfig_l3raq")
 
 [editable path="UI/Virtual Joystick"]
+[editable path="Ball/Ball Mesh"]

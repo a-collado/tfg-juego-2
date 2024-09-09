@@ -208,3 +208,6 @@ func _on_top_goals_toggled(_toggled_on:bool) -> void:
 func _load_game(game_scene_path_signal) -> void:
 	UI_loading.visible = true
 	ResourceLoader.load_threaded_request(game_scene_path_signal)
+
+func _exit_tree() -> void:
+	Music._game_entered()

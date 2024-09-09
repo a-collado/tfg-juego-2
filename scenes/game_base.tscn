@@ -362,9 +362,18 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/Scores"]
+show_behind_parent = true
 position = Vector2(287, 212.805)
 rotation = -0.191986
 scale = Vector2(2.30087, 303.171)
+skew = 0.191986
+texture = SubResource("GradientTexture1D_i0cs8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="UI/Scores"]
+show_behind_parent = true
+position = Vector2(287.5, 1025.49)
+rotation = -0.191986
+scale = Vector2(2.30485, 303.171)
 skew = 0.191986
 texture = SubResource("GradientTexture1D_i0cs8")
 
@@ -380,13 +389,6 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 justification_flags = 0
-
-[node name="Sprite2D2" type="Sprite2D" parent="UI/Scores"]
-position = Vector2(287.5, 1025.49)
-rotation = -0.191986
-scale = Vector2(2.30485, 303.171)
-skew = 0.191986
-texture = SubResource("GradientTexture1D_i0cs8")
 
 [node name="Score B" type="Label" parent="UI/Scores"]
 auto_translate_mode = 1

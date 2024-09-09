@@ -88,3 +88,4 @@ size = Vector3(1.24515, 1, 3.01562)
 [connection signal="pressed" from="UI/Settings Screen/Ajustes/Back" to="Team A/Player" method="_on_back_settings_pressed"]
 
 [editable path="UI/Virtual Joystick"]
+[editable path="Ball/Ball Mesh"]

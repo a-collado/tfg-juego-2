@@ -18,7 +18,7 @@ func _ready() -> void:
 func _game_entered() -> void:
 	if get_tree():
 		await get_tree().process_frame
-
+	
 	if(get_node_or_null("/root/Game")):
 		in_menu = false
 		stop()
