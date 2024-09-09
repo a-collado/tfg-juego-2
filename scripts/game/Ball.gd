@@ -2,6 +2,7 @@ extends RigidBody3D
 class_name Ball
 
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
+
 @export var future_position_node: Node3D
 @export_range(0, 0.3, 0.01) var future_position_time: float = 0.1
 
@@ -9,6 +10,8 @@ class_name Ball
 
 var frames_between_hits: int = 10
 @export var last_hit: int = 0
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var playback:AudioStreamPlaybackPolyphonic
 
@@ -21,6 +24,7 @@ func _ready():
 	player.stream = stream
 	player.volume_db = -10
 	player.play()
+	animation_player.play("idle")
 
 	playback = player.get_stream_playback()
 	player.bus = "Efectos"
