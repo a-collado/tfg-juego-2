@@ -1,11 +1,13 @@
-[gd_scene load_steps=44 format=4 uid="uid://hf54dvayfhfp"]
+[gd_scene load_steps=48 format=4 uid="uid://hf54dvayfhfp"]
 
 [ext_resource type="Script" path="res://scripts/game/Team.gd" id="2_qon7g"]
 [ext_resource type="MeshLibrary" uid="uid://dc8u7nxstkwfp" path="res://assets/Modelos 3D/space station kenney/Library/space_station_library.tres" id="2_tbimu"]
 [ext_resource type="Texture2D" uid="uid://bckbrb36l5ey0" path="res://assets/Modelos 3D/floor/floor_texture.png" id="2_xqrfi"]
 [ext_resource type="Shader" path="res://assets/Shaders/3D/shield.gdshader" id="3_cuf5j"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick_scene.tscn" id="5_otsi1"]
+[ext_resource type="Script" path="res://scripts/game/goal_sounds.gd" id="5_rovc8"]
 [ext_resource type="Script" path="res://scripts/game/game_manager.gd" id="5_thfdy"]
+[ext_resource type="AudioStream" uid="uid://c0s5640rpxqy4" path="res://assets/Audio/FX/Game/point.ogg" id="6_5yhp7"]
 [ext_resource type="Theme" uid="uid://b6uhtsi5wy8or" path="res://assets/Recursos/Temas/default.theme" id="6_8ljby"]
 [ext_resource type="Texture2D" uid="uid://ctmifxjo5lnt6" path="res://assets/Sprites/UI/controls_pack/flatLight12.png" id="6_bwr54"]
 [ext_resource type="Script" path="res://scripts/game/Ball.gd" id="6_i326r"]
@@ -14,6 +16,7 @@
 [ext_resource type="Shader" path="res://assets/Shaders/3D/burn_dissolve.gdshader" id="8_hyb38"]
 [ext_resource type="Script" path="res://scripts/settings_menu.gd" id="8_lpegr"]
 [ext_resource type="AudioStream" uid="uid://c04pwpqer85au" path="res://assets/Audio/FX/Game/baseball_bat_sound.ogg" id="11_tho74"]
+[ext_resource type="PackedScene" uid="uid://cfa0cprlcjigi" path="res://assets/Modelos 3D/ball/ball.glb" id="15_csu3g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut28p"]
 albedo_texture = ExtResource("2_xqrfi")
@@ -171,6 +174,16 @@ shader_parameter/burn_size = 0.284
 shader_parameter/dissolve_amount = 0.0
 shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_xwl47")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u7bnp"]
+metallic = 1.0
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(1, 0.0195312, 0.0195312, 1)
+rim_enabled = true
+rim_tint = 1.0
+clearcoat_enabled = true
+clearcoat_roughness = 0.0
+
 [node name="Game" type="Node"]
 
 [node name="Environment" type="Node" parent="."]
@@ -200,7 +213,7 @@ rings = 12
 material = SubResource("ShaderMaterial_p1lqc")
 
 [node name="Goal A" type="CSGCylinder3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.76566e-05, -0.0964174, 17.418)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.76566e-05, 0.305008, 17.418)
 visible = false
 material_override = SubResource("StandardMaterial3D_6e3lt")
 radius = 1.5
@@ -223,7 +236,7 @@ rings = 12
 material = SubResource("ShaderMaterial_v00v3")
 
 [node name="Goal B" type="CSGCylinder3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.096745, -18.5674)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125453, -17.6022)
 visible = false
 material_override = SubResource("StandardMaterial3D_23vym")
 radius = 1.5
@@ -310,6 +323,10 @@ goal = NodePath("../Environment/Goal B/Area3D")
 
 [node name="Ball Spawn B" type="Marker3D" parent="Team B"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.057, 0.95, -3.767)
+
+[node name="Goal Sound Effects" type="Node" parent="."]
+script = ExtResource("5_rovc8")
+goal_sound = ExtResource("6_5yhp7")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -693,7 +710,7 @@ shape = SubResource("BoxShape3D_5ht4i")
 
 [node name="Ball" type="RigidBody3D" parent="." node_paths=PackedStringArray("future_position_node")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.949508, 3.76684)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.187112, 3.76684)
 collision_layer = 4
 collision_mask = 4
 axis_lock_linear_y = true
@@ -709,7 +726,15 @@ transform = Transform3D(0.712953, 0, 0, 0, 0.712953, 0, 0, 0, 0.712953, 0, 0, 0)
 shape = SubResource("SphereShape3D_fr8sp")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Ball/CollisionShape3D"]
+visible = false
 material = SubResource("ShaderMaterial_fhva0")
+
+[node name="Ball Mesh" parent="Ball" instance=ExtResource("15_csu3g")]
+transform = Transform3D(0.359, 0, 0, 0, 0.359, 0, 0, 0, 0.359, 0, 0, 0)
+gi_mode = 2
+
+[node name="Ball" parent="Ball/Ball Mesh" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_u7bnp")
 
 [node name="Game Manager" type="Node" parent="."]
 process_mode = 3
@@ -725,8 +750,6 @@ one_shot = true
 [node name="Sprite3D" type="Sprite3D" parent="Game Manager/Score Manager"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 16.5844)
 
-[node name="Node3D" type="Node3D" parent="."]
-
 [connection signal="body_entered" from="Environment/Goal A/Area3D" to="Game Manager/Score Manager" method="_on_goal_A_body_entered"]
 [connection signal="body_entered" from="Environment/Goal B/Area3D" to="Game Manager/Score Manager" method="_on_area_3d_body_entered"]
 [connection signal="pressed" from="UI/Quit" to="Game Manager" method="_on_exit_pressed"]
@@ -739,5 +762,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 [connection signal="value_changed" from="UI/Settings Screen/Ajustes/Giroscopio Slider" to="UI/Settings Screen" method="_on_giroscopio_slider_value_changed"]
 [connection signal="toggled" from="UI/Settings Screen/Ajustes/Vibracion Boton" to="UI/Settings Screen" method="_on_vibracion_boton_toggled"]
 [connection signal="pressed" from="UI/Settings Screen/Ajustes/Back" to="Game Manager" method="_on_settings_back_pressed"]
+[connection signal="play_goal_sound" from="Game Manager/Score Manager" to="Goal Sound Effects" method="_on_score_manager_play_goal_sound"]
 
 [editable path="UI/Virtual Joystick"]
+[editable path="Ball/Ball Mesh"]

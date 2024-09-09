@@ -33,7 +33,23 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -11.9861)
 enemy_ia_follow = NodePath("../../EnemyIAFollow")
 goal_to_score = NodePath("../../Environment/Goal A")
 
+[node name="Marker3D" type="Marker3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.1064)
+gizmo_extents = 2.84
+
+[node name="EnemyIAFollow" type="Node3D" parent="." index="7"]
+visible = false
+script = ExtResource("5_4mm33")
+
+[node name="DefendStateFollow" type="CSGBox3D" parent="EnemyIAFollow" index="0" node_paths=PackedStringArray("ball_future_pos")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.62921)
+script = ExtResource("5_mrguf")
+ball_future_pos = NodePath("../../BallFuturePosition")
+change_timeout = 30
+offset_x_range = null
+
 [node name="Debug" type="Control" parent="UI" index="4"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,21 +72,6 @@ text = "Return Ball"
 
 [node name="Pause" parent="UI" index="6"]
 process_mode = 3
-
-[node name="Marker3D" type="Marker3D" parent="." index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.1064)
-gizmo_extents = 2.84
-
-[node name="EnemyIAFollow" type="Node3D" parent="." index="7"]
-visible = false
-script = ExtResource("5_4mm33")
-
-[node name="DefendStateFollow" type="CSGBox3D" parent="EnemyIAFollow" index="0" node_paths=PackedStringArray("ball_future_pos")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.62921)
-script = ExtResource("5_mrguf")
-ball_future_pos = NodePath("../../BallFuturePosition")
-change_timeout = 30
-offset_x_range = null
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="9"]
 navigation_mesh = SubResource("NavigationMesh_ubnn4")

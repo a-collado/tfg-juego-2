@@ -15,7 +15,7 @@ signal end_loading
 @export var goal_B_pulse_color: Color
 
 @onready var UI_loading = $UI/Loading
-@onready var UI_score: Container = $UI/Scores
+@onready var UI_score: Control = $UI/Scores
 @onready var joystick: VirtualJoystick = %"Virtual Joystick"
 
 @onready var score_label_A = $"UI/Scores/Score A"
@@ -85,4 +85,3 @@ func _spawn_players() -> void:
 func end_load_screen() -> void:
 	_spawn_players()
 	end_loading.emit()
-

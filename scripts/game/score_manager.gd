@@ -2,6 +2,7 @@ class_name ScoreManager
 extends Node
 
 signal reset_ball(spawn: String)
+signal play_goal_sound
 signal exit
 
 @onready var UI_scores: Control = $"../../UI/Scores"
@@ -60,6 +61,8 @@ func _update_score(team: String):
 	if not score_timer.is_stopped():
 		return
 	reset_ball.emit(team)
+	play_goal_sound.emit()
+
 	if team == "A":
 		score_A += 1
 	if team == "B":
