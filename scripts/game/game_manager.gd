@@ -15,6 +15,8 @@ extends Node
 @onready var ball_spawn_B: Marker3D = $"../Team B/Ball Spawn B"
 @onready var ball: Ball = %Ball
 
+@onready var animation_goals: AnimationPlayer = $"/root/Game/Environment/animationManager/AnimationPlayer"
+
 var is_multiplayer = false
 
 func _ready():
@@ -29,6 +31,7 @@ func _ready():
 		game.connect("end_loading", end_load_screen)
 	else:
 		end_load_screen()
+	animation_goals.play("idle")
 
 func end_load_screen():
 	UI_loading.visible = false

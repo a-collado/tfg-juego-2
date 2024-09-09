@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://hf54dvayfhfp"]
+[gd_scene load_steps=57 format=4 uid="uid://hf54dvayfhfp"]
 
 [ext_resource type="Script" path="res://scripts/game/Team.gd" id="2_qon7g"]
 [ext_resource type="MeshLibrary" uid="uid://dc8u7nxstkwfp" path="res://assets/Modelos 3D/space station kenney/Library/space_station_library.tres" id="2_tbimu"]
@@ -118,6 +118,48 @@ sdfgi_read_sky_light = false
 adjustment_enabled = true
 adjustment_saturation = 1.2
 adjustment_color_correction = SubResource("GradientTexture1D_sym4f")
+
+[sub_resource type="Animation" id="Animation_gggtc"]
+resource_name = "idle"
+length = 0.46667
+loop_mode = 2
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Goal A Sphere")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.152, 17.456, 0.466667, 1, 0, 1.39109, 17.456)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Goal B Sphere")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 1.391, -17.456, 0.46667, 1, 0, 1.152, -17.456)
+
+[sub_resource type="Animation" id="Animation_es3t8"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Goal A Sphere")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.152, 17.456)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Goal B Sphere")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kl71c"]
+_data = {
+"RESET": SubResource("Animation_es3t8"),
+"idle": SubResource("Animation_gggtc")
+}
 
 [sub_resource type="VoxelGIData" id="VoxelGIData_gigp0"]
 _data = {
@@ -291,7 +333,6 @@ transform = Transform3D(3.24487, 0, 0, 0, 3.24487, 0, 0, 0, 3.24487, 0, 0.748212
 shape = SubResource("BoxShape3D_cif0x")
 
 [node name="Goal B Sphere" type="CSGSphere3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15204, -17.4559)
 radius = 1.5
 radial_segments = 24
 rings = 12
@@ -351,6 +392,14 @@ shape = SubResource("BoxShape3D_uv6fw")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = SubResource("Environment_qmlgc")
+
+[node name="animationManager" type="Node" parent="Environment"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Environment/animationManager"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_kl71c")
+}
 
 [node name="Lights" type="Node" parent="."]
 
@@ -774,7 +823,7 @@ shape = SubResource("BoxShape3D_5ht4i")
 
 [node name="Ball" type="RigidBody3D" parent="." node_paths=PackedStringArray("future_position_node")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0568333, 0.187112, 3.76684)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0736304, 0.157222, 3.77612)
 collision_layer = 4
 collision_mask = 4
 axis_lock_linear_y = true
